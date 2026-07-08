@@ -1,199 +1,195 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-<meta charset="UTF-8">
-<title>Home</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",Tahoma,sans-serif;
+}
 
-<header>
-<div class="logo">Portfolio</div>
+html{
+    scroll-behavior:smooth;
+}
 
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="projects.html">Projects</a>
-<a href="certificates.html">Certificates</a>
-<a href="contact.html">Contact</a>
-</nav>
+body{
+    background:#f7f7f7;
+    color:#333;
+}
 
-</header>
+/* Header */
 
-<section class="hero">
-<div>
-<h1>Welcome</h1>
-<p>เว็บไซต์ Portfolio ของนายเมธาสิทธิ์ ขันติกุล</p>
-</div>
-</section>
+header{
+    background:linear-gradient(90deg,#ff5722,#ff9800);
+    color:white;
+    padding:20px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
 
-<footer>
-© 2026 Portfolio
-</footer>
+.logo{
+    font-size:30px;
+    font-weight:bold;
+}
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="th">
-<head>
-<meta charset="UTF-8">
-<title>About</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:18px;
+    transition:.3s;
+}
 
-<header>
-<div class="logo">Portfolio</div>
+nav a:hover{
+    color:#ffe600;
+}
 
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="projects.html">Projects</a>
-<a href="certificates.html">Certificates</a>
-<a href="contact.html">Contact</a>
-</nav>
 
-</header>
+/* Hero */
 
-<div class="container">
-<div class="card">
+.hero{
+    height:600px;
+    background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+    url("https://images.unsplash.com/photo-1518770660439-4636190af475");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
 
-<h2>About Me</h2>
+.hero h1{
+    font-size:65px;
+}
 
-<p><b>ชื่อ :</b> นายเมธาสิทธิ์ ขันติกุล</p>
+.hero p{
+    font-size:25px;
+    margin-top:15px;
+}
 
-<p><b>ชั้น :</b> มัธยมศึกษาปีที่ 6/1</p>
+.btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:12px 35px;
+    background:#ff9800;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    transition:.3s;
+}
 
-<p><b>โรงเรียน :</b> โรงเรียนพานทอง</p>
+.btn:hover{
+    background:#ff5722;
+}
 
-<p><b>ทักษะ :</b> HTML, CSS, Java</p>
 
-</div>
-</div>
+/* Content */
 
-<footer>
-© 2026 Portfolio
-</footer>
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:auto;
+    padding:50px 0;
+}
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="th">
-<head>
-<meta charset="UTF-8">
-<title>Projects</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-<header>
-<div class="logo">Portfolio</div>
+.card{
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+    margin-bottom:30px;
+    animation:fade .8s;
+}
 
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="projects.html">Projects</a>
-<a href="certificates.html">Certificates</a>
-<a href="contact.html">Contact</a>
-</nav>
+.card h2{
+    color:#ff5722;
+    margin-bottom:20px;
+}
 
-</header>
 
-<div class="container">
-<div class="card">
+/* Project */
 
-<h2>Projects</h2>
+.project-box{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
 
-<ul>
-<li>เว็บไซต์ Portfolio</li>
-<li>เว็บไซต์ร้านค้าออนไลน์</li>
-<li>โปรแกรมคำนวณเกรด</li>
-</ul>
+.project{
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
 
-</div>
-</div>
+.project img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
 
-<footer>
-© 2026 Portfolio
-</footer>
+.project h3,
+.project p{
+    padding:15px;
+}
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="th">
-<head>
-<meta charset="UTF-8">
-<title>Certificates</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-<header>
-<div class="logo">Portfolio</div>
+/* Certificate */
 
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="projects.html">Projects</a>
-<a href="certificates.html">Certificates</a>
-<a href="contact.html">Contact</a>
-</nav>
+.certificate img{
+    width:250px;
+    border-radius:15px;
+    margin:10px;
+}
 
-</header>
 
-<div class="container">
-<div class="card">
+/* Footer */
 
-<h2>Certificates</h2>
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
 
-<p>เพิ่มรูปใบประกาศนียบัตรของคุณที่นี่</p>
 
-</div>
-</div>
+/* Animation */
 
-<footer>
-© 2026 Portfolio
-</footer>
+@keyframes fade{
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="th">
-<head>
-<meta charset="UTF-8">
-<title>Contact</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+from{
+opacity:0;
+transform:translateY(20px);
+}
 
-<header>
-<div class="logo">Portfolio</div>
+to{
+opacity:1;
+transform:translateY(0);
+}
 
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="projects.html">Projects</a>
-<a href="certificates.html">Certificates</a>
-<a href="contact.html">Contact</a>
-</nav>
+}
 
-</header>
 
-<div class="container">
-<div class="card">
+/* Mobile */
 
-<h2>Contact</h2>
+@media(max-width:700px){
 
-<p>Email : your@email.com</p>
-<p>Facebook : facebook.com/yourname</p>
-<p>GitHub : github.com/yourname</p>
+header{
+    flex-direction:column;
+}
 
-</div>
-</div>
+nav{
+    margin-top:15px;
+}
 
-<footer>
-© 2026 Portfolio
-</footer>
+.hero h1{
+    font-size:40px;
+}
 
-</body>
-</html>
+}
