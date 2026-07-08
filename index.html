@@ -1,80 +1,165 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio เมธาสิทธิ์</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio</title>
 
-    <style>
-        body{
-            margin:0;
-            font-family:Tahoma, sans-serif;
-            background:linear-gradient(135deg,#ff6633,#ff9966);
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            height:100vh;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
 
-        .card{
-            background:#ffffff;
-            width:400px;
-            padding:30px;
-            border-radius:15px;
-            text-align:center;
-            box-shadow:0 8px 20px rgba(0,0,0,0.2);
-        }
+body{
+    background:#f5f5f5;
+}
 
-        .profile{
-            width:150px;
-            height:150px;
-            border-radius:50%;
-            background:#ddd;
-            margin:0 auto 20px;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            font-size:60px;
-        }
+/* ===== HEADER ===== */
 
-        h1{
-            color:#ff6633;
-            margin-bottom:10px;
-        }
+header{
+    background:linear-gradient(90deg,#ff5722,#ff9800);
+    color:white;
+    padding:20px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
 
-        p{
-            font-size:18px;
-            color:#555;
-            margin:8px 0;
-        }
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
 
-        footer{
-            margin-top:20px;
-            color:#888;
-            font-size:14px;
-        }
-    </style>
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:18px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:yellow;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+    height:350px;
+    background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),
+    url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80");
+    background-size:cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:50px;
+}
+
+.hero p{
+    margin-top:15px;
+    font-size:20px;
+}
+
+/* ===== BODY ===== */
+
+.container{
+    width:90%;
+    margin:auto;
+    padding:40px 0;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.card h2{
+    color:#ff5722;
+    margin-bottom:15px;
+}
+
+footer{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+</style>
+
 </head>
 
 <body>
 
-    <div class="card">
+<header>
+<div class="logo">My Portfolio</div>
 
-        <div class="profile">
-            👨‍🎓
-        </div>
+<nav>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#projects">Projects</a>
+<a href="#certificates">Certificates</a>
+<a href="#contact">Contact</a>
+</nav>
 
-        <h1>นายเมธาสิทธิ์ ขันติกุล</h1>
+</header>
 
-        <p><strong>ระดับชั้น:</strong> มัธยมศึกษาปีที่ 6/1</p>
+<section class="hero" id="home">
+<div>
+<h1>Welcome</h1>
+<p>เว็บไซต์สะสมผลงานของฉัน</p>
+</div>
+</section>
 
-        <p><strong>โรงเรียน:</strong> โรงเรียนพานทอง</p>
+<div class="container">
 
-        <footer>
-            Portfolio ของเมธาสิทธิ์
-        </footer>
+<div class="card" id="about">
+<h2>About Me</h2>
+<p>
+เขียนข้อมูลส่วนตัว ประวัติการศึกษา และทักษะของคุณ
+</p>
+</div>
 
-    </div>
+<div class="card" id="projects">
+<h2>Projects</h2>
+<p>
+- โปรเจกต์ที่ 1<br>
+- โปรเจกต์ที่ 2<br>
+- โปรเจกต์ที่ 3
+</p>
+</div>
+
+<div class="card" id="certificates">
+<h2>Certificates</h2>
+<p>
+เพิ่มรูปหรือไฟล์ใบประกาศของคุณ
+</p>
+</div>
+
+<div class="card" id="contact">
+<h2>Contact</h2>
+<p>
+Email : your@email.com<br>
+GitHub : https://github.com/yourname
+</p>
+</div>
+
+</div>
+
+<footer>
+© 2026 My Portfolio
+</footer>
 
 </body>
 </html>
