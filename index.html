@@ -1,195 +1,184 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio นนทวิชญ์</title>
+
+<style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:"Poppins",Tahoma,sans-serif;
-}
-
-html{
-    scroll-behavior:smooth;
+    font-family: "Prompt", sans-serif;
 }
 
 body{
-    background:#f7f7f7;
-    color:#333;
+    background: linear-gradient(135deg,#7b2ff7,#9d4edd,#c77dff);
+    min-height:100vh;
+    padding:30px;
 }
-
-/* Header */
-
-header{
-    background:linear-gradient(90deg,#ff5722,#ff9800);
-    color:white;
-    padding:20px 60px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    position:sticky;
-    top:0;
-    z-index:100;
-    box-shadow:0 5px 15px rgba(0,0,0,.2);
-}
-
-.logo{
-    font-size:30px;
-    font-weight:bold;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:25px;
-    font-size:18px;
-    transition:.3s;
-}
-
-nav a:hover{
-    color:#ffe600;
-}
-
-
-/* Hero */
-
-.hero{
-    height:600px;
-    background:
-    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-    url("https://images.unsplash.com/photo-1518770660439-4636190af475");
-    background-size:cover;
-    background-position:center;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    color:white;
-}
-
-.hero h1{
-    font-size:65px;
-}
-
-.hero p{
-    font-size:25px;
-    margin-top:15px;
-}
-
-.btn{
-    display:inline-block;
-    margin-top:30px;
-    padding:12px 35px;
-    background:#ff9800;
-    color:white;
-    text-decoration:none;
-    border-radius:30px;
-    transition:.3s;
-}
-
-.btn:hover{
-    background:#ff5722;
-}
-
-
-/* Content */
 
 .container{
-    width:90%;
-    max-width:1100px;
+    max-width:900px;
     margin:auto;
-    padding:50px 0;
+    background:#fff;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
 }
 
+.header{
+    text-align:center;
+    padding:50px 20px;
+    background:linear-gradient(135deg,#5a189a,#7b2cbf);
+    color:white;
+}
+
+.profile{
+    width:150px;
+    height:150px;
+    background:white;
+    color:#7b2cbf;
+    border-radius:50%;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:70px;
+    font-weight:bold;
+    border:5px solid white;
+}
+
+.header h1{
+    margin-top:20px;
+    font-size:2.2rem;
+}
+
+.header p{
+    margin-top:10px;
+    font-size:1.1rem;
+}
+
+.content{
+    padding:30px;
+}
+
+.section{
+    margin-bottom:25px;
+}
+
+.section h2{
+    color:#7b2cbf;
+    margin-bottom:10px;
+    border-left:6px solid #9d4edd;
+    padding-left:10px;
+}
 
 .card{
-    background:white;
-    padding:35px;
-    border-radius:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,.1);
-    margin-bottom:30px;
-    animation:fade .8s;
-}
-
-.card h2{
-    color:#ff5722;
-    margin-bottom:20px;
-}
-
-
-/* Project */
-
-.project-box{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-}
-
-.project{
-    background:#fff;
+    background:#f8f0ff;
+    padding:18px;
     border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    transition:.3s;
 }
 
-.project img{
-    width:100%;
-    height:180px;
-    object-fit:cover;
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 20px rgba(123,44,191,.2);
 }
 
-.project h3,
-.project p{
-    padding:15px;
+ul{
+    padding-left:20px;
 }
 
-
-/* Certificate */
-
-.certificate img{
-    width:250px;
-    border-radius:15px;
-    margin:10px;
+li{
+    margin:8px 0;
 }
 
-
-/* Footer */
-
-footer{
-    background:#222;
-    color:white;
+.footer{
     text-align:center;
-    padding:25px;
+    padding:20px;
+    background:#f2f2f2;
+    color:#666;
 }
+</style>
+</head>
 
+<body>
 
-/* Animation */
+<div class="container">
 
-@keyframes fade{
+    <div class="header">
+        <div class="profile">N</div>
 
-from{
-opacity:0;
-transform:translateY(20px);
-}
+        <h1>นายนนทวิชญ์ กลิ่นขจร</h1>
+        <p>นักเรียนชั้น ม.6/1 | โรงเรียนพานทอง</p>
+    </div>
 
-to{
-opacity:1;
-transform:translateY(0);
-}
+    <div class="content">
 
-}
+        <div class="section">
+            <h2>👤 ประวัติส่วนตัว</h2>
+            <div class="card">
+                <p>ชื่อ : นายนนทวิชญ์ กลิ่นขจร</p>
+                <p>กำลังศึกษาอยู่ระดับชั้นมัธยมศึกษาปีที่ 6/1</p>
+                <p>โรงเรียนพานทอง</p>
+            </div>
+        </div>
 
+        <div class="section">
+            <h2>🎯 งานอดิเรก</h2>
+            <div class="card">
+                <ul>
+                    <li>⚽ เล่นฟุตบอล</li>
+                    <li>🎵 ฟังเพลง</li>
+                    <li>🎮 เล่นเกม</li>
+                    <li>💻 ศึกษาเทคโนโลยี</li>
+                </ul>
+            </div>
+        </div>
 
-/* Mobile */
+        <div class="section">
+            <h2>💡 ทักษะ</h2>
+            <div class="card">
+                <ul>
+                    <li>HTML เบื้องต้น</li>
+                    <li>CSS เบื้องต้น</li>
+                    <li>Microsoft Word</li>
+                    <li>Microsoft PowerPoint</li>
+                </ul>
+            </div>
+        </div>
 
-@media(max-width:700px){
+        <div class="section">
+            <h2>🏆 ผลงาน</h2>
+            <div class="card">
+                <ul>
+                    <li>สร้างเว็บไซต์ Portfolio ด้วย HTML</li>
+                    <li>เข้าร่วมกิจกรรมของโรงเรียน</li>
+                    <li>ทำงานกลุ่มและโครงงานในชั้นเรียน</li>
+                </ul>
+            </div>
+        </div>
 
-header{
-    flex-direction:column;
-}
+        <div class="section">
+            <h2>📞 ติดต่อ</h2>
+            <div class="card">
+                <p>Facebook : Nontawit</p>
+                <p>Email : nontawitklinkhajorn@gmail.com</p>
+                <p>โทรศัพท์ : 094-XXX-XXXX</p>
+                <p>instagram : civmn_</p>
+            </div>
+        </div>
 
-nav{
-    margin-top:15px;
-}
+    </div>
 
-.hero h1{
-    font-size:40px;
-}
+    <div class="footer">
+        © Portfolio 2026 | นายนนทวิชญ์ กลิ่นขจร
+    </div>
 
-}
+</div>
+
+</body>
+</html>
+```
