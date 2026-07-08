@@ -3,182 +3,163 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio นนทวิชญ์</title>
+<title>My Portfolio</title>
 
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: "Prompt", sans-serif;
+    font-family:Arial,sans-serif;
 }
 
 body{
-    background: linear-gradient(135deg,#7b2ff7,#9d4edd,#c77dff);
-    min-height:100vh;
-    padding:30px;
+    background:#f5f5f5;
 }
 
-.container{
-    max-width:900px;
-    margin:auto;
-    background:#fff;
-    border-radius:25px;
-    overflow:hidden;
-    box-shadow:0 15px 40px rgba(0,0,0,0.25);
-}
+/* ===== HEADER ===== */
 
-.header{
-    text-align:center;
-    padding:50px 20px;
-    background:linear-gradient(135deg,#5a189a,#7b2cbf);
+header{
+    background:linear-gradient(90deg,#ff5722,#ff9800);
     color:white;
-}
-
-.profile{
-    width:150px;
-    height:150px;
-    background:white;
-    color:#7b2cbf;
-    border-radius:50%;
-    margin:auto;
+    padding:20px 50px;
     display:flex;
+    justify-content:space-between;
     align-items:center;
-    justify-content:center;
-    font-size:70px;
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.logo{
+    font-size:28px;
     font-weight:bold;
-    border:5px solid white;
 }
 
-.header h1{
-    margin-top:20px;
-    font-size:2.2rem;
-}
-
-.header p{
-    margin-top:10px;
-    font-size:1.1rem;
-}
-
-.content{
-    padding:30px;
-}
-
-.section{
-    margin-bottom:25px;
-}
-
-.section h2{
-    color:#7b2cbf;
-    margin-bottom:10px;
-    border-left:6px solid #9d4edd;
-    padding-left:10px;
-}
-
-.card{
-    background:#f8f0ff;
-    padding:18px;
-    border-radius:15px;
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:18px;
     transition:.3s;
 }
 
-.card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 10px 20px rgba(123,44,191,.2);
+nav a:hover{
+    color:yellow;
 }
 
-ul{
-    padding-left:20px;
+/* ===== HERO ===== */
+
+.hero{
+    height:350px;
+    background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),
+    url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80");
+    background-size:cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
 }
 
-li{
-    margin:8px 0;
+.hero h1{
+    font-size:50px;
 }
 
-.footer{
+.hero p{
+    margin-top:15px;
+    font-size:20px;
+}
+
+/* ===== BODY ===== */
+
+.container{
+    width:90%;
+    margin:auto;
+    padding:40px 0;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.card h2{
+    color:#ff5722;
+    margin-bottom:15px;
+}
+
+footer{
+    background:#222;
+    color:white;
     text-align:center;
     padding:20px;
-    background:#f2f2f2;
-    color:#666;
 }
 </style>
+
 </head>
 
 <body>
 
+<header>
+<div class="logo">My Portfolio</div>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#projects">Projects</a>
+<a href="#certificates">Certificates</a>
+<a href="#contact">Contact</a>
+</nav>
+
+</header>
+
+<section class="hero" id="home">
+<div>
+<h1>Welcome</h1>
+<p>เว็บไซต์สะสมผลงานของฉัน</p>
+</div>
+</section>
+
 <div class="container">
 
-    <div class="header">
-        <div class="profile">N</div>
+<div class="card" id="about">
+<h2>About Me</h2>
+<p>
+เขียนข้อมูลส่วนตัว ประวัติการศึกษา และทักษะของคุณ
+</p>
+</div>
 
-        <h1>นายนนทวิชญ์ กลิ่นขจร</h1>
-        <p>นักเรียนชั้น ม.6/1 | โรงเรียนพานทอง</p>
-    </div>
+<div class="card" id="projects">
+<h2>Projects</h2>
+<p>
+- โปรเจกต์ที่ 1<br>
+- โปรเจกต์ที่ 2<br>
+- โปรเจกต์ที่ 3
+</p>
+</div>
 
-    <div class="content">
+<div class="card" id="certificates">
+<h2>Certificates</h2>
+<p>
+เพิ่มรูปหรือไฟล์ใบประกาศของคุณ
+</p>
+</div>
 
-        <div class="section">
-            <h2>👤 ประวัติส่วนตัว</h2>
-            <div class="card">
-                <p>ชื่อ : นายนนทวิชญ์ กลิ่นขจร</p>
-                <p>กำลังศึกษาอยู่ระดับชั้นมัธยมศึกษาปีที่ 6/1</p>
-                <p>โรงเรียนพานทอง</p>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>🎯 งานอดิเรก</h2>
-            <div class="card">
-                <ul>
-                    <li>⚽ เล่นฟุตบอล</li>
-                    <li>🎵 ฟังเพลง</li>
-                    <li>🎮 เล่นเกม</li>
-                    <li>💻 ศึกษาเทคโนโลยี</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>💡 ทักษะ</h2>
-            <div class="card">
-                <ul>
-                    <li>HTML เบื้องต้น</li>
-                    <li>CSS เบื้องต้น</li>
-                    <li>Microsoft Word</li>
-                    <li>Microsoft PowerPoint</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>🏆 ผลงาน</h2>
-            <div class="card">
-                <ul>
-                    <li>สร้างเว็บไซต์ Portfolio ด้วย HTML</li>
-                    <li>เข้าร่วมกิจกรรมของโรงเรียน</li>
-                    <li>ทำงานกลุ่มและโครงงานในชั้นเรียน</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>📞 ติดต่อ</h2>
-            <div class="card">
-                <p>Facebook : Nontawit</p>
-                <p>Email : nontawitklinkhajorn@gmail.com</p>
-                <p>โทรศัพท์ : 094-XXX-XXXX</p>
-                <p>instagram : civmn_</p>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="footer">
-        © Portfolio 2026 | นายนนทวิชญ์ กลิ่นขจร
-    </div>
+<div class="card" id="contact">
+<h2>Contact</h2>
+<p>
+Email : your@email.com<br>
+GitHub : https://github.com/yourname
+</p>
+</div>
 
 </div>
 
+<footer>
+© 2026 My Portfolio
+</footer>
+
 </body>
 </html>
-```
