@@ -1,441 +1,320 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Portfolio | ประวัติส่วนตัว</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:"Sarabun",sans-serif;
-}
-
-
-body{
-
-    background:linear-gradient(135deg,#696969,#FFD700);
-
-    color:white;
-
-    min-height:100vh;
-
-    position:relative;
-
-    overflow:hidden;
-
-}
-
-
-
-/* ดาวในอวกาศ */
-
-body::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:100%;
-
-    height:100%;
-
-
-    background-image:
-
-    radial-gradient(white 1px,transparent 1px),
-
-    radial-gradient(#ffffff 1px,transparent 1px);
-
-
-    background-size:
-
-    80px 80px,
-
-    140px 140px;
-
-
-    background-position:
-
-    20px 30px,
-
-    70px 90px;
-
-
-    opacity:.35;
-
-    z-index:-1;
-
-}
-
-
-
-/* เมนู */
-
-nav{
-
-    background:rgba(0,0,0,.25);
-
-    padding:15px;
-
-    text-align:center;
-
-    backdrop-filter:blur(8px);
-
-}
-
-
-nav a{
-
-    color:white;
-
-    text-decoration:none;
-
-    margin:0 15px;
-
-    font-weight:bold;
-
-    transition:.3s;
-
-}
-
-
-nav a:hover{
-
-    color:#FFD700;
-
-}
-
-
-
-
-/* กล่องข้อมูล */
-
-.container{
-
-    width:80%;
-
-    max-width:900px;
-
-    margin:50px auto;
-
-    padding:35px;
-
-    background:rgba(255,255,255,.15);
-
-    border-radius:25px;
-
-    text-align:center;
-
-    box-shadow:0 0 25px rgba(255,215,0,.35);
-
-    backdrop-filter:blur(8px);
-
-}
-
-
-
-
-/* รูปโปรไฟล์ */
-
-.profile-img{
-
-    width:200px;
-
-    height:200px;
-
-    object-fit:cover;
-
-    border-radius:50%;
-
-    border:5px solid #FFD700;
-
-    box-shadow:0 0 20px #FFD700;
-
-    margin-bottom:20px;
-
-}
-
-
-
-
-/* หัวข้อ */
-
-h1{
-
-    color:#FFD700;
-
-    font-size:40px;
-
-    margin-bottom:25px;
-
-    text-shadow:0 0 12px #FFD700;
-
-}
-
-
-
-
-/* ข้อมูล */
-
-p{
-
-    font-size:20px;
-
-    margin:15px 0;
-
-}
-
-
-
-/* คำหน้าข้อมูลสีม่วง */
-
-strong{
-
-    color:#b266ff;
-
-    text-shadow:0 0 8px #b266ff;
-
-}
-
-
-
-
-/* ปุ่ม */
-
-.btn{
-
-    display:inline-block;
-
-    margin-top:25px;
-
-    padding:12px 30px;
-
-    background:white;
-
-    color:#dd191d;
-
-    text-decoration:none;
-
-    border-radius:30px;
-
-    font-weight:bold;
-
-    transition:.3s;
-
-}
-
-
-
-.btn:hover{
-
-    background:#FFD700;
-
-    transform:scale(1.05);
-
-}
-
-
-
-
-/* ดาวกระพริบ */
-
-.star{
-
-    position:absolute;
-
-    width:5px;
-
-    height:5px;
-
-    background:white;
-
-    border-radius:50%;
-
-    animation:blink 2s infinite alternate;
-
-}
-
-
-
-@keyframes blink{
-
-    from{
-
-        opacity:.3;
-
-    }
-
-    to{
-
-        opacity:1;
-
-    }
-
-}
-
-
-
-.star1{
-
-    top:15%;
-
-    left:15%;
-
-}
-
-
-.star2{
-
-    top:30%;
-
-    left:80%;
-
-}
-
-
-.star3{
-
-    top:70%;
-
-    left:20%;
-
-}
-
-
-.star4{
-
-    top:85%;
-
-    left:75%;
-
-}
-
-
-
-
-footer{
-
-    text-align:center;
-
-    padding:20px;
-
-    margin-top:40px;
-
-    background:rgba(0,0,0,.25);
-
-}
-
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | ประวัติส่วนตัว</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --space-bg: #0b0d1b;
+            --neon-gold: #FFD700;
+            --neon-purple: #bf55ec;
+            --neon-blue: #00d2ff;
+            --text-color: #f5f6fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Sarabun", sans-serif;
+        }
+
+        body {
+            background-color: var(--space-bg);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* --- เอฟเฟกต์ก้อนเมฆเนบิวลาเคลื่อนที่ด้านหลัง --- */
+        .nebula-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.25;
+            animation: floatClouds 25s infinite alternate ease-in-out;
+        }
+
+        .cloud-purple {
+            width: 500px;
+            height: 500px;
+            background: var(--neon-purple);
+            top: -10%;
+            left: -10%;
+        }
+
+        .cloud-blue {
+            width: 600px;
+            height: 600px;
+            background: var(--neon-blue);
+            bottom: -20%;
+            right: -10%;
+            animation-duration: 35s;
+        }
+
+        .cloud-gold {
+            width: 400px;
+            height: 400px;
+            background: var(--neon-gold);
+            top: 40%;
+            left: 50%;
+            animation-duration: 40s;
+        }
+
+        @keyframes floatClouds {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(80px, 50px) scale(1.15); }
+        }
+
+        /* ดาวระยิบระยับ Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(white 1px, transparent 1px),
+                radial-gradient(rgba(255,255,255,0.7) 1.5px, transparent 1.5px);
+            background-size: 100px 100px, 180px 180px;
+            background-position: 0 0, 40px 50px;
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        /* เมนูบาร์ */
+        nav {
+            background: rgba(11, 13, 27, 0.6);
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 18px;
+            font-weight: 400;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--neon-gold);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--neon-gold);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* เนื้อหาหลัก */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        /* กล่องข้อมูลสไตล์ Glassmorphism */
+        .container {
+            width: 100%;
+            max-width: 750px;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+        }
+
+        /* รูปโปรไฟล์อวกาศ */
+        .profile-wrapper {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 25px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.5);
+        }
+
+        /* หัวข้อ */
+        h1 {
+            color: var(--neon-gold);
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 35px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            letter-spacing: 1px;
+        }
+
+        /* การจัดเรียงข้อมูล */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            text-align: left;
+            margin-bottom: 35px;
+        }
+
+        .info-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--neon-purple);
+            transition: transform 0.2s ease;
+        }
+
+        .info-item:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .info-item p {
+            font-size: 18px;
+            color: #d1d8e0;
+        }
+
+        .info-item strong {
+            color: var(--neon-blue);
+            font-weight: 700;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* ปุ่มกลับหน้าหลัก */
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(191, 85, 236, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.6);
+            background: linear-gradient(135deg, var(--neon-gold), #ff9f43);
+            color: #0b0d1b;
+        }
+
+        /* ท้ายหน้าเว็บ */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(11, 13, 27, 0.8);
+            font-size: 14px;
+            color: #718093;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
 </head>
-
-
 <body>
 
-
-<div class="star star1"></div>
-
-<div class="star star2"></div>
-
-<div class="star star3"></div>
-
-<div class="star star4"></div>
-
-
-
-
-<nav>
-
-<a href="index.html">หน้าแรก</a>
-
-<a href="profile.html">ประวัติส่วนตัว</a>
-
-<a href="education.html">ประวัติการศึกษา</a>
-
-<a href="award.html">ผลงาน</a>
-
-<a href="contact.html">ติดต่อ</a>
-
-</nav>
-
-
-
-
-
-<div class="container">
-
-
-
-<img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/1783827617596.jpg"
-
-alt="รูปโปรไฟล์"
-
-class="profile-img">
-
-
-
-
-
-<h1>🌌 ประวัติส่วนตัว 🚀</h1>
-
-
-
-
-<p><strong>👤 ชื่อ-นามสกุล:</strong> นายเมธาสิทธิ์ ขันติกุล</p>
-
-
-<p><strong>🎭 ชื่อเล่น:</strong> องศา</p>
-
-
-<p><strong>🎂 อายุ:</strong> 18 ปี</p>
-
-
-<p><strong>📅 วัน/เดือน/ปีเกิด:</strong> 27/06/2551</p>
-
-
-<p><strong>♊ ราศี:</strong> เมถุน</p>
-
-
-<p><strong>🩸 กรุ๊ปเลือด:</strong> A</p>
-
-
-<p><strong>🎓 กำลังศึกษา:</strong> ชั้นมัธยมศึกษาปีที่ 6/1</p>
-
-
-<p><strong>🔬 แผนการเรียน:</strong> วิทยาศาสตร์–คณิตศาสตร์</p>
-
-
-
-
-
-<a href="index.html" class="btn">
-
-🏠 กลับหน้าหลัก
-
-</a>
-
-
-
-</div>
-
-
-
-
-<footer>
-
-© 2026 Portfolio | นาย เมธาสิทธิ์ ขันติกุล
-
-</footer>
-
-
+    <div class="nebula-container">
+        <div class="cloud cloud-purple"></div>
+        <div class="cloud cloud-blue"></div>
+        <div class="cloud cloud-gold"></div>
+    </div>
+
+    <nav>
+        <a href="index.html">หน้าแรก</a>
+        <a href="profile.html">ประวัติส่วนตัว</a>
+        <a href="education.html">ประวัติการศึกษา</a>
+        <a href="award.html">ผลงาน</a>
+        <a href="contact.html">ติดต่อ</a>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="profile-wrapper">
+                <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/1783827617596.jpg" alt="รูปโปรไฟล์" class="profile-img">
+            </div>
+
+            <h1>🌌 PROFILE 🚀</h1>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <p><strong>👤 ชื่อ-นามสกุล:</strong> นายเมธาสิทธิ์ ขันติกุล</p>
+                </div>
+                <div class="info-item">
+                    <p><strong>🎭 ชื่อเล่น:</strong> องศา</p>
+                </div>
+                <div class="info-item">
+                    <p><strong>🎂 อายุ:</strong> 18 ปี</p>
+                </div>
+                <div class="info-item">
+                    <p><strong>📅 วันเกิด:</strong> 27/06/2551</p>
+                </div>
+                <div class="info-item">
+                    <p><strong>♊ ราศี:</strong> เมถุน</p>
+                </div>
+                <div class="info-item">
+                    <p><strong>🩸 กรุ๊ปเลือด:</strong> A</p>
+                </div>
+                <div class="info-item" style="grid-column: span 2;">
+                    <p><strong>🎓 กำลังศึกษา:</strong> ชั้นมัธยมศึกษาปีที่ 6/1</p>
+                </div>
+                <div class="info-item" style="grid-column: span 2;">
+                    <p><strong>🔬 แผนการเรียน:</strong> วิทยาศาสตร์–คณิตศาสตร์</p>
+                </div>
+            </div>
+
+            <a href="index.html" class="btn">🏠 กลับหน้าหลัก</a>
+        </div>
+    </main>
+
+    <footer>
+        © 2026 Portfolio | นาย เมธาสิทธิ์ ขันติกุล
+    </footer>
 
 </body>
-
 </html>
