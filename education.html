@@ -50,7 +50,7 @@
             pointer-events: none;
         }
 
-        /* 🌙 ดวงจันทร์คู่เวทมนตร์ (Twin Moons: ดวงใหญ่เหลืองขาว & ดวงเล็กชมพู) */
+        /* 🌙 ดวงจันทร์คู่เวทมนตร์ */
         .twin-moons-container {
             position: absolute;
             top: 4%; right: 10%;
@@ -59,7 +59,6 @@
             align-items: flex-start;
             gap: 12px;
         }
-        /* ดวงใหญ่ สีเหลืองอมขาว */
         .moon-large {
             width: 85px; height: 85px;
             background: radial-gradient(circle at 30% 30%, #ffffff, var(--moon-large));
@@ -67,7 +66,6 @@
             box-shadow: 0 0 35px rgba(255, 253, 240, 0.8), 0 0 70px rgba(255, 253, 240, 0.4);
             filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
         }
-        /* ดวงเล็ก สีชมพู */
         .moon-small {
             width: 40px; height: 40px;
             background: radial-gradient(circle at 30% 30%, #fff0f5, var(--moon-small));
@@ -93,12 +91,24 @@
         }
         @keyframes cloudFloat { 0% { transform: translateX(0); } 100% { transform: translateX(40px); } }
 
+        /* ⛰️ ระบบเทือกเขาสามมิติด้านหลัง */
+        .mountain-range {
+            position: absolute;
+            bottom: 110px; right: -5%;
+            width: 60%; height: 250px;
+            background: linear-gradient(180deg, #231138 0%, #0d0517 100%);
+            clip-path: polygon(0% 100%, 20% 40%, 40% 70%, 65% 25%, 85% 65%, 100% 30%, 100% 100%);
+            opacity: 0.6;
+            z-index: 2;
+        }
+
         /* --- มหาปราสาทเวทมนตร์ 4 มิติ --- */
         .castle-4d-realm {
             position: absolute; bottom: 110px; left: 5%;
             width: 400px; height: 400px;
             transform: perspective(1200px) rotateY(22deg) rotateX(3deg);
             filter: drop-shadow(0 20px 40px rgba(0,0,0,0.65));
+            z-index: 3;
         }
         .castle-base-wall {
             position: absolute; bottom: 0; left: 50px;
@@ -133,10 +143,28 @@
             box-shadow: 0 0 20px #ff7700, 0 5px 15px rgba(255,202,0,0.8);
         }
 
-        /* --- 🐉 โมเดลพญามังกรระดับมหากาพย์ (หางยาว ครีบหาง ปีก 4D) 🐉 --- */
+        /* 🌲 แนวต้นไม้/ต้นสนแฟนตาซี */
+        .forest-layer {
+            position: absolute; bottom: 110px; left: 0; width: 100%; height: 60px;
+            z-index: 4; display: flex; gap: 40px; padding-left: 40%; opacity: 0.7;
+        }
+        .magic-tree {
+            width: 0; height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 50px solid #143d22;
+            position: relative;
+        }
+        .magic-tree::before {
+            content: ''; position: absolute; top: 20px; left: -15px;
+            border-left: 15px solid transparent; border-right: 15px solid transparent;
+            border-bottom: 40px solid #1a4d2b;
+        }
+
+        /* --- 🐉 โมเดลพญามังกรระดับมหากาพย์ 🐉 --- */
         .dragon-epic-universe {
-            position: absolute; top: 8%;
-            animation: dragonMasterFlight 22s infinite linear;
+            position: absolute; top: 12%;
+            animation: dragonMasterFlight 20s infinite linear;
             z-index: 60;
         }
         .dragon-master-model {
@@ -180,7 +208,7 @@
         }
         .dm-fire-blast {
             position: absolute; left: 295px; top: 38px;
-            width: 110px; height: 45px;
+            width: 150px; height: 60px;
             background: radial-gradient(circle, #fff 10%, #ff8c00 50%, transparent 70%);
             filter: blur(1px); opacity: 0; transform: scale(0.3);
             animation: dmFire 2.5s infinite ease-in-out;
@@ -215,40 +243,64 @@
         @keyframes dmBodyMove { 0% { transform: translateY(-4px) rotateZ(-1deg); } 100% { transform: translateY(4px) rotateZ(1deg); } }
         @keyframes dmTailWhip { 0% { transform: rotate(-10deg); } 100% { transform: rotate(10deg); } }
         @keyframes dmJawOpen { 0%, 100% { transform: rotate(0deg); } 35%, 65% { transform: rotate(22deg); } }
-        @keyframes dmFire { 0%, 100% { opacity: 0; transform: scale(0.3); } 40%, 60% { opacity: 1; transform: scale(1.5) translateX(20px); } }
+        @keyframes dmFire { 0%, 100% { opacity: 0; transform: scale(0.3); } 40%, 60% { opacity: 1; transform: scale(1.6) translateX(30px); } }
         @keyframes dragonMasterFlight {
-            0% { left: -400px; transform: translateY(10px) scale(0.65); }
-            50% { transform: translateY(-40px) scale(1.05); }
-            100% { left: 120vw; transform: translateY(30px) scale(0.65); }
+            0% { left: -400px; transform: translateY(40px) scale(0.6); }
+            50% { transform: translateY(-20px) scale(0.95); }
+            100% { left: 120vw; transform: translateY(40px) scale(0.6); }
         }
 
-        /* --- 🛡️ อัศวินพิทักษ์อาณาจักรบนพื้นดิน --- */
+        /* --- 🛡️ กองทัพอัศวิน 4 คน กำลังวิ่งหนีสุดชีวิต --- */
+        .knights-runway {
+            position: absolute; bottom: 105px; left: 0; width: 100%; height: 90px;
+            z-index: 15;
+        }
         .magic-knight {
-            position: absolute; bottom: 105px; left: 45%;
-            width: 50px; height: 85px; z-index: 15;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+            position: absolute; width: 45px; height: 75px;
+            filter: drop-shadow(0 5px 8px rgba(0,0,0,0.5));
+            animation: knightPanicRun 20s infinite linear;
         }
         .knight-armor {
             position: absolute; bottom: 0; left: 10px;
-            width: 30px; height: 55px;
+            width: 26px; height: 48px;
             background: linear-gradient(90deg, #7f8c8d, #bdc3c7, #34495e);
-            border-radius: 8px 8px 0 0;
+            border-radius: 6px 6px 0 0;
+            animation: knightLegs 0.15s infinite alternate linear;
         }
         .knight-helmet {
-            position: absolute; top: 12px; left: 13px;
-            width: 24px; height: 24px;
+            position: absolute; top: 16px; left: 13px;
+            width: 20px; height: 20px;
             background: #7f8c8d; border-radius: 50%;
-            border-bottom: 4px solid #2c3e50;
+            border-bottom: 3px solid #2c3e50;
         }
-        .knight-sword {
-            position: absolute; top: -15px; right: -8px;
-            width: 6px; height: 45px;
-            background: var(--magic-cyan);
-            box-shadow: 0 0 15px var(--magic-cyan), 0 0 30px #fff;
-            transform: rotate(20deg);
-            animation: swordGlow 1.5s infinite alternate ease-in-out;
+        .knight-cape {
+            position: absolute; top: 30px; left: -4px;
+            width: 16px; height: 35px; background: #c0392b;
+            border-radius: 4px; transform-origin: top right;
+            animation: capeFlutter 0.1s infinite alternate ease-in-out;
         }
-        @keyframes swordGlow { 0% { opacity: 0.7; } 100% { opacity: 1; filter: brightness(1.3); } }
+
+        /* ตั้งค่าความห่าง ดีเลย์ และสีผ้าคลุมของอัศวินแต่ละคน */
+        .k1 { animation-delay: 0.5s; }
+        .k2 { animation-delay: 1.2s; }
+        .k2 .knight-cape { background: #2980b9; }
+        .k3 { animation-delay: 1.8s; }
+        .k3 .knight-cape { background: #8e44ad; }
+        .k4 { animation-delay: 2.5s; }
+        .k4 .knight-cape { background: #d35400; }
+
+        @keyframes knightPanicRun {
+            0% { left: -150px; transform: scale(0.75) skewX(10deg); }
+            100% { left: 120vw; transform: scale(0.75) skewX(10deg); }
+        }
+        @keyframes knightLegs {
+            0% { transform: translateY(0) rotate(2deg); }
+            100% { transform: translateY(-3px) rotate(-2deg); }
+        }
+        @keyframes capeFlutter {
+            0% { transform: rotate(35deg); }
+            100% { transform: rotate(55deg); }
+        }
 
         /* --- พื้นดินเรียบหรูพร้อมต้นหญ้าตั้งชันแยกต้น --- */
         .ground-flat-luxury {
@@ -291,7 +343,7 @@
         .container {
             position: relative; z-index: 20;
             width: 90%; max-width: 850px;
-            margin: 40px auto 160px auto;
+            margin: 40px auto 180px auto;
         }
         h1 {
             text-align: center; font-size: 42px; margin-bottom: 35px;
@@ -350,6 +402,15 @@
         <div class="cloud-3d-1"></div>
         <div class="cloud-3d-2"></div>
 
+        <!-- ⛰️ เทือกเขาและ 🌲 ผืนป่าตกแต่งฉาก -->
+        <div class="mountain-range"></div>
+        <div class="forest-layer">
+            <div class="magic-tree"></div>
+            <div class="magic-tree" style="transform: scale(0.8);"></div>
+            <div class="magic-tree" style="transform: scale(1.1);"></div>
+        </div>
+
+        <!-- 🐉 พญามังกรพ่นไฟบินผ่านท้องฟ้า -->
         <div class="dragon-epic-universe">
             <div class="dragon-master-model">
                 <div class="dm-tail-long">
@@ -379,10 +440,28 @@
             <div class="roof-cone-4d"></div>
         </div>
 
-        <div class="magic-knight">
-            <div class="knight-armor"></div>
-            <div class="knight-helmet"></div>
-            <div class="knight-sword"></div>
+        <!-- 🛡️ เหล่าอัศวินทั้ง 4 คนวิ่งหนีมังกรสวนสนามบนพื้นดิน -->
+        <div class="knights-runway">
+            <div class="magic-knight k1">
+                <div class="knight-cape"></div>
+                <div class="knight-armor"></div>
+                <div class="knight-helmet"></div>
+            </div>
+            <div class="magic-knight k2">
+                <div class="knight-cape"></div>
+                <div class="knight-armor"></div>
+                <div class="knight-helmet"></div>
+            </div>
+            <div class="magic-knight k3">
+                <div class="knight-cape"></div>
+                <div class="knight-armor"></div>
+                <div class="knight-helmet"></div>
+            </div>
+            <div class="magic-knight k4">
+                <div class="knight-cape"></div>
+                <div class="knight-armor"></div>
+                <div class="knight-helmet"></div>
+            </div>
         </div>
 
         <div class="ground-flat-luxury">
