@@ -23,14 +23,14 @@ body{
 
     color:white;
 
-    overflow-x:hidden;
+    overflow:hidden;
 
     background:
     linear-gradient(
     135deg,
     #020024,
     #090979,
-    #3b0066,
+    #4b0082,
     #ff0080
     );
 
@@ -41,34 +41,31 @@ body{
 }
 
 
-/* พื้นหลังจักรวาล */
-
 @keyframes galaxy{
 
-    0%{
-        background-position:0% 50%;
-    }
+0%{
+background-position:0% 50%;
+}
 
-    100%{
-        background-position:100% 50%;
-    }
+100%{
+background-position:100% 50%;
+}
 
 }
 
 
 
-/* ดาว */
+/* ดาวในอวกาศ */
 
 body::before{
 
 content:"";
 
-position:fixed;
+position:absolute;
 
 width:100%;
 
 height:100%;
-
 
 background-image:
 
@@ -83,16 +80,14 @@ background-size:
 
 80px 80px,
 
-150px 150px,
+140px 140px,
 
 220px 220px;
 
 
-opacity:.45;
+opacity:.5;
 
-
-animation:starsMove 40s linear infinite;
-
+animation:stars 30s linear infinite;
 
 z-index:-2;
 
@@ -100,7 +95,7 @@ z-index:-2;
 
 
 
-@keyframes starsMove{
+@keyframes stars{
 
 from{
 
@@ -110,7 +105,7 @@ transform:translateY(0);
 
 to{
 
-transform:translateY(-300px);
+transform:translateY(-200px);
 
 }
 
@@ -120,7 +115,7 @@ transform:translateY(-300px);
 
 /* ดาวตก */
 
-.shooting-star{
+.shooting{
 
 position:absolute;
 
@@ -143,26 +138,26 @@ opacity:0;
 }
 
 
-.star1{
+.s1{
 
 top:20%;
 
 left:10%;
 
-animation-delay:1s;
-
 }
 
 
-.star2{
 
-top:50%;
+.s2{
+
+top:40%;
 
 left:70%;
 
-animation-delay:3s;
+animation-delay:2s;
 
 }
+
 
 
 @keyframes shoot{
@@ -171,9 +166,7 @@ animation-delay:3s;
 
 opacity:0;
 
-transform:
-translate(0,0)
-rotate(-45deg);
+transform:translate(0,0) rotate(-45deg);
 
 }
 
@@ -189,9 +182,7 @@ opacity:1;
 
 opacity:0;
 
-transform:
-translate(500px,500px)
-rotate(-45deg);
+transform:translate(500px,500px) rotate(-45deg);
 
 }
 
@@ -206,8 +197,6 @@ rotate(-45deg);
 position:absolute;
 
 border-radius:50%;
-
-filter:blur(.2px);
 
 }
 
@@ -225,55 +214,45 @@ top:120px;
 
 background:
 
-radial-gradient(
-circle at 30% 30%,
+radial-gradient(circle at 30% 30%,
 #fff,
 #7b2cff,
-#12002b
-);
+#12002b);
 
 
-box-shadow:
-
-0 0 40px #8a2be2;
+box-shadow:0 0 50px #9d4edd;
 
 
-animation:rotatePlanet 20s infinite linear;
+animation:spin 20s linear infinite;
 
 }
-
 
 
 .planet2{
 
-width:100px;
+width:120px;
 
-height:100px;
+height:120px;
 
-left:-30px;
+left:-40px;
 
-bottom:100px;
+bottom:80px;
 
 
 background:
 
-radial-gradient(
-circle at 30% 30%,
+radial-gradient(circle at 30% 30%,
 #ffd700,
 #ff4500,
-#500000
-);
+#500000);
 
 
-box-shadow:
-
-0 0 30px orange;
-
+box-shadow:0 0 40px orange;
 
 }
 
 
-@keyframes rotatePlanet{
+@keyframes spin{
 
 from{
 
@@ -295,11 +274,11 @@ transform:rotate(360deg);
 
 nav{
 
+background:rgba(0,0,0,.3);
+
 padding:18px;
 
 text-align:center;
-
-background:rgba(0,0,0,.25);
 
 backdrop-filter:blur(10px);
 
@@ -333,14 +312,14 @@ text-shadow:0 0 15px cyan;
 
 
 
-/* กล่องหลัก */
 
+/* กล่องหลัก */
 
 .container{
 
 width:85%;
 
-max-width:900px;
+max-width:850px;
 
 margin:50px auto;
 
@@ -355,44 +334,19 @@ rgba(255,255,255,.12);
 border-radius:30px;
 
 
-border:
-
-1px solid rgba(255,255,255,.3);
-
-
 backdrop-filter:blur(15px);
+
+
+border:1px solid rgba(255,255,255,.3);
 
 
 box-shadow:
 
-0 0 40px rgba(0,255,255,.4);
+0 0 40px rgba(0,255,255,.5);
 
 
 text-align:center;
 
-animation:show .8s ease;
-
-}
-
-
-@keyframes show{
-
-from{
-
-opacity:0;
-
-transform:translateY(50px);
-
-}
-
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
 
 }
 
@@ -400,12 +354,9 @@ transform:translateY(0);
 
 h1{
 
-font-size:42px;
+font-size:40px;
 
-margin-bottom:35px;
-
-
-color:white;
+margin-bottom:30px;
 
 
 text-shadow:
@@ -414,4 +365,353 @@ text-shadow:
 
 0 0 20px #ff00ff;
 
+
 }
+
+
+
+/* กล่องข้อมูล */
+
+.contact-box{
+
+display:flex;
+
+align-items:center;
+
+gap:20px;
+
+padding:20px;
+
+margin:20px 0;
+
+
+border-radius:25px;
+
+
+background:
+
+linear-gradient(
+135deg,
+rgba(0,255,255,.2),
+rgba(180,0,255,.3)
+);
+
+
+border:1px solid rgba(255,255,255,.3);
+
+
+color:white;
+
+text-decoration:none;
+
+
+transition:.4s;
+
+
+box-shadow:
+
+0 0 15px rgba(0,255,255,.2);
+
+}
+
+
+
+.contact-box:hover{
+
+
+transform:
+
+translateY(-8px)
+scale(1.03);
+
+
+background:
+
+linear-gradient(
+135deg,
+#00c6ff,
+#7b2cff,
+#ff0080
+);
+
+
+box-shadow:
+
+0 0 30px cyan,
+
+0 0 50px magenta;
+
+
+}
+
+
+
+.icon{
+
+font-size:45px;
+
+width:70px;
+
+height:70px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+
+background:rgba(255,255,255,.2);
+
+
+border-radius:50%;
+
+
+}
+
+
+
+.text{
+
+text-align:left;
+
+}
+
+
+
+.text h2{
+
+font-size:25px;
+
+}
+
+
+
+.text p{
+
+font-size:18px;
+
+}
+
+
+
+/* ปุ่ม */
+
+.btn{
+
+display:inline-block;
+
+margin-top:25px;
+
+padding:15px 35px;
+
+
+border-radius:30px;
+
+
+background:
+
+linear-gradient(
+45deg,
+#00ffff,
+#7b2cff,
+#ff0080
+);
+
+
+color:white;
+
+
+text-decoration:none;
+
+
+font-weight:bold;
+
+
+transition:.3s;
+
+
+}
+
+
+
+.btn:hover{
+
+transform:scale(1.1);
+
+box-shadow:
+
+0 0 25px cyan;
+
+}
+
+
+
+
+footer{
+
+position:absolute;
+
+bottom:0;
+
+width:100%;
+
+padding:15px;
+
+text-align:center;
+
+
+background:rgba(0,0,0,.3);
+
+}
+
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="shooting s1"></div>
+
+<div class="shooting s2"></div>
+
+
+<div class="planet planet1"></div>
+
+<div class="planet planet2"></div>
+
+
+
+
+<nav>
+
+<a href="index.html">🏠 หน้าแรก</a>
+
+<a href="profile.html">👤 ประวัติส่วนตัว</a>
+
+<a href="education.html">🎓 การศึกษา</a>
+
+<a href="award.html">🏆 ผลงาน</a>
+
+<a href="contact.html">📡 ติดต่อ</a>
+
+</nav>
+
+
+
+<div class="container">
+
+
+<h1>🚀 ช่องทางการติดต่อ 🌌</h1>
+
+
+
+<a href="tel:0840328747" class="contact-box">
+
+<div class="icon">📞</div>
+
+<div class="text">
+
+<h2>โทรศัพท์</h2>
+
+<p>084-032-8747</p>
+
+</div>
+
+</a>
+
+
+
+
+<a href="mailto:methasitsantikul@gmail.com" class="contact-box">
+
+<div class="icon">📧</div>
+
+<div class="text">
+
+<h2>Email</h2>
+
+<p>methasitsantikul@gmail.com</p>
+
+</div>
+
+</a>
+
+
+
+
+
+<a href="https://www.facebook.com/profile.php?id=61585925421139"
+target="_blank"
+class="contact-box">
+
+
+<div class="icon">📘</div>
+
+
+<div class="text">
+
+<h2>Facebook</h2>
+
+<p>Methasit Khantikul</p>
+
+</div>
+
+
+</a>
+
+
+
+
+
+<a href="https://www.instagram.com/mxxtlf1/"
+target="_blank"
+class="contact-box">
+
+
+<div class="icon">📷</div>
+
+
+<div class="text">
+
+<h2>Instagram</h2>
+
+<p>@mxxtlf1</p>
+
+</div>
+
+
+</a>
+
+
+
+
+
+<a href="index.html" class="btn">
+
+🏠 กลับหน้าหลัก
+
+</a>
+
+
+
+</div>
+
+
+
+
+<footer>
+
+© 2026 Portfolio | นาย เมธาสิทธิ์ ขันติกุล
+
+</footer>
+
+
+
+</body>
+
+</html>
