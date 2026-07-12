@@ -102,7 +102,7 @@
             z-index: 2;
         }
 
-        /* 🌲 แนวต้นไม้/ต้นสนแฟนตาซี (เพิ่มต้นไม้ตามที่ขอ) */
+        /* 🌲 แนวต้นไม้/ต้นสนแฟนตาซี */
         .forest-layer {
             position: absolute; bottom: 110px; left: 0; width: 100%; height: 60px;
             z-index: 4; display: flex; gap: 20px; padding-left: 25%; opacity: 0.8;
@@ -167,20 +167,21 @@
             box-shadow: 0 0 20px #ff7700, 0 5px 15px rgba(255,202,0,0.8);
         }
 
-        /* 🔫 ปืนใหญ่เวทมนตร์บนหอปราสาท (ติดตั้งใหม่แทนที่ระเบิด) */
+        /* 🔫 แก้ไข: ปืนใหญ่เวทมนตร์ติดกับตัวหอปราสาทแนบชิดขึ้น */
         .castle-cannon {
             position: absolute;
-            bottom: 285px; left: 165px;
-            width: 35px; height: 18px;
-            background: linear-gradient(to bottom, #4a4a4a, #1a1a1a);
-            border-radius: 4px;
-            transform: rotate(-25deg);
+            bottom: 145px; left: 35px; /* ปรับลดตำแหน่งให้ลงมาติดกับโครงสร้างผนังหอคอย */
+            width: 32px; height: 16px;
+            background: linear-gradient(to bottom, #3a3a3a, #111111);
+            border: 1px solid #555;
+            border-radius: 3px;
+            transform: rotate(-15deg);
             z-index: 10;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            box-shadow: -2px 2px 5px rgba(0,0,0,0.6);
         }
         .castle-cannon::after {
-            content: ''; position: absolute; right: -5px; top: 3px;
-            width: 8px; height: 12px; background: #ffaa00;
+            content: ''; position: absolute; right: -4px; top: 2px;
+            width: 6px; height: 10px; background: #ffaa00;
             border-radius: 50%; opacity: 0;
             animation: cannonFlash 20s infinite linear;
             animation-delay: 4.8s;
@@ -190,10 +191,9 @@
             5%, 100% { opacity: 0; }
         }
 
-        /* --- 🔮 ระบบกระสุนเวทมนตร์ยิงไล่ตามมังกร 2-3 เม็ด --- */
+        /* --- 🔮 ระบบกระสุนเวทมนตร์ --- */
         .magic-bullet {
             position: absolute;
-            /* จุดเริ่มต้นจากปากกระบอกปืนบนปราสาท */
             bottom: 230px; left: 200px; 
             width: 12px; height: 12px;
             border-radius: 50%;
@@ -225,99 +225,100 @@
             100% { opacity: 0; }
         }
 
-        /* --- 🐉 โมเดลพญามังกรระดับมหากาพย์ --- */
+        /* --- 🐉 แก้ไข: มังกรดูตัวเล็กลง และจัด z-index ให้กรอบสี่เหลี่ยมเนื้อหาบังได้ --- */
         .dragon-epic-universe {
             position: absolute; top: 12%;
             animation: dragonMasterFlight 20s infinite linear;
             animation-delay: 3s;
-            z-index: 60;
+            z-index: 5; /* ลด z-index ลงจากเดิม (60) เพื่อให้กรอบ UI (z-index: 20) บังตัวมังกรเวลามันบินผ่าน */
         }
         .dragon-master-model {
-            position: relative; width: 360px; height: 160px;
-            transform: perspective(1000px) rotateY(-25deg) rotateZ(3deg);
+            position: relative; 
+            width: 200px; height: 90px; /* ลดสัดส่วนความกว้าง-ยาวของมังกรลง */
+            transform: perspective(1000px) rotateY(-25deg) rotateZ(3deg) scale(0.65); /* ใช้ scale ช่วยย่อขนาดลงอีกขั้น */
             transform-style: preserve-3d;
         }
         .dm-body {
-            position: absolute; left: 100px; top: 45px;
-            width: 140px; height: 55px;
+            position: absolute; left: 55px; top: 25px;
+            width: 80px; height: 32px;
             background: linear-gradient(135deg, var(--dragon-dark) 0%, var(--dragon-mid) 60%, #1a0202 100%);
             border-radius: 45% 55% 45% 40%;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
             animation: dmBodyMove 1s infinite alternate ease-in-out;
         }
         .dm-head {
-            position: absolute; left: 225px; top: 20px;
-            width: 80px; height: 48px;
+            position: absolute; left: 125px; top: 10px;
+            width: 45px; height: 28px;
             background: var(--dragon-dark);
-            border-radius: 20px 50px 35px 20px;
-            z-index: 65;
+            border-radius: 12px 30px 20px 12px;
+            z-index: 7;
         }
         .dm-head::before {
-            content: ''; position: absolute; top: -18px; left: 15px;
-            width: 7px; height: 28px; background: #eaeaea;
+            content: ''; position: absolute; top: -10px; left: 8px;
+            width: 4px; height: 16px; background: #eaeaea;
             border-radius: 50% 50% 0 0; transform: rotate(-20deg);
-            box-shadow: 0 0 10px rgba(255,255,255,0.6);
+            box-shadow: 0 0 5px rgba(255,255,255,0.6);
         }
         .dm-eye {
-            position: absolute; top: 12px; left: 45px;
-            width: 10px; height: 5px; background: var(--magic-cyan);
-            box-shadow: 0 0 15px var(--magic-cyan);
+            position: absolute; top: 8px; left: 25px;
+            width: 6px; height: 3px; background: var(--magic-cyan);
+            box-shadow: 0 0 10px var(--magic-cyan);
             clip-path: polygon(0 20%, 100% 0, 70% 100%);
         }
         .dm-jaw {
-            position: absolute; bottom: -8px; left: 35px;
-            width: 45px; height: 18px; background: #1f0404;
-            border-radius: 0 0 12px 12px;
+            position: absolute; bottom: -5px; left: 20px;
+            width: 25px; height: 10px; background: #1f0404;
+            border-radius: 0 0 8px 8px;
             transform-origin: top left;
             animation: dmJawOpen 2.5s infinite ease-in-out;
         }
         .dm-fire-blast {
-            position: absolute; left: 295px; top: 38px;
-            width: 150px; height: 60px;
+            position: absolute; left: 165px; top: 18px;
+            width: 90px; height: 35px;
             background: radial-gradient(circle, #fff 10%, #ff8c00 50%, transparent 70%);
             filter: blur(1px); opacity: 0; transform: scale(0.3);
             animation: dmFire 2.5s infinite ease-in-out;
-            box-shadow: 0 0 35px #ff2a00;
-            z-index: 66;
+            box-shadow: 0 0 20px #ff2a00;
+            z-index: 8;
         }
         .dm-wing-front {
-            position: absolute; top: -60px; left: 130px;
-            width: 130px; height: 130px;
+            position: absolute; top: -35px; left: 70px;
+            width: 75px; height: 75px;
             background: linear-gradient(210deg, var(--dragon-light), #210303);
             clip-path: polygon(0 85%, 35% 0, 100% 25%, 55% 100%);
             transform-origin: bottom left;
             animation: dmWing 0.45s infinite alternate ease-in-out;
-            z-index: 67;
+            z-index: 9;
         }
         .dm-tail-long {
-            position: absolute; left: -75px; top: 55px;
-            width: 185px; height: 14px;
+            position: absolute; left: -45px; top: 30px;
+            width: 105px; height: 8px;
             background: linear-gradient(to right, transparent, var(--dragon-dark));
             border-radius: 50%;
             transform-origin: right center;
             animation: dmTailWhip 0.7s infinite alternate ease-in-out;
         }
         .dm-tail-fin {
-            position: absolute; left: 0; top: -12px;
-            width: 25px; height: 38px;
+            position: absolute; left: 0; top: -7px;
+            width: 15px; height: 22px;
             background: var(--dragon-mid);
             clip-path: polygon(100% 50%, 0 0, 30% 50%, 0 100%);
         }
 
         @keyframes dmWing { 0% { transform: rotateX(-35deg) rotateY(-5deg); } 100% { transform: rotateX(45deg) rotateY(15deg); } }
-        @keyframes dmBodyMove { 0% { transform: translateY(-4px) rotateZ(-1deg); } 100% { transform: translateY(4px) rotateZ(1deg); } }
+        @keyframes dmBodyMove { 0% { transform: translateY(-2px) rotateZ(-1deg); } 100% { transform: translateY(2px) rotateZ(1deg); } }
         @keyframes dmTailWhip { 0% { transform: rotate(-10deg); } 100% { transform: rotate(10deg); } }
         @keyframes dmJawOpen { 0%, 100% { transform: rotate(0deg); } 35%, 65% { transform: rotate(22deg); } }
-        @keyframes dmFire { 0%, 100% { opacity: 0; transform: scale(0.3); } 40%, 60% { opacity: 1; transform: scale(1.6) translateX(30px) rotate(15deg); } }
+        @keyframes dmFire { 0%, 100% { opacity: 0; transform: scale(0.3); } 40%, 60% { opacity: 1; transform: scale(1.4) translateX(15px) rotate(15deg); } }
         
         @keyframes dragonMasterFlight {
-            0% { left: -400px; top: 40%; transform: scale(0.5); }
-            30% { left: 25vw; top: 35%; transform: scale(0.75); }
-            60% { left: 75vw; top: 20%; transform: scale(0.6); }
-            100% { left: 130vw; top: 15%; transform: scale(0.4); }
+            0% { left: -300px; top: 35%; transform: scale(0.4); }
+            30% { left: 25vw; top: 30%; transform: scale(0.6); }
+            60% { left: 75vw; top: 18%; transform: scale(0.5); }
+            100% { left: 130vw; top: 12%; transform: scale(0.3); }
         }
 
-        /* --- 🛡️ กองทัพอัศวินวิ่งหนีสุดชีวิต --- */
+        /* --- 🛡️ กองทัพอัศวิน --- */
         .knights-runway {
             position: absolute; bottom: 105px; left: 0; width: 100%; height: 90px;
             z-index: 15;
@@ -368,7 +369,7 @@
             100% { transform: rotate(55deg); }
         }
 
-        /* --- พื้นดินเรียบหรูพร้อมต้นหญ้าตั้งชันแยกต้น --- */
+        /* --- พื้นดิน --- */
         .ground-flat-luxury {
             position: absolute; bottom: 0; left: 0; width: 100%; height: 110px;
             background: linear-gradient(to bottom, #0b3a1e 0%, #051d0f 100%);
@@ -407,7 +408,7 @@
         nav a:hover { color: #fff; text-shadow: 0 0 15px var(--sky-pink-light), 0 0 25px var(--magic-cyan); }
 
         .container {
-            position: relative; z-index: 20;
+            position: relative; z-index: 20; /* การันตีว่ากรอบข้อความนี้จะอยู่ด้านบนเพื่อบังมังกร */
             width: 90%; max-width: 850px;
             margin: 40px auto 180px auto;
         }
@@ -418,7 +419,7 @@
         .school-link { display: block; text-decoration: none; color: white; margin-bottom: 25px; }
         .school {
             display: flex; align-items: center; gap: 25px;
-            background: rgba(49, 23, 76, 0.55);
+            background: rgba(49, 23, 76, 0.75); /* ปรับความทึบแสงเพิ่มขึ้นนิดหน่อยเพื่อให้บังตัวมังกรได้มิดชิดขึ้น */
             padding: 25px; border-radius: 24px;
             backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(247, 163, 196, 0.25);
@@ -427,7 +428,7 @@
         }
         .school-link:hover .school {
             transform: translateY(-8px); border-color: var(--magic-cyan);
-            background: rgba(76, 37, 115, 0.7);
+            background: rgba(76, 37, 115, 0.85);
             box-shadow: 0 20px 50px rgba(0, 243, 255, 0.25);
         }
         .school img {
