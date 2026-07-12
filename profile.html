@@ -20,7 +20,7 @@
 body{
 
     background:
-    linear-gradient(135deg,#696969,#FFD700,#111);
+    linear-gradient(135deg,#777,#d6b8ff,#555);
 
     color:white;
 
@@ -34,7 +34,7 @@ body{
 
 
 
-/* ดาวในอวกาศ */
+/* ดาวเล็ก ๆ */
 
 body::before{
 
@@ -51,33 +51,27 @@ body::before{
 
     radial-gradient(white 1px,transparent 1px),
 
-    radial-gradient(#FFD700 1px,transparent 1px),
-
-    radial-gradient(#fff 2px,transparent 2px);
+    radial-gradient(#d8b4ff 1px,transparent 1px);
 
 
 
     background-size:
 
-    70px 70px,
+    90px 90px,
 
-    120px 120px,
-
-    200px 200px;
+    140px 140px;
 
 
 
     background-position:
 
-    10px 20px,
+    20px 30px,
 
-    80px 50px,
-
-    150px 100px;
+    80px 100px;
 
 
 
-    opacity:.45;
+    opacity:.35;
 
     z-index:-1;
 
@@ -85,18 +79,17 @@ body::before{
 
 
 
-
 /* เมนู */
 
 nav{
 
-    background:rgba(0,0,0,.35);
+    background:rgba(0,0,0,.18);
 
     padding:15px;
 
     text-align:center;
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(8px);
 
 }
 
@@ -120,19 +113,15 @@ nav a{
 
 nav a:hover{
 
-    color:#FFD700;
-
-    text-shadow:0 0 10px #FFD700;
+    color:#d8b4ff;
 
 }
-
 
 
 
 /* กล่องข้อมูล */
 
 .container{
-
 
     width:80%;
 
@@ -145,7 +134,7 @@ nav a:hover{
     padding:35px;
 
 
-    background:rgba(255,255,255,.15);
+    background:rgba(255,255,255,.12);
 
 
     border-radius:25px;
@@ -154,62 +143,52 @@ nav a:hover{
     text-align:center;
 
 
-    box-shadow:
-
-    0 0 25px rgba(255,215,0,.5);
+    box-shadow:0 0 20px rgba(216,180,255,.35);
 
 
-    backdrop-filter:blur(10px);
-
+    backdrop-filter:blur(8px);
 
 }
 
 
 
+
+
+/* คำนำ */
 
 h1{
 
-
-    color:#FFD700;
-
+    color:#d8b4ff;
 
     font-size:40px;
 
-
     margin-bottom:25px;
 
-
-    text-shadow:
-
-    0 0 15px #FFD700;
-
+    text-shadow:0 0 10px #d8b4ff;
 
 }
-
 
 
 
 
 p{
 
-
     font-size:20px;
-
 
     margin:15px 0;
 
-
 }
-
 
 
 
 
 strong{
 
-    color:#FFD700;
+    color:#e9d5ff;
 
 }
+
+
 
 
 
@@ -217,20 +196,17 @@ strong{
 
 .btn{
 
-
     display:inline-block;
 
-
     margin-top:25px;
-
 
     padding:12px 30px;
 
 
-    background:white;
+    background:rgba(255,255,255,.9);
 
 
-    color:#dd191d;
+    color:#7c3aed;
 
 
     text-decoration:none;
@@ -244,40 +220,31 @@ strong{
 
     transition:.3s;
 
-
 }
 
 
 
 .btn:hover{
 
+    background:#d8b4ff;
 
-    background:#FFD700;
+    color:white;
 
-
-    color:#111;
-
-
-    transform:scale(1.1);
-
-
-    box-shadow:0 0 20px #FFD700;
-
+    transform:scale(1.05);
 
 }
 
 
 
-
-/* ดาวกระพริบ */
+/* ดาว */
 
 .star{
 
     position:absolute;
 
-    width:5px;
+    width:4px;
 
-    height:5px;
+    height:4px;
 
     background:white;
 
@@ -305,9 +272,6 @@ strong{
 
 }
 
-
-
-/* ดาวตำแหน่งต่าง ๆ */
 
 .star1{
 
@@ -346,23 +310,17 @@ strong{
 
 
 
-
 /* Footer */
 
 footer{
 
-
     text-align:center;
-
 
     padding:20px;
 
-
     margin-top:40px;
 
-
-    background:rgba(0,0,0,.35);
-
+    background:rgba(0,0,0,.18);
 
 }
 
@@ -375,7 +333,6 @@ footer{
 <body>
 
 
-
 <div class="star star1"></div>
 
 <div class="star star2"></div>
@@ -383,7 +340,6 @@ footer{
 <div class="star star3"></div>
 
 <div class="star star4"></div>
-
 
 
 
@@ -409,7 +365,6 @@ footer{
 <div class="container">
 
 
-
 <h1>🌌 ประวัติส่วนตัว 🚀</h1>
 
 
@@ -420,12 +375,10 @@ footer{
 </p>
 
 
-
 <p>
 <strong>ชื่อเล่น:</strong>
 องศา
 </p>
-
 
 
 <p>
@@ -434,38 +387,33 @@ footer{
 </p>
 
 
-
 <p>
 <strong>วัน/เดือน/ปีเกิด:</strong>
 27/06/2551
 </p>
 
 
-
 <p>
 <strong>ราศี:</strong>
-เมถุน
+เมถุน ♊
 </p>
-
 
 
 <p>
 <strong>กรุ๊ปเลือด:</strong>
-A
+A 🩸
 </p>
-
 
 
 <p>
 <strong>กำลังศึกษา:</strong>
-ชั้นมัธยมศึกษาปีที่ 6/1
+ชั้นมัธยมศึกษาปีที่ 6/1 🎓
 </p>
-
 
 
 <p>
 <strong>แผนการเรียน:</strong>
-วิทยาศาสตร์–คณิตศาสตร์
+วิทยาศาสตร์–คณิตศาสตร์ 🔬
 </p>
 
 
