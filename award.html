@@ -70,10 +70,32 @@ li{
     border-radius:15px;
     border:3px solid white;
     transition:.3s;
+    cursor:pointer;
 }
 
 .gallery img:hover{
     transform:scale(1.05);
+}
+
+/* Lightbox */
+.lightbox{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.lightbox img{
+    max-width:90%;
+    max-height:90%;
+    border-radius:15px;
+    box-shadow:0 0 20px white;
 }
 
 .btn{
@@ -107,22 +129,25 @@ footer{
 <a href="contact.html">ติดต่อ</a>
 </nav>
 
-
 <div class="container">
 
-<h1><span style="color:#FFD700;">ผลงาน</h1>
+<h1><span style="color:#FFD700;">ผลงาน</span></h1>
 
-<!-- เพิ่มรูปภาพผลงานตรงนี้ -->
 <div class="gallery">
 
-        <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/file_00000000ff9872099429ff9673d90a34.png" alt="ผลงาน">
+    <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/file_00000000ff9872099429ff9673d90a34.png"
+         alt="ผลงาน"
+         onclick="openImage(this.src)">
 
-    <img src="images/work2.jpg" alt="ผลงานที่ 2">
+    <img src="images/work2.jpg"
+         alt="ผลงานที่ 2"
+         onclick="openImage(this.src)">
 
-    <img src="images/work3.jpg" alt="ผลงานที่ 3">
+    <img src="images/work3.jpg"
+         alt="ผลงานที่ 3"
+         onclick="openImage(this.src)">
 
 </div>
-
 
 <ul>
 <li>🏆 ได้รับเกียรติบัตร..................................</li>
@@ -130,16 +155,29 @@ footer{
 <li>📜 ผ่านการอบรม..................................</li>
 </ul>
 
-
 <a href="index.html" class="btn">กลับหน้าหลัก</a>
 
 </div>
 
+<!-- หน้าต่างแสดงรูปขนาดใหญ่ -->
+<div id="lightbox" class="lightbox" onclick="closeImage()">
+    <img id="lightbox-img" src="" alt="รูปขยาย">
+</div>
 
 <footer>
 © 2026 Portfolio | นาย เมธาสิทธิ์ ขันติกุล
 </footer>
 
+<script>
+function openImage(src){
+    document.getElementById("lightbox").style.display = "flex";
+    document.getElementById("lightbox-img").src = src;
+}
+
+function closeImage(){
+    document.getElementById("lightbox").style.display = "none";
+}
+</script>
 
 </body>
 </html>
