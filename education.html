@@ -102,6 +102,30 @@
             z-index: 2;
         }
 
+        /* 🌲 แนวต้นไม้/ต้นสนแฟนตาซี (เพิ่มต้นไม้ตามที่ขอ) */
+        .forest-layer {
+            position: absolute; bottom: 110px; left: 0; width: 100%; height: 60px;
+            z-index: 4; display: flex; gap: 20px; padding-left: 25%; opacity: 0.8;
+        }
+        .magic-tree {
+            width: 0; height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 50px solid #143d22;
+            position: relative;
+        }
+        .magic-tree::before {
+            content: ''; position: absolute; top: 15px; left: -15px;
+            border-left: 15px solid transparent; border-right: 15px solid transparent;
+            border-bottom: 40px solid #1a4d2b;
+        }
+        .magic-tree::after {
+            content: ''; position: absolute; top: 30px; left: -10px;
+            border-left: 10px solid transparent; border-right: 10px solid transparent;
+            border-bottom: 30px solid #2ecc71;
+            opacity: 0.4;
+        }
+
         /* --- มหาปราสาทเวทมนตร์ 4 มิติ --- */
         .castle-4d-realm {
             position: absolute; bottom: 110px; left: 5%;
@@ -143,28 +167,67 @@
             box-shadow: 0 0 20px #ff7700, 0 5px 15px rgba(255,202,0,0.8);
         }
 
-        /* 🌲 แนวต้นไม้/ต้นสนแฟนตาซี */
-        .forest-layer {
-            position: absolute; bottom: 110px; left: 0; width: 100%; height: 60px;
-            z-index: 4; display: flex; gap: 40px; padding-left: 40%; opacity: 0.7;
+        /* 🔫 ปืนใหญ่เวทมนตร์บนหอปราสาท (ติดตั้งใหม่แทนที่ระเบิด) */
+        .castle-cannon {
+            position: absolute;
+            bottom: 285px; left: 165px;
+            width: 35px; height: 18px;
+            background: linear-gradient(to bottom, #4a4a4a, #1a1a1a);
+            border-radius: 4px;
+            transform: rotate(-25deg);
+            z-index: 10;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
-        .magic-tree {
-            width: 0; height: 0;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-bottom: 50px solid #143d22;
-            position: relative;
+        .castle-cannon::after {
+            content: ''; position: absolute; right: -5px; top: 3px;
+            width: 8px; height: 12px; background: #ffaa00;
+            border-radius: 50%; opacity: 0;
+            animation: cannonFlash 20s infinite linear;
+            animation-delay: 4.8s;
         }
-        .magic-tree::before {
-            content: ''; position: absolute; top: 20px; left: -15px;
-            border-left: 15px solid transparent; border-right: 15px solid transparent;
-            border-bottom: 40px solid #1a4d2b;
+        @keyframes cannonFlash {
+            0%, 4% { opacity: 1; filter: blur(1px); }
+            5%, 100% { opacity: 0; }
+        }
+
+        /* --- 🔮 ระบบกระสุนเวทมนตร์ยิงไล่ตามมังกร 2-3 เม็ด --- */
+        .magic-bullet {
+            position: absolute;
+            /* จุดเริ่มต้นจากปากกระบอกปืนบนปราสาท */
+            bottom: 230px; left: 200px; 
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #fff, var(--magic-cyan));
+            box-shadow: 0 0 15px var(--magic-cyan), 0 0 30px var(--magic-cyan);
+            opacity: 0;
+            z-index: 55;
+        }
+        .bullet-1 { animation: bulletChase1 20s infinite linear; animation-delay: 4.8s; }
+        .bullet-2 { animation: bulletChase2 20s infinite linear; animation-delay: 5.1s; }
+        .bullet-3 { animation: bulletChase3 20s infinite linear; animation-delay: 5.4s; }
+
+        @keyframes bulletChase1 {
+            0% { opacity: 1; left: 200px; bottom: 230px; transform: scale(1); }
+            30% { opacity: 1; left: 60vw; bottom: 70%; transform: scale(0.8); }
+            60% { opacity: 0; left: 120vw; bottom: 85%; transform: scale(0.5); }
+            100% { opacity: 0; }
+        }
+        @keyframes bulletChase2 {
+            0% { opacity: 1; left: 200px; bottom: 230px; transform: scale(1); }
+            30% { opacity: 1; left: 58vw; bottom: 68%; transform: scale(0.8); }
+            60% { opacity: 0; left: 120vw; bottom: 83%; transform: scale(0.5); }
+            100% { opacity: 0; }
+        }
+        @keyframes bulletChase3 {
+            0% { opacity: 1; left: 200px; bottom: 230px; transform: scale(1); }
+            30% { opacity: 1; left: 56vw; bottom: 66%; transform: scale(0.8); }
+            60% { opacity: 0; left: 120vw; bottom: 81%; transform: scale(0.5); }
+            100% { opacity: 0; }
         }
 
         /* --- 🐉 โมเดลพญามังกรระดับมหากาพย์ --- */
         .dragon-epic-universe {
             position: absolute; top: 12%;
-            /* บินออกมาช้ากว่าเดิม (delay 3s) และวิ่งสอดคล้องกับจังหวะระเบิด */
             animation: dragonMasterFlight 20s infinite linear;
             animation-delay: 3s;
             z-index: 60;
@@ -248,42 +311,10 @@
         @keyframes dmFire { 0%, 100% { opacity: 0; transform: scale(0.3); } 40%, 60% { opacity: 1; transform: scale(1.6) translateX(30px) rotate(15deg); } }
         
         @keyframes dragonMasterFlight {
-            0% { left: -400px; transform: translateY(40px) scale(0.6); }
-            45% { transform: translateY(-10px) scale(0.85); }
-            100% { left: 120vw; transform: translateY(40px) scale(0.6); }
-        }
-
-        /* --- 💥 เอฟเฟกต์ไฟไหม้และระเบิดบนพื้นผิวทราย/หญ้า แล้วสลายหายไป --- */
-        .fire-explosion {
-            position: absolute; bottom: 105px;
-            width: 120px; height: 120px;
-            z-index: 12;
-            background: radial-gradient(circle, #fff 10%, #ff5500 40%, #ffcc00 70%, transparent 80%);
-            border-radius: 50%;
-            filter: blur(4px);
-            opacity: 0;
-            /* ขยับไล่ตามหลังขบวนอัศวินและสัมพันธ์กับดีเลย์มังกร */
-            animation: groundBoom 20s infinite linear;
-            animation-delay: 3s;
-        }
-        
-        /* เสริมเปลวไฟลุกท่วมสลายตัว */
-        .fire-explosion::before {
-            content: ''; position: absolute; bottom: 10px; left: 20px;
-            width: 80px; height: 90px;
-            background: linear-gradient(to top, rgba(255,69,0,0.9), rgba(255,215,0,0.6), transparent);
-            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-            filter: blur(2px);
-        }
-
-        @keyframes groundBoom {
-            0%, 25% { left: -100px; opacity: 0; transform: scale(0.2); }
-            /* จังหวะมังกรพ่นไฟลงพื้น เกิดระเบิดตูมใหญ่ */
-            30% { opacity: 1; transform: scale(1.3); filter: brightness(1.5); }
-            /* เกิดเป็นไฟไหม้ลุกค้างไว้ช่วงนึง */
-            35% { opacity: 0.9; transform: scale(1.1) skewX(-10deg); }
-            /* ค่อยๆ มอดดับหายไปในดิน */
-            45%, 100% { opacity: 0; transform: scale(0.5); left: 70vw; }
+            0% { left: -400px; top: 40%; transform: scale(0.5); }
+            30% { left: 25vw; top: 35%; transform: scale(0.75); }
+            60% { left: 75vw; top: 20%; transform: scale(0.6); }
+            100% { left: 130vw; top: 15%; transform: scale(0.4); }
         }
 
         /* --- 🛡️ กองทัพอัศวินวิ่งหนีสุดชีวิต --- */
@@ -312,254 +343,4 @@
         .knight-cape {
             position: absolute; top: 30px; left: -4px;
             width: 16px; height: 35px; background: #c0392b;
-            border-radius: 4px; transform-origin: top right;
-            animation: capeFlutter 0.1s infinite alternate ease-in-out;
-        }
-
-        .k1 { animation-delay: 0.5s; }
-        .k2 { animation-delay: 1.2s; }
-        .k2 .knight-cape { background: #2980b9; }
-        .k3 { animation-delay: 1.8s; }
-        .k3 .knight-cape { background: #8e44ad; }
-        .k4 { animation-delay: 2.5s; }
-        .k4 .knight-cape { background: #d35400; }
-
-        @keyframes knightPanicRun {
-            0% { left: -150px; transform: scale(0.75) skewX(10deg); }
-            100% { left: 120vw; transform: scale(0.75) skewX(10deg); }
-        }
-        @keyframes knightLegs {
-            0% { transform: translateY(0) rotate(2deg); }
-            100% { transform: translateY(-3px) rotate(-2deg); }
-        }
-        @keyframes capeFlutter {
-            0% { transform: rotate(35deg); }
-            100% { transform: rotate(55deg); }
-        }
-
-        /* --- พื้นดินเรียบหรูพร้อมต้นหญ้าตั้งชันแยกต้น --- */
-        .ground-flat-luxury {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 110px;
-            background: linear-gradient(to bottom, #0b3a1e 0%, #051d0f 100%);
-            border-top: 3px solid rgba(46, 204, 113, 0.35);
-            z-index: 10;
-        }
-        .grass-blades-container {
-            position: absolute; top: -22px; left: 0; width: 100%; height: 30px;
-            display: flex; justify-content: space-around; align-items: flex-end;
-        }
-        .blade {
-            width: 4px; height: 22px;
-            background: linear-gradient(to top, var(--grass-ground), var(--grass-blade));
-            border-radius: 50% 50% 0 0;
-            transform-origin: bottom center;
-            animation: bladeSway 2.8s infinite ease-in-out alternate;
-        }
-        .blade:nth-child(2n) { height: 16px; animation-delay: -0.5s; }
-        .blade:nth-child(3n) { height: 26px; animation-delay: -1.2s; }
-        @keyframes bladeSway { 0% { transform: rotate(-4deg); } 100% { transform: rotate(8deg); } }
-
-        /* ==================================================
-           [ UI CONTROLS & MODERN CARDS ]
-           ================================================== */
-        nav {
-            position: relative; z-index: 100;
-            background: rgba(30, 13, 46, 0.5);
-            padding: 18px; text-align: center;
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(247, 163, 196, 0.3);
-        }
-        nav a {
-            color: white; text-decoration: none; margin: 0 15px;
-            font-size: 17px; font-weight: bold; transition: 0.3s;
-        }
-        nav a:hover { color: #fff; text-shadow: 0 0 15px var(--sky-pink-light), 0 0 25px var(--magic-cyan); }
-
-        .container {
-            position: relative; z-index: 20;
-            width: 90%; max-width: 850px;
-            margin: 40px auto 180px auto;
-        }
-        h1 {
-            text-align: center; font-size: 42px; margin-bottom: 35px;
-            color: white; text-shadow: 0 0 20px var(--sky-pink-light), 0 0 40px var(--sky-purple);
-        }
-        .school-link { display: block; text-decoration: none; color: white; margin-bottom: 25px; }
-        .school {
-            display: flex; align-items: center; gap: 25px;
-            background: rgba(49, 23, 76, 0.55);
-            padding: 25px; border-radius: 24px;
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(247, 163, 196, 0.25);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.45);
-            transition: .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .school-link:hover .school {
-            transform: translateY(-8px); border-color: var(--magic-cyan);
-            background: rgba(76, 37, 115, 0.7);
-            box-shadow: 0 20px 50px rgba(0, 243, 255, 0.25);
-        }
-        .school img {
-            width: 100px; height: 100px; border-radius: 50%;
-            background: #fff; padding: 6px; object-fit: contain;
-            border: 3px solid var(--sky-pink-light);
-        }
-        .school h2 { color: var(--sky-pink-light); font-size: 22px; margin-bottom: 8px; }
-        .school-link:hover h2 { color: var(--magic-cyan); }
-        .school p { font-size: 17px; color: #fdf0f5; line-height: 1.7; }
-
-        .btn {
-            display: inline-block; margin-top: 20px; padding: 14px 45px;
-            background: linear-gradient(45deg, var(--sky-pink-deep), var(--sky-purple));
-            color: white; text-decoration: none; border-radius: 40px;
-            font-weight: bold; font-size: 16px; transition: .3s;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-        .btn:hover {
-            transform: scale(1.06); box-shadow: 0 8px 25px var(--magic-cyan);
-            background: linear-gradient(45deg, var(--magic-cyan), #fff); color: var(--sky-purple);
-        }
-        footer {
-            text-align: center; padding: 25px; margin-top: auto;
-            background: #051d0f; border-top: 1px solid rgba(46, 204, 113, 0.2);
-            color: #c5b5d3; font-weight: bold; position: relative; z-index: 100;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="magic-universe">
-        <div class="twin-moons-container">
-            <div class="moon-large"></div>
-            <div class="moon-small"></div>
-        </div>
-
-        <div class="cloud-3d-1"></div>
-        <div class="cloud-3d-2"></div>
-
-        <div class="mountain-range"></div>
-        <div class="forest-layer">
-            <div class="magic-tree"></div>
-            <div class="magic-tree" style="transform: scale(0.8);"></div>
-            <div class="magic-tree" style="transform: scale(1.1);"></div>
-        </div>
-
-        <div class="fire-explosion"></div>
-
-        <div class="dragon-epic-universe">
-            <div class="dragon-master-model">
-                <div class="dm-tail-long">
-                    <div class="dm-tail-fin"></div>
-                </div>
-                <div class="dm-body"></div>
-                <div class="dm-head">
-                    <div class="dm-eye"></div>
-                    <div class="dm-jaw"></div>
-                </div>
-                <div class="dm-wing-front"></div>
-                <div class="dm-fire-blast"></div>
-            </div>
-        </div>
-
-        <div class="castle-4d-realm">
-            <div class="castle-base-wall">
-                <div class="castle-gate"></div>
-                <div class="window-glow-4d" style="top:30px; left:30px;"></div>
-                <div class="window-glow-4d" style="top:30px; left:210px;"></div>
-            </div>
-            <div class="tower-cylindrical">
-                <div class="window-glow-4d" style="top:40px; left:20px;"></div>
-                <div class="window-glow-4d" style="top:40px; left:65px;"></div>
-                <div class="window-glow-4d" style="top:100px; left:43px; background:var(--magic-cyan); box-shadow:0 0 15px var(--magic-cyan);"></div>
-            </div>
-            <div class="roof-cone-4d"></div>
-        </div>
-
-        <div class="knights-runway">
-            <div class="magic-knight k1">
-                <div class="knight-cape"></div>
-                <div class="knight-armor"></div>
-                <div class="knight-helmet"></div>
-            </div>
-            <div class="magic-knight k2">
-                <div class="knight-cape"></div>
-                <div class="knight-armor"></div>
-                <div class="knight-helmet"></div>
-            </div>
-            <div class="magic-knight k3">
-                <div class="knight-cape"></div>
-                <div class="knight-armor"></div>
-                <div class="knight-helmet"></div>
-            </div>
-            <div class="magic-knight k4">
-                <div class="knight-cape"></div>
-                <div class="knight-armor"></div>
-                <div class="knight-helmet"></div>
-            </div>
-        </div>
-
-        <div class="ground-flat-luxury">
-            <div class="grass-blades-container">
-                <div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div>
-                <div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div>
-                <div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div>
-                <div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div>
-            </div>
-        </div>
-    </div>
-
-    <nav>
-        <a href="index.html">หน้าแรก</a>
-        <a href="profile.html">ประวัติส่วนตัว</a>
-        <a href="education.html">ประวัติการศึกษา</a>
-        <a href="award.html">ผลงาน</a>
-        <a href="contact.html">ติดต่อ</a>
-    </nav>
-
-    <main class="container">
-        <h1>🔮 มหากาพย์ประวัติการศึกษา 📜</h1>
-
-        <a href="https://www.facebook.com/WattanadaroonwitSchool" target="_blank" class="school-link">
-            <div class="school">
-                <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-100017.jpg" alt="โรงเรียนวัฒนดรุณวิทย์">
-                <div>
-                    <h2>🏰 ระดับประถมศึกษา</h2>
-                    <p><strong>โรงเรียนวัฒนดรุณวิทย์</strong></p>
-                    <p>สำเร็จหลักสูตรเวทมนตร์ศาสตร์ขั้นต้น (ประถมศึกษา)</p>
-                </div>
-            </div>
-        </a>
-
-        <a href="https://www.facebook.com/WattanadaroonwitSchool" target="_blank" class="school-link">
-            <div class="school">
-                <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-100017.jpg" alt="โรงเรียนวัฒนดรุณวิทย์">
-                <div>
-                    <h2>⚔️ ระดับมัธยมศึกษาตอนต้น</h2>
-                    <p><strong>โรงเรียนวัฒนดรุณวิทย์</strong></p>
-                    <p>สำเร็จหลักสูตรคาถาศาสตร์และวิทยาการคำนวณขั้นกลาง</p>
-                </div>
-            </div>
-        </a>
-
-        <a href="https://www.facebook.com/PhanTSchool/" target="_blank" class="school-link">
-            <div class="school">
-                <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-100141.jpg" alt="โรงเรียนพานทอง">
-                <div>
-                    <h2>👑 ระดับมัธยมศึกษาตอนปลาย</h2>
-                    <p><strong>โรงเรียนพานทอง (สถาบันต้นสน)</strong></p>
-                    <p>กำลังศึกษาชั้นมัธยมศึกษาปีที่ 6/1 (ภาควิชาเวทมนตร์ศาสตร์ระดับสูง)</p>
-                </div>
-            </div>
-        </a>
-
-        <div style="text-align:center;">
-            <a href="award.html" class="btn"> ถัดไป</a>
-        </div>
-    </main>
-
-    <footer>
-        © 2026 Magic Portfolio | นาย เมธาสิทธิ์ ขันติกุล
-    </footer>
-
-</body>
-</html>
+            border-radius: 4px; transform-
