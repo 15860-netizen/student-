@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio นาย เมธาสิทธิ์ - Cowboy & Dino Desert</title>
+<title>Portfolio นาย เมธาสิทธิ์ - T-Rex Run Desert</title>
 
 <style>
 
@@ -26,15 +26,10 @@ body{
     position: relative;
 }
 
-/* แอนิเมชั่นสีท้องฟ้าเปลี่ยนตามความร้อน */
 @keyframes hot-day {
     0%, 100% { background-position: 0% 0%; }
     50% { background-position: 0% 100%; }
 }
-
-/* ==================================================
-   [ ระบบ Dynamic: หญ้ากลิ้ง, กระบองเพชร, ไดโนเสาร์ ]
-   ================================================== */
 
 /* เอฟเฟกต์หญ้ากลมกลิ้ง */
 .tumbleweed {
@@ -44,9 +39,9 @@ body{
     background-image: radial-gradient(circle, #D2B48C, #8B4513);
     border-radius: 50%;
     filter: blur(1.5px);
-    opacity: 0.6;
-    animation: tumble-horizontal 12s infinite linear;
-    bottom: 5vh;
+    opacity: 0.5;
+    animation: tumble-horizontal 15s infinite linear;
+    bottom: 120px;
     z-index: 2;
 }
 
@@ -55,73 +50,108 @@ body{
     100% { left: 120vw; transform: rotate(3600deg); }
 }
 
-/* ฉากพื้นดินและอนิเมชั่นไดโนเสาร์วิ่งข้ามกระบองเพชรด้านล่างจอ */
+/* ==================================================
+   [ โซนจำลองเกมไดโนเสาร์วิ่งข้ามกระบองเพชรของจริง ]
+   ================================================== */
+
 .desert-stage {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 120px;
+    height: 140px;
     background: transparent;
     z-index: 5;
-    pointer-events: none; /* ไม่ให้บังปุ่มกด */
+    pointer-events: none;
 }
 
-/* ต้นกระบองเพชรสำหรับให้ไดโนเสาร์กระโดดข้าม */
-.game-cactus {
+/* เส้นพื้นทรายเรียบๆ ด้านล่าง */
+.sand-floor {
     position: absolute;
-    bottom: 10px;
-    left: 45%;
-    width: 25px;
-    height: 55px;
-    background: #1e5631;
-    border-radius: 5px 5px 0 0;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 35px;
+    background: #5c3a16;
+    border-top: 4px solid #FFD700;
 }
-.game-cactus::before, .game-cactus::after {
-    content: '';
-    position: absolute;
-    background: #1e5631;
-    width: 12px;
-    height: 20px;
-    border-radius: 5px;
-}
-.game-cactus::before { left: -10px; top: 15px; border-radius: 5px 0 0 5px; }
-.game-cactus::after { right: -10px; top: 22px; border-radius: 0 5px 5px 0; }
 
-/* ไดโนเสาร์ T-Rex วิ่งและกระโดด */
+/* อนิเมชั่นตัวไดโนเสาร์ วิ่ง + กระโดด */
 .dino {
     position: absolute;
-    bottom: 10px;
-    left: 10%;
+    bottom: 30px;
+    left: 15%;
     font-size: 45px;
     width: 50px;
     height: 50px;
     line-height: 50px;
     text-align: center;
-    transform: scaleX(-1); /* หันหน้าไปทางขวา */
-    animation: dino-jump 3.5s infinite ease-in-out;
+    transform: scaleX(-1);
+    z-index: 6;
+    /* แอนิเมชั่นวิ่งสลับกับกระโดดให้สมจริง */
+    animation: dino-run 0.15s infinite alternate linear, dino-jump 4s infinite ease-in-out;
 }
 
+/* ทำท่าทางเหมือนขยับขาตอนวิ่ง */
+@keyframes dino-run {
+    0% { transform: scaleX(-1) translateY(0px) skewX(-2deg); }
+    100% { transform: scaleX(-1) translateY(-2px) skewX(2deg); }
+}
+
+/* จังหวะลอยตัวหลบกระบองเพชรกลุ่มต่างๆ */
 @keyframes dino-jump {
-    0%, 35%, 55%, 100% { bottom: 10px; transform: scaleX(-1) rotate(0deg); } /* วิ่งบนพื้น */
-    40% { transform: scaleX(-1) rotate(-5deg); }
-    45% { bottom: 95px; transform: scaleX(-1) rotate(-10deg); } /* จังหวะลอยข้ามกระบองเพชรตรงกลาง (45%-50%) */
-    50% { bottom: 95px; transform: scaleX(-1) rotate(5deg); }
+    0%, 20%, 32%, 48%, 60%, 75%, 87%, 100% { bottom: 30px; } /* อยู่บนพื้นทราย */
+    26% { bottom: 125px; } /* กระโดดหลบต้นที่ 1 */
+    54% { bottom: 130px; } /* กระโดดสูงหลบต้นคู่ 2 ต้น */
+    81% { bottom: 135px; } /* กระโดดสูงสุดหลบกลุ่ม 3 ต้น */
 }
 
-/* ต้นกระบองเพชรยักษ์ดั้งเดิมตรงมุมซ้าย */
-.cactus-decor {
+/* กลุ่มกระบองเพชรที่วิ่งสวนมา */
+.cactus-group {
     position: absolute;
-    width: 120px;
-    height: 280px;
-    background-color: #2E8B57;
-    border-radius: 50% 50% 0 0;
-    bottom: -20px;
-    left: -30px;
-    opacity: 0.4;
-    z-index: 1;
+    bottom: 31px;
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    animation: obstacle-move 4s infinite linear;
 }
+
+/* ความเร็วในการวิ่งสวนทางของสิ่งกีดขวาง */
+@keyframes obstacle-move {
+    0% { left: 100vw; }
+    100% { left: -200px; }
+}
+
+/* จัดจังหวะการโผล่ของแต่ละกลุ่ม (ต้นเดี่ยว / คู่สอง / สามต้นติด) */
+.group-1 { animation-delay: 0s; }
+.group-2 { animation-delay: 1.3s; }
+.group-3 { animation-delay: 2.6s; }
+
+/* ตัวโมเดลต้นกระบองเพชร */
+.cactus-spine {
+    width: 18px;
+    height: 45px;
+    background: #224d19;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    box-shadow: inset -3px 0 rgba(0,0,0,0.2);
+}
+/* แตกกิ่งซ้ายขวา */
+.cactus-spine::before, .cactus-spine::after {
+    content: '';
+    position: absolute;
+    background: #224d19;
+    width: 8px;
+    height: 15px;
+    border-radius: 3px;
+}
+.cactus-spine::before { left: -6px; top: 12px; border-radius: 3px 0 0 3px; }
+.cactus-spine::after { right: -6px; top: 18px; border-radius: 0 3px 3px 0; }
+
+/* ปรับความสูงต่ำให้ดูเป็นธรรมชาติ */
+.spine-short { height: 35px; }
+.spine-tall { height: 55px; }
+
 
 /* ==================================================
    [ ส่วนของเมนูและกล่องเนื้อหา ]
@@ -154,7 +184,7 @@ nav a:hover{
 .container{
     width:80%;
     max-width:900px;
-    margin: 60px auto 160px auto; /* เว้นระยะด้านล่างไม่ให้บังตัวเกม */
+    margin: 60px auto 180px auto; 
     background:rgba(255, 255, 255, 0.12);
     padding:40px;
     border-radius:20px;
@@ -258,12 +288,31 @@ footer{
 </head>
 <body>
 
-    <div class="cactus-decor"></div>
     <div class="tumbleweed"></div>
 
+    <!-- โซนระบบเกม T-Rex แบบมีพื้นทราย และกระบองเพชรวิ่งสวน -->
     <div class="desert-stage">
         <div class="dino">🦖</div>
-        <div class="game-cactus"></div>
+        
+        <!-- กลุ่มที่ 1: ต้นเดี่ยว -->
+        <div class="cactus-group group-1">
+            <div class="cactus-spine"></div>
+        </div>
+
+        <!-- กลุ่มที่ 2: มาเป็นคู่ 2 ต้น -->
+        <div class="cactus-group group-2">
+            <div class="cactus-spine spine-short"></div>
+            <div class="cactus-spine"></div>
+        </div>
+
+        <!-- กลุ่มที่ 3: มาเป็นฝูง 3 ต้นติดกัน -->
+        <div class="cactus-group group-3">
+            <div class="cactus-spine"></div>
+            <div class="cactus-spine spine-tall"></div>
+            <div class="cactus-spine spine-short"></div>
+        </div>
+
+        <div class="sand-floor"></div>
     </div>
 
     <nav>
@@ -307,7 +356,6 @@ footer{
         }
 
         function closeImage(){
-            document.getElementById("lightbox-none").style.display="none"; // แก้ไขจุดดึง id ให้ปิดถูกต้อง
             document.getElementById("lightbox").style.display="none";
         }
     </script>
