@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
 
 <meta charset="UTF-8">
@@ -7,65 +8,90 @@
 
 <title>Contact | ช่องทางการติดต่อ</title>
 
+
 <style>
 
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:"Sarabun",sans-serif;
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Sarabun",sans-serif;
+
 }
+
 
 
 body{
 
-    min-height:100vh;
+min-height:100vh;
 
-    color:white;
+display:flex;
 
-    overflow:hidden;
+flex-direction:column;
 
-    background:
-    linear-gradient(
-    135deg,
-    #020024,
-    #090979,
-    #4b0082,
-    #ff0080
-    );
+color:white;
 
-    background-size:400% 400%;
+position:relative;
 
-    animation:galaxy 15s infinite alternate;
+overflow-x:hidden;
+
+background:
+
+linear-gradient(
+135deg,
+#020024,
+#090979,
+#4b0082,
+#ff0080
+);
+
+
+background-size:400% 400%;
+
+animation:galaxy 15s infinite alternate;
 
 }
+
 
 
 @keyframes galaxy{
 
 0%{
+
 background-position:0% 50%;
+
 }
+
 
 100%{
+
 background-position:100% 50%;
-}
 
 }
 
+}
 
 
-/* ดาวในอวกาศ */
+
+
+/* ดาว */
 
 body::before{
 
 content:"";
 
-position:absolute;
+position:fixed;
+
+top:0;
+
+left:0;
 
 width:100%;
 
 height:100%;
+
 
 background-image:
 
@@ -74,6 +100,7 @@ radial-gradient(white 1px,transparent 1px),
 radial-gradient(#00ffff 1px,transparent 1px),
 
 radial-gradient(#ff66ff 1px,transparent 1px);
+
 
 
 background-size:
@@ -89,7 +116,7 @@ opacity:.5;
 
 animation:stars 30s linear infinite;
 
-z-index:-2;
+z-index:-1;
 
 }
 
@@ -97,11 +124,13 @@ z-index:-2;
 
 @keyframes stars{
 
+
 from{
 
 transform:translateY(0);
 
 }
+
 
 to{
 
@@ -109,11 +138,14 @@ transform:translateY(-200px);
 
 }
 
+
 }
 
 
 
+
 /* ดาวตก */
+
 
 .shooting{
 
@@ -123,19 +155,25 @@ width:120px;
 
 height:3px;
 
-background:linear-gradient(
+
+background:
+
+linear-gradient(
 90deg,
 white,
 transparent
 );
 
+
 transform:rotate(-45deg);
+
 
 animation:shoot 5s infinite;
 
 opacity:0;
 
 }
+
 
 
 .s1{
@@ -162,6 +200,7 @@ animation-delay:2s;
 
 @keyframes shoot{
 
+
 0%{
 
 opacity:0;
@@ -171,11 +210,13 @@ transform:translate(0,0) rotate(-45deg);
 }
 
 
+
 10%{
 
 opacity:1;
 
 }
+
 
 
 100%{
@@ -186,11 +227,14 @@ transform:translate(500px,500px) rotate(-45deg);
 
 }
 
+
 }
 
 
 
+
 /* ดาวเคราะห์ */
+
 
 .planet{
 
@@ -201,7 +245,9 @@ border-radius:50%;
 }
 
 
+
 .planet1{
+
 
 width:180px;
 
@@ -214,21 +260,30 @@ top:120px;
 
 background:
 
-radial-gradient(circle at 30% 30%,
-#fff,
+radial-gradient(
+circle at 30% 30%,
+white,
 #7b2cff,
-#12002b);
+#12002b
+);
 
 
-box-shadow:0 0 50px #9d4edd;
+
+box-shadow:
+
+0 0 50px #9d4edd;
 
 
 animation:spin 20s linear infinite;
 
+
 }
 
 
+
+
 .planet2{
+
 
 width:120px;
 
@@ -236,23 +291,31 @@ height:120px;
 
 left:-40px;
 
-bottom:80px;
+bottom:120px;
 
 
 background:
 
-radial-gradient(circle at 30% 30%,
+radial-gradient(
+circle at 30% 30%,
 #ffd700,
 #ff4500,
-#500000);
+#500000
+);
 
 
-box-shadow:0 0 40px orange;
+
+box-shadow:
+
+0 0 40px orange;
+
 
 }
 
 
+
 @keyframes spin{
+
 
 from{
 
@@ -260,33 +323,45 @@ transform:rotate(0deg);
 
 }
 
+
 to{
 
 transform:rotate(360deg);
 
 }
 
+
 }
+
+
 
 
 
 /* เมนู */
 
+
 nav{
 
-background:rgba(0,0,0,.3);
 
 padding:18px;
 
 text-align:center;
 
+
+background:
+
+rgba(0,0,0,.35);
+
+
 backdrop-filter:blur(10px);
+
 
 }
 
 
 
 nav a{
+
 
 color:white;
 
@@ -296,7 +371,9 @@ margin:0 15px;
 
 font-weight:bold;
 
+
 transition:.3s;
+
 
 }
 
@@ -304,9 +381,13 @@ transition:.3s;
 
 nav a:hover{
 
+
 color:#00ffff;
 
-text-shadow:0 0 15px cyan;
+text-shadow:
+
+0 0 15px cyan;
+
 
 }
 
@@ -315,15 +396,22 @@ text-shadow:0 0 15px cyan;
 
 /* กล่องหลัก */
 
+
 .container{
+
 
 width:85%;
 
 max-width:850px;
 
+
 margin:50px auto;
 
+
 padding:40px;
+
+
+flex:1;
 
 
 background:
@@ -337,7 +425,10 @@ border-radius:30px;
 backdrop-filter:blur(15px);
 
 
-border:1px solid rgba(255,255,255,.3);
+border:
+
+1px solid rgba(255,255,255,.3);
+
 
 
 box-shadow:
@@ -348,18 +439,51 @@ box-shadow:
 text-align:center;
 
 
+animation:show .8s ease;
+
+
 }
+
+
+
+@keyframes show{
+
+
+from{
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+
+}
+
 
 
 
 h1{
 
+
 font-size:40px;
+
 
 margin-bottom:30px;
 
 
 text-shadow:
+
 
 0 0 10px cyan,
 
@@ -370,9 +494,13 @@ text-shadow:
 
 
 
-/* กล่องข้อมูล */
+
+
+/* กล่องติดต่อ */
+
 
 .contact-box{
+
 
 display:flex;
 
@@ -380,7 +508,9 @@ align-items:center;
 
 gap:20px;
 
+
 padding:20px;
+
 
 margin:20px 0;
 
@@ -391,16 +521,25 @@ border-radius:25px;
 background:
 
 linear-gradient(
+
 135deg,
+
 rgba(0,255,255,.2),
+
 rgba(180,0,255,.3)
+
 );
 
 
-border:1px solid rgba(255,255,255,.3);
+
+border:
+
+1px solid rgba(255,255,255,.3);
+
 
 
 color:white;
+
 
 text-decoration:none;
 
@@ -408,11 +547,36 @@ text-decoration:none;
 transition:.4s;
 
 
-box-shadow:
+animation:boxShow .8s ease;
 
-0 0 15px rgba(0,255,255,.2);
 
 }
+
+
+
+@keyframes boxShow{
+
+
+from{
+
+opacity:0;
+
+transform:translateX(-50px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateX(0);
+
+}
+
+
+}
+
 
 
 
@@ -428,11 +592,17 @@ scale(1.03);
 background:
 
 linear-gradient(
+
 135deg,
+
 #00c6ff,
+
 #7b2cff,
+
 #ff0080
+
 );
+
 
 
 box-shadow:
@@ -446,22 +616,30 @@ box-shadow:
 
 
 
+
+
 .icon{
 
+
 font-size:45px;
+
 
 width:70px;
 
 height:70px;
 
+
 display:flex;
 
-align-items:center;
 
 justify-content:center;
 
+align-items:center;
 
-background:rgba(255,255,255,.2);
+
+background:
+
+rgba(255,255,255,.2);
 
 
 border-radius:50%;
@@ -471,9 +649,12 @@ border-radius:50%;
 
 
 
+
 .text{
 
+
 text-align:left;
+
 
 }
 
@@ -481,7 +662,9 @@ text-align:left;
 
 .text h2{
 
+
 font-size:25px;
+
 
 }
 
@@ -489,19 +672,26 @@ font-size:25px;
 
 .text p{
 
+
 font-size:18px;
+
 
 }
 
 
 
+
 /* ปุ่ม */
+
 
 .btn{
 
+
 display:inline-block;
 
+
 margin-top:25px;
+
 
 padding:15px 35px;
 
@@ -509,14 +699,21 @@ padding:15px 35px;
 border-radius:30px;
 
 
+
 background:
 
 linear-gradient(
+
 45deg,
+
 #00ffff,
+
 #7b2cff,
+
 #ff0080
+
 );
+
 
 
 color:white;
@@ -537,31 +734,152 @@ transition:.3s;
 
 .btn:hover{
 
+
 transform:scale(1.1);
+
 
 box-shadow:
 
 0 0 25px cyan;
+
 
 }
 
 
 
 
+
+/* Footer แก้ปัญหาแล้ว */
+
+
 footer{
 
-position:absolute;
-
-bottom:0;
 
 width:100%;
 
-padding:15px;
+
+padding:20px;
+
+
+margin-top:40px;
+
 
 text-align:center;
 
 
-background:rgba(0,0,0,.3);
+background:
+
+rgba(0,0,0,.35);
+
+
+backdrop-filter:blur(10px);
+
+
+
+color:#00ffff;
+
+
+text-shadow:
+
+0 0 10px cyan;
+
+
+border-top:
+
+1px solid rgba(0,255,255,.3);
+
+
+}
+
+
+
+
+
+/* มือถือ */
+
+
+@media(max-width:600px){
+
+
+nav a{
+
+
+display:inline-block;
+
+margin:8px;
+
+font-size:14px;
+
+
+}
+
+
+
+.container{
+
+
+width:92%;
+
+
+padding:25px;
+
+
+}
+
+
+
+h1{
+
+
+font-size:30px;
+
+
+}
+
+
+
+.contact-box{
+
+
+padding:15px;
+
+
+}
+
+
+
+.icon{
+
+
+width:55px;
+
+height:55px;
+
+font-size:30px;
+
+
+}
+
+
+
+.text h2{
+
+
+font-size:20px;
+
+
+}
+
+
+
+.text p{
+
+
+font-size:15px;
+
+
+}
+
 
 }
 
@@ -603,10 +921,14 @@ background:rgba(0,0,0,.3);
 
 
 
+
 <div class="container">
 
 
-<h1>🚀 ช่องทางการติดต่อ 🌌</h1>
+<h1>
+🚀 ช่องทางการติดต่อ 🌌
+</h1>
+
 
 
 
@@ -623,6 +945,7 @@ background:rgba(0,0,0,.3);
 </div>
 
 </a>
+
 
 
 
