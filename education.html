@@ -225,17 +225,17 @@
             100% { opacity: 0; }
         }
 
-        /* --- 🐉 ปรับขนาดกลับมา: มังกรขนาดดั้งเดิม (scale: 0.65) และซ่อนอยู่ด้านหลังการ์ด --- */
+        /* --- 🐉 มังกรปรับขนาดใหม่ตามคำขอ: scale(0.73) และบินลอดใต้กรอบข้อความ --- */
         .dragon-epic-universe {
             position: absolute; top: 12%;
             animation: dragonMasterFlight 20s infinite linear;
             animation-delay: 3s;
-            z-index: 5; /* เลเยอร์อยู่ใต้กล่องเนื้อหาหลัก (z-index: 80) เพื่อให้ลอดผ่านด้านหลัง */
+            z-index: 5; /* บินลอดใต้กรอบเนื้อหาหลัก (z-index: 80) */
         }
         .dragon-master-model {
             position: relative; 
             width: 200px; height: 90px;
-            transform: perspective(1000px) rotateY(-25deg) rotateZ(3deg) scale(0.65); /* ล็อกขนาดไว้ที่ 65 ตามต้องการ */
+            transform: perspective(1000px) rotateY(-25deg) rotateZ(3deg) scale(0.73); /* อัปเดตขนาดเป็น 73 (ระหว่าง 72-74) */
             transform-style: preserve-3d;
         }
         .dm-body {
@@ -422,7 +422,7 @@
         
         .school {
             display: flex; align-items: center; gap: 25px;
-            background: rgba(49, 23, 76, 0.85); /* ความทึบระดับสูงป้องกันไม่ให้เห็นเงาตัวมังกรทะลุเลเยอร์ */
+            background: rgba(49, 23, 76, 0.85); 
             padding: 25px; border-radius: 24px;
             backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(247, 163, 196, 0.25);
@@ -577,30 +577,4 @@
                 <div>
                     <h2>⚔️ ระดับมัธยมศึกษาตอนต้น</h2>
                     <p><strong>โรงเรียนวัฒนดรุณวิทย์</strong></p>
-                    <p>สำเร็จหลักสูตรคาถาศาสตร์และวิทยาการคำนวณขั้นกลาง</p>
-                </div>
-            </div>
-        </a>
-
-        <a href="https://www.facebook.com/PhanTSchool/" target="_blank" class="school-link">
-            <div class="school">
-                <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-100141.jpg" alt="โรงเรียนพานทอง">
-                <div>
-                    <h2>👑 ระดับมัธยมศึกษาตอนปลาย</h2>
-                    <p><strong>โรงเรียนพานทอง (สถาบันต้นสน)</strong></p>
-                    <p>กำลังศึกษาชั้นมัธยมศึกษาปีที่ 6/1 (ภาควิชาเวทมนตร์ศาสตร์ระดับสูง)</p>
-                </div>
-            </div>
-        </a>
-
-        <div style="text-align:center;">
-            <a href="award.html" class="btn"> ถัดไป</a>
-        </div>
-    </main>
-
-    <footer>
-        © 2026 Magic Portfolio | นาย เมธาสิทธิ์ ขันติกุล
-    </footer>
-
-</body>
-</html>
+                    <p>สำเร็จหลักสูตรคา
