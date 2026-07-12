@@ -1,785 +1,409 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ผลงาน | Portfolio</title>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:"Sarabun",sans-serif;
-}
-
-
-body{
-
-min-height:100vh;
-
-color:white;
-
-overflow-x:hidden;
-
-
-background:
-
-linear-gradient(
-180deg,
-#ff9a9e 0%,
-#fad0c4 25%,
-#667eea 55%,
-#001f3f 100%
-);
-
-
-}
-
-
-/* พระอาทิตย์ */
-
-.sun{
-
-position:absolute;
-
-width:180px;
-
-height:180px;
-
-border-radius:50%;
-
-
-background:
-
-radial-gradient(
-circle,
-#fff7a1,
-#ffd700,
-#ff8c00
-);
-
-
-top:120px;
-
-left:50%;
-
-transform:translateX(-50%);
-
-
-box-shadow:
-
-0 0 40px #ffd700,
-
-0 0 100px orange;
-
-
-animation:sunGlow 3s infinite alternate;
-
-}
-
-
-
-@keyframes sunGlow{
-
-from{
-
-box-shadow:
-0 0 40px #ffd700;
-
-}
-
-to{
-
-box-shadow:
-0 0 100px #ff4500;
-
-}
-
-}
-
-
-
-/* เมฆ */
-
-.cloud{
-
-position:absolute;
-
-background:white;
-
-width:160px;
-
-height:50px;
-
-border-radius:50px;
-
-opacity:.8;
-
-filter:blur(1px);
-
-
-}
-
-
-
-.cloud:before,
-.cloud:after{
-
-content:"";
-
-position:absolute;
-
-background:white;
-
-border-radius:50%;
-
-}
-
-
-.cloud:before{
-
-width:70px;
-
-height:70px;
-
-left:25px;
-
-top:-35px;
-
-}
-
-
-.cloud:after{
-
-width:90px;
-
-height:90px;
-
-right:20px;
-
-top:-45px;
-
-}
-
-
-
-.c1{
-
-top:100px;
-
-left:-200px;
-
-animation:cloudMove 45s linear infinite;
-
-}
-
-
-
-.c2{
-
-top:220px;
-
-left:-250px;
-
-animation:cloudMove 60s linear infinite;
-
-animation-delay:10s;
-
-}
-
-
-
-.c3{
-
-top:60px;
-
-left:-300px;
-
-animation:cloudMove 55s linear infinite;
-
-animation-delay:20s;
-
-}
-
-
-
-@keyframes cloudMove{
-
-from{
-
-transform:translateX(0);
-
-}
-
-to{
-
-transform:translateX(140vw);
-
-}
-
-}
-
-
-
-/* ทะเล */
-
-.ocean{
-
-position:absolute;
-
-bottom:0;
-
-width:100%;
-
-height:260px;
-
-
-background:
-
-linear-gradient(
-180deg,
-#0077be,
-#001f3f
-);
-
-
-}
-
-
-.wave{
-
-position:absolute;
-
-top:-20px;
-
-width:200%;
-
-height:80px;
-
-
-background:
-
-rgba(255,255,255,.25);
-
-
-border-radius:50%;
-
-
-animation:wave 6s linear infinite;
-
-}
-
-
-
-@keyframes wave{
-
-from{
-
-transform:translateX(0);
-
-}
-
-to{
-
-transform:translateX(-50%);
-
-}
-
-}
-
-
-
-/* เมนู */
-
-nav{
-
-position:relative;
-
-z-index:5;
-
-background:rgba(0,0,0,.25);
-
-padding:18px;
-
-text-align:center;
-
-backdrop-filter:blur(10px);
-
-}
-
-
-
-nav a{
-
-color:white;
-
-text-decoration:none;
-
-margin:0 15px;
-
-font-weight:bold;
-
-}
-
-
-
-nav a:hover{
-
-color:#ffd700;
-
-}
-
-
-
-
-/* กล่องหลัก */
-
-.container{
-
-position:relative;
-
-z-index:3;
-
-width:85%;
-
-max-width:950px;
-
-
-margin:60px auto;
-
-
-padding:40px;
-
-
-background:
-
-rgba(255,255,255,.15);
-
-
-border-radius:30px;
-
-
-backdrop-filter:blur(15px);
-
-
-border:
-
-1px solid rgba(255,255,255,.4);
-
-
-box-shadow:
-
-0 0 40px rgba(255,215,0,.5);
-
-
-text-align:center;
-
-}
-
-
-
-h1{
-
-font-size:45px;
-
-
-color:#fff;
-
-
-text-shadow:
-
-0 0 15px orange,
-
-0 0 30px pink;
-
-
-margin-bottom:30px;
-
-}
-
-
-
-/* รูปผลงาน */
-
-
-.gallery{
-
-display:flex;
-
-justify-content:center;
-
-flex-wrap:wrap;
-
-gap:25px;
-
-}
-
-
-.gallery img{
-
-width:250px;
-
-height:180px;
-
-object-fit:cover;
-
-
-border-radius:20px;
-
-
-border:3px solid white;
-
-
-box-shadow:
-
-0 0 20px #ffd700;
-
-
-transition:.4s;
-
-
-cursor:pointer;
-
-}
-
-
-
-.gallery img:hover{
-
-transform:
-
-translateY(-10px)
-scale(1.08);
-
-
-box-shadow:
-
-0 0 40px orange;
-
-}
-
-
-
-/* รายละเอียด */
-
-ul{
-
-list-style:none;
-
-margin-top:30px;
-
-}
-
-
-
-li{
-
-font-size:20px;
-
-margin:20px;
-
-
-background:
-
-rgba(0,0,0,.2);
-
-
-padding:15px;
-
-
-border-radius:15px;
-
-
-}
-
-
-
-/* ปุ่ม */
-
-.btn{
-
-display:inline-block;
-
-margin-top:30px;
-
-padding:15px 40px;
-
-
-border-radius:40px;
-
-
-background:
-
-linear-gradient(
-45deg,
-#ff9a00,
-#ff0055,
-#7b2cff
-);
-
-
-color:white;
-
-text-decoration:none;
-
-
-font-weight:bold;
-
-
-transition:.3s;
-
-}
-
-
-
-.btn:hover{
-
-transform:scale(1.1);
-
-box-shadow:
-
-0 0 30px pink;
-
-}
-
-
-
-/* Lightbox */
-
-
-.lightbox{
-
-display:none;
-
-position:fixed;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
-
-
-background:
-
-rgba(0,0,0,.9);
-
-
-justify-content:center;
-
-align-items:center;
-
-
-z-index:999;
-
-}
-
-
-
-.lightbox img{
-
-max-width:90%;
-
-max-height:90%;
-
-
-border-radius:20px;
-
-
-box-shadow:
-
-0 0 40px white;
-
-}
-
-
-
-
-footer{
-
-position:relative;
-
-z-index:3;
-
-text-align:center;
-
-padding:20px;
-
-
-background:
-
-rgba(0,0,0,.3);
-
-}
-
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ผลงาน | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sky-top: #4a90e2;
+            --sky-bottom: #bce6ff;
+            --ocean-top: #00a8ff;
+            --ocean-bottom: #001f3f;
+            --sand: #f5d7a1;
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --accent-green: #27ae60;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Sarabun", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, var(--sky-top), var(--sky-bottom) 50%, var(--sand) 90%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ==================================================
+           [ ระบบธรรมชาติ: หาดทราย ต้นมะพร้าว เมฆ และฝูงนกบิน ]
+           ================================================== */
+        .nature-background {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* หาดทรายด้านล่าง */
+        .beach-sand {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 22vh;
+            background: linear-gradient(to top, #edd095, var(--sand));
+            border-top: 10px solid rgba(255, 255, 255, 0.5); /* ฟองคลื่นซัดเข้าหาด */
+            border-radius: 50% 50% 0 0 / 25px 25px 0 0;
+            z-index: 2;
+        }
+
+        /* ต้นมะพร้าวพลิ้วไหวริมหาด */
+        .coconut-tree {
+            position: absolute;
+            bottom: 12vh;
+            left: 3%;
+            width: 150px;
+            height: 280px;
+            transform-origin: bottom center;
+            animation: swayTree 6s infinite alternate ease-in-out;
+            z-index: 3;
+        }
+
+        .trunk {
+            width: 18px; height: 230px;
+            background: #8e7355;
+            border-radius: 10px;
+            position: absolute; bottom: 0; left: 60px;
+            transform: rotate(12deg);
+            box-shadow: inset 5px 0 5px rgba(0,0,0,0.2);
+        }
+
+        .leaves {
+            position: absolute; top: 15px; left: 75px;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 120px; height: 45px;
+            background: var(--accent-green);
+            border-radius: 100% 0% 100% 0% / 70% 0% 100% 0%;
+            transform-origin: bottom left;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+        .l1 { transform: rotate(20deg); }
+        .l2 { transform: rotate(80deg); }
+        .l3 { transform: rotate(140deg); }
+        .l4 { transform: rotate(200deg); }
+        .l5 { transform: rotate(260deg); }
+        .l6 { transform: rotate(320deg); }
+
+        @keyframes swayTree {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-5deg); }
+        }
+
+        /* ก้อนเมฆหน้าร้อนเคลื่อนที่ */
+        .beach-cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.85);
+            width: 160px; height: 50px;
+            border-radius: 50px;
+            animation: driftClouds 30s infinite linear;
+            top: 8%; left: -200px;
+        }
+        .beach-cloud::before, .beach-cloud::after {
+            content: ''; position: absolute; background: rgba(255, 255, 255, 0.95); border-radius: 50%;
+        }
+        .beach-cloud::before { width: 70px; height: 70px; top: -35px; left: 25px; }
+        .beach-cloud::after { width: 55px; height: 55px; top: -20px; right: 25px; }
+        
+        .c2 { top: 18%; animation-duration: 42s; animation-delay: -15s; transform: scale(0.75); opacity: 0.7; }
+        .c3 { top: 28%; animation-duration: 35s; animation-delay: -5s; transform: scale(0.6); opacity: 0.6; }
+
+        @keyframes driftClouds {
+            0% { left: -200px; }
+            100% { left: 140vw; }
+        }
+
+        /* ฝูงนกนางนวลบินและขยับปีก */
+        .gull-container {
+            position: absolute;
+            top: 12%;
+            animation: flyAcross 18s infinite linear;
+        }
+        .g2 { top: 22%; animation-duration: 24s; animation-delay: -7s; transform: scale(0.8); }
+        .g3 { top: 6%; animation-duration: 30s; animation-delay: -12s; transform: scale(0.6); }
+
+        .bird {
+            position: relative;
+            width: 40px; height: 30px;
+        }
+
+        .wing {
+            position: absolute;
+            width: 20px; height: 8px;
+            border-top: 3px solid #fff;
+            border-left: 3px solid #fff;
+            border-radius: 10px 0 0 0;
+            transform-origin: top right;
+            animation: flap 0.5s infinite alternate ease-in-out;
+        }
+        .wing-left { left: 0; transform: rotate(-20deg); }
+        .wing-right { right: 0; left: 20px; border-left: 0; border-right: 3px solid #fff; transform-origin: top left; transform: rotate(20deg); }
+
+        @keyframes flap {
+            0% { transform: rotate(-35deg); }
+            100% { transform: rotate(35deg); }
+        }
+
+        @keyframes flyAcross {
+            0% { left: -100px; }
+            100% { left: 140vw; }
+        }
+
+        /* ==================================================
+           [ เมนูบาร์และส่วนโครงสร้างหลัก ]
+           ================================================== */
+        nav {
+            position: relative;
+            z-index: 100;
+            background: rgba(74, 144, 226, 0.45);
+            padding: 18px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #fffb00;
+            text-shadow: 0 0 10px rgba(255, 251, 0, 0.6);
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 85%;
+            max-width: 950px;
+            margin: 50px auto 180px auto; /* ดันด้านล่างหลบหาดทราย */
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.45);
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 42px;
+            color: #1e3799;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+            margin-bottom: 35px;
+        }
+
+        /* แกลเลอรีรูปภาพผลงาน */
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .gallery img {
+            width: 260px;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 4px solid white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .gallery img:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            border-color: #fffb00;
+        }
+
+        /* รายการความสำเร็จ */
+        ul {
+            list-style: none;
+            margin-top: 35px;
+            text-align: left;
+        }
+
+        li {
+            font-size: 18px;
+            margin: 15px 0;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 18px 22px;
+            border-radius: 16px;
+            border-left: 5px solid var(--sky-top);
+            color: var(--text-dark);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: 0.2s ease;
+        }
+
+        li:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        /* ปุ่มกด */
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 40px;
+            border-radius: 40px;
+            background: linear-gradient(135deg, #05c46b, var(--accent-green));
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: .3s ease;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(5, 196, 107, 0.5);
+            background: linear-gradient(135deg, #00d8d6, #05c46b);
+        }
+
+        /*ระบบขยายรูปภาพ (Lightbox) */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .lightbox img {
+            max-width: 85%;
+            max-height: 85%;
+            border-radius: 15px;
+            border: 4px solid #fff;
+            box-shadow: 0 0 30px rgba(255,255,255,0.3);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        footer {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 25px;
+            background: #edd095;
+            color: #7f8c8d;
+            font-weight: bold;
+            margin-top: auto;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+    </style>
 </head>
-
-
 <body>
 
-
-<div class="sun"></div>
-
-
-<div class="cloud c1"></div>
-
-<div class="cloud c2"></div>
-
-<div class="cloud c3"></div>
-
-
-
-<nav>
-
-<a href="index.html">หน้าแรก</a>
-
-<a href="profile.html">ประวัติส่วนตัว</a>
-
-<a href="education.html">ประวัติการศึกษา</a>
-
-<a href="award.html">ผลงาน</a>
-
-<a href="contact.html">ติดต่อ</a>
-
-</nav>
-
-
-
-
-<div class="container">
-
-
-<h1>
-🌅 ผลงานและความสำเร็จ 🌊
-</h1>
-
-
-
-<div class="gallery">
-
-
-<img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/file_00000000ff9872099429ff9673d90a34.png"
-onclick="openImage(this.src)">
-
-
-
-<img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-093853.jpg"
-onclick="openImage(this.src)">
-
-
-
-<img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/file_00000000dc707206bfe929faa0a01025.png"
-onclick="openImage(this.src)">
-
-
-
-</div>
-
-
-
-
-<ul>
-
-
-<li>
-🏆 ได้รับเกียรติบัตร :
-คนดีศรีพานทอง, ดาวจรัสแสง,
-รองชนะเลิศอันดับ 1 ตอบปัญหาสุขศึกษา เหรียญเงิน
-</li>
-
-
-<li>
-🥇 เข้าร่วมการแข่งขัน :
-ตอบปัญหาสุขศึกษา,
-Science Show,
-การแข่งขัน E-Sport
-</li>
-
-
-<li>
-📜 ผ่านการอบรม :
-ค่าย Portfolio มหาวิทยาลัยบูรพา
-และการอบรมเทคนิคการแพทย์
-</li>
-
-
-</ul>
-
-
-
-
-<a href="index.html" class="btn">
-🏠 กลับหน้าหลัก
-</a>
-
-
-</div>
-
-
-
-<div class="ocean">
-
-<div class="wave"></div>
-
-</div>
-
-
-
-
-<div id="lightbox"
-class="lightbox"
-onclick="closeImage()">
-
-
-<img id="lightbox-img">
-
-
-</div>
-
-
-
-
-<footer>
-
-© 2026 Portfolio | นาย เมธาสิทธิ์ ขันติกุล
-
-</footer>
-
-
-
-<script>
-
-
-function openImage(src){
-
-document.getElementById("lightbox").style.display="flex";
-
-document.getElementById("lightbox-img").src=src;
-
-}
-
-
-
-function closeImage(){
-
-document.getElementById("lightbox").style.display="none";
-
-}
-
-
-</script>
-
-
-
+    <!-- [ระบบธรรมชาติแอนิเมชันหลังบ้าน] -->
+    <div class="nature-background">
+        <!-- ก้อนเมฆ -->
+        <div class="beach-cloud"></div>
+        <div class="beach-cloud c2"></div>
+        <div class="beach-cloud c3"></div>
+
+        <!-- ฝูงนกนางนวลเคลื่อนที่ -->
+        <div class="gull-container">
+            <div class="bird"><div class="wing wing-left"></div><div class="wing wing-right"></div></div>
+        </div>
+        <div class="gull-container g2">
+            <div class="bird"><div class="wing wing-left"></div><div class="wing wing-right"></div></div>
+        </div>
+        <div class="gull-container g3">
+            <div class="bird"><div class="wing wing-left"></div><div class="wing wing-right"></div></div>
+        </div>
+
+        <!-- หาดทราย -->
+        <div class="beach-sand"></div>
+
+        <!-- ต้นมะพร้าว -->
+        <div class="coconut-tree">
+            <div class="trunk"></div>
+            <div class="leaves">
+                <div class="leaf l1"></div>
+                <div class="leaf l2"></div>
+                <div class="leaf l3"></div>
+                <div class="leaf l4"></div>
+                <div class="leaf l5"></div>
+                <div class="leaf l6"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- เมนูบาร์ -->
+    <nav>
+        <a href="index.html">หน้าแรก</a>
+        <a href="profile.html">ประวัติส่วนตัว</a>
+        <a href="education.html">ประวัติการศึกษา</a>
+        <a href="award.html">ผลงาน</a>
+        <a href="contact.html">ติดต่อ</a>
+    </nav>
+
+    <!-- เนื้อหาหลัก -->
+    <main>
+        <div class="container">
+            <h1>🌴 ผลงานและความสำเร็จ 🌊</h1>
+
+            <div class="gallery">
+                <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/file_00000000ff9872099429ff9673d90a34.png" alt="ผลงาน 1" onclick="openImage(this.src)">
+                <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-093853.jpg" alt="ผลงาน 2" onclick="openImage(this.src)">
+                <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/file_00000000dc707206bfe929faa0a01025.png" alt="ผลงาน 3" onclick="openImage(this.src)">
+            </div>
+
+            <ul>
+                <li>🏆 <strong>ได้รับเกียรติบัตร:</strong> คนดีศรีพานทอง, ดาวจรัสแสง, รองชนะเลิศอันดับ 1 ตอบปัญหาสุขศึกษา เหรียญเงิน</li>
+                <li>🥇 <strong>เข้าร่วมการแข่งขัน:</strong> ตอบปัญหาสุขศึกษา, Science Show, การแข่งขัน E-Sport</li>
+                <li>📜 <strong>ผ่านการอบรม:</strong> ค่าย Portfolio มหาวิทยาลัยบูรพา และการอบรมเทคนิคการแพทย์</li>
+            </ul>
+
+            <a href="index.html" class="btn">🏠 กลับหน้าหลัก</a>
+        </div>
+    </main>
+
+    <!-- หน้าต่างขยายรูปแบบ Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeImage()">
+        <img id="lightbox-img" alt="ขยายรูปผลงาน">
+    </div>
+
+    <footer>
+        © 2026 Portfolio | นาย เมธาสิทธิ์ ขันติกุล
+    </footer>
+
+    <script>
+        function openImage(src){
+            document.getElementById("lightbox").style.display = "flex";
+            document.getElementById("lightbox-img").src = src;
+        }
+
+        function closeImage(){
+            document.getElementById("lightbox").style.display = "none";
+        }
+    </script>
 </body>
-
 </html>
