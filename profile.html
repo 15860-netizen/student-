@@ -1,104 +1,499 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | ประวัติส่วนตัว</title>
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Sarabun,sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body{
-            background:linear-gradient(135deg,#696969,#FFD700);
-            color:white;
-        }
+<title>Portfolio | ประวัติส่วนตัว</title>
 
-        nav{
-            background:rgba(0,0,0,.25);
-            padding:15px;
-            text-align:center;
-        }
+<style>
 
-        nav a{
-            color:white;
-            text-decoration:none;
-            margin:0 15px;
-            font-weight:bold;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Sarabun",sans-serif;
+}
 
-        .container{
-            width:80%;
-            max-width:900px;
-            margin:40px auto;
-            padding:30px;
-            background:rgba(255,255,255,.15);
-            border-radius:20px;
-            text-align:center;
-        }
 
-        h1{
-            margin-bottom:20px;
-        }
+body{
 
-        p{
-            font-size:20px;
-            margin:15px 0;
-        }
+    background:
+    linear-gradient(135deg,#696969,#FFD700,#111);
 
-        .btn{
-            display:inline-block;
-            margin-top:20px;
-            padding:12px 25px;
-            background:white;
-            color:#dd191d;
-            text-decoration:none;
-            border-radius:30px;
-            font-weight:bold;
-        }
+    color:white;
 
-        footer{
-            text-align:center;
-            padding:20px;
-            margin-top:40px;
-            background:rgba(0,0,0,.25);
-        }
-    </style>
+    min-height:100vh;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+
+/* ดาวในอวกาศ */
+
+body::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+
+    background-image:
+
+    radial-gradient(white 1px,transparent 1px),
+
+    radial-gradient(#FFD700 1px,transparent 1px),
+
+    radial-gradient(#fff 2px,transparent 2px);
+
+
+
+    background-size:
+
+    70px 70px,
+
+    120px 120px,
+
+    200px 200px;
+
+
+
+    background-position:
+
+    10px 20px,
+
+    80px 50px,
+
+    150px 100px;
+
+
+
+    opacity:.45;
+
+    z-index:-1;
+
+}
+
+
+
+
+/* เมนู */
+
+nav{
+
+    background:rgba(0,0,0,.35);
+
+    padding:15px;
+
+    text-align:center;
+
+    backdrop-filter:blur(10px);
+
+}
+
+
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    margin:0 15px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+
+
+nav a:hover{
+
+    color:#FFD700;
+
+    text-shadow:0 0 10px #FFD700;
+
+}
+
+
+
+
+/* กล่องข้อมูล */
+
+.container{
+
+
+    width:80%;
+
+    max-width:900px;
+
+
+    margin:50px auto;
+
+
+    padding:35px;
+
+
+    background:rgba(255,255,255,.15);
+
+
+    border-radius:25px;
+
+
+    text-align:center;
+
+
+    box-shadow:
+
+    0 0 25px rgba(255,215,0,.5);
+
+
+    backdrop-filter:blur(10px);
+
+
+}
+
+
+
+
+h1{
+
+
+    color:#FFD700;
+
+
+    font-size:40px;
+
+
+    margin-bottom:25px;
+
+
+    text-shadow:
+
+    0 0 15px #FFD700;
+
+
+}
+
+
+
+
+
+p{
+
+
+    font-size:20px;
+
+
+    margin:15px 0;
+
+
+}
+
+
+
+
+
+strong{
+
+    color:#FFD700;
+
+}
+
+
+
+/* ปุ่ม */
+
+.btn{
+
+
+    display:inline-block;
+
+
+    margin-top:25px;
+
+
+    padding:12px 30px;
+
+
+    background:white;
+
+
+    color:#dd191d;
+
+
+    text-decoration:none;
+
+
+    border-radius:30px;
+
+
+    font-weight:bold;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.btn:hover{
+
+
+    background:#FFD700;
+
+
+    color:#111;
+
+
+    transform:scale(1.1);
+
+
+    box-shadow:0 0 20px #FFD700;
+
+
+}
+
+
+
+
+/* ดาวกระพริบ */
+
+.star{
+
+    position:absolute;
+
+    width:5px;
+
+    height:5px;
+
+    background:white;
+
+    border-radius:50%;
+
+    animation:blink 2s infinite alternate;
+
+}
+
+
+
+@keyframes blink{
+
+    from{
+
+        opacity:.3;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+
+
+/* ดาวตำแหน่งต่าง ๆ */
+
+.star1{
+
+    top:15%;
+
+    left:15%;
+
+}
+
+
+.star2{
+
+    top:35%;
+
+    left:80%;
+
+}
+
+
+.star3{
+
+    top:75%;
+
+    left:25%;
+
+}
+
+
+.star4{
+
+    top:85%;
+
+    left:70%;
+
+}
+
+
+
+
+/* Footer */
+
+footer{
+
+
+    text-align:center;
+
+
+    padding:20px;
+
+
+    margin-top:40px;
+
+
+    background:rgba(0,0,0,.35);
+
+
+}
+
+
+</style>
+
 </head>
+
 
 <body>
 
+
+
+<div class="star star1"></div>
+
+<div class="star star2"></div>
+
+<div class="star star3"></div>
+
+<div class="star star4"></div>
+
+
+
+
+
 <nav>
-    <a href="index.html">หน้าแรก</a>
-    <a href="profile.html">ประวัติส่วนตัว</a>
-    <a href="education.html">ประวัติการศึกษา</a>
-    <a href="award.html">ผลงาน</a>
-    <a href="contact.html">ติดต่อ</a>
+
+<a href="index.html">หน้าแรก</a>
+
+<a href="profile.html">ประวัติส่วนตัว</a>
+
+<a href="education.html">ประวัติการศึกษา</a>
+
+<a href="award.html">ผลงาน</a>
+
+<a href="contact.html">ติดต่อ</a>
+
 </nav>
+
+
+
+
 
 <div class="container">
 
-   <h1><span style="color:#ffe600;">ประวัติส่วนตัว</h1>
 
-    <p><strong>ชื่อ-นามสกุล:</strong> นายเมธาสิทธิ์ ขันติกุล</p>
 
-    <p><strong>ชื่อเล่น:</strong> องศา</p>
+<h1>🌌 ประวัติส่วนตัว 🚀</h1>
 
-    <p><strong>กำลังศึกษา:</strong> ชั้นมัธยมศึกษาปีที่ 6/1</p>
 
-    <p><strong>แผนการเรียน:</strong> วิทยาศาสตร์–คณิตศาสตร์</p>
 
-    <a href="index.html" class="btn">กลับหน้าหลัก</a>
+<p>
+<strong>ชื่อ-นามสกุล:</strong>
+นายเมธาสิทธิ์ ขันติกุล
+</p>
+
+
+
+<p>
+<strong>ชื่อเล่น:</strong>
+องศา
+</p>
+
+
+
+<p>
+<strong>อายุ:</strong>
+18 ปี
+</p>
+
+
+
+<p>
+<strong>วัน/เดือน/ปีเกิด:</strong>
+27/06/2551
+</p>
+
+
+
+<p>
+<strong>ราศี:</strong>
+เมถุน
+</p>
+
+
+
+<p>
+<strong>กรุ๊ปเลือด:</strong>
+A
+</p>
+
+
+
+<p>
+<strong>กำลังศึกษา:</strong>
+ชั้นมัธยมศึกษาปีที่ 6/1
+</p>
+
+
+
+<p>
+<strong>แผนการเรียน:</strong>
+วิทยาศาสตร์–คณิตศาสตร์
+</p>
+
+
+
+
+<a href="index.html" class="btn">
+
+🏠 กลับหน้าหลัก
+
+</a>
+
+
 
 </div>
 
+
+
+
+
+
 <footer>
-    © 2026 Portfolio | นาย เมธาสิทธิ์ ขันติกุล
+
+© 2026 Portfolio | นาย เมธาสิทธิ์ ขันติกุล
+
 </footer>
 
+
+
 </body>
+
 </html>
