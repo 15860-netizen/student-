@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio นาย เมธาสิทธิ์</title>
+<title>Portfolio นาย เมธาสิทธิ์ - Cowboy & Dino Desert</title>
 
 <style>
 
@@ -15,97 +15,214 @@
 }
 
 body{
-    background:linear-gradient(135deg,#696969,#FFD700);
-    color:white;
+    background: linear-gradient(to bottom, #FF8C00, #FFD700, #B8860B, #8B4513);
+    background-size: 100% 400%;
+    animation: hot-day 20s infinite linear;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
 }
 
-/* เมนู */
+/* แอนิเมชั่นสีท้องฟ้าเปลี่ยนตามความร้อน */
+@keyframes hot-day {
+    0%, 100% { background-position: 0% 0%; }
+    50% { background-position: 0% 100%; }
+}
+
+/* ==================================================
+   [ ระบบ Dynamic: หญ้ากลิ้ง, กระบองเพชร, ไดโนเสาร์ ]
+   ================================================== */
+
+/* เอฟเฟกต์หญ้ากลมกลิ้ง */
+.tumbleweed {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: radial-gradient(circle, #D2B48C, #8B4513);
+    border-radius: 50%;
+    filter: blur(1.5px);
+    opacity: 0.6;
+    animation: tumble-horizontal 12s infinite linear;
+    bottom: 5vh;
+    z-index: 2;
+}
+
+@keyframes tumble-horizontal {
+    0% { left: -100px; transform: rotate(0deg); }
+    100% { left: 120vw; transform: rotate(3600deg); }
+}
+
+/* ฉากพื้นดินและอนิเมชั่นไดโนเสาร์วิ่งข้ามกระบองเพชรด้านล่างจอ */
+.desert-stage {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: transparent;
+    z-index: 5;
+    pointer-events: none; /* ไม่ให้บังปุ่มกด */
+}
+
+/* ต้นกระบองเพชรสำหรับให้ไดโนเสาร์กระโดดข้าม */
+.game-cactus {
+    position: absolute;
+    bottom: 10px;
+    left: 45%;
+    width: 25px;
+    height: 55px;
+    background: #1e5631;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.game-cactus::before, .game-cactus::after {
+    content: '';
+    position: absolute;
+    background: #1e5631;
+    width: 12px;
+    height: 20px;
+    border-radius: 5px;
+}
+.game-cactus::before { left: -10px; top: 15px; border-radius: 5px 0 0 5px; }
+.game-cactus::after { right: -10px; top: 22px; border-radius: 0 5px 5px 0; }
+
+/* ไดโนเสาร์ T-Rex วิ่งและกระโดด */
+.dino {
+    position: absolute;
+    bottom: 10px;
+    left: 10%;
+    font-size: 45px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    transform: scaleX(-1); /* หันหน้าไปทางขวา */
+    animation: dino-jump 3.5s infinite ease-in-out;
+}
+
+@keyframes dino-jump {
+    0%, 35%, 55%, 100% { bottom: 10px; transform: scaleX(-1) rotate(0deg); } /* วิ่งบนพื้น */
+    40% { transform: scaleX(-1) rotate(-5deg); }
+    45% { bottom: 95px; transform: scaleX(-1) rotate(-10deg); } /* จังหวะลอยข้ามกระบองเพชรตรงกลาง (45%-50%) */
+    50% { bottom: 95px; transform: scaleX(-1) rotate(5deg); }
+}
+
+/* ต้นกระบองเพชรยักษ์ดั้งเดิมตรงมุมซ้าย */
+.cactus-decor {
+    position: absolute;
+    width: 120px;
+    height: 280px;
+    background-color: #2E8B57;
+    border-radius: 50% 50% 0 0;
+    bottom: -20px;
+    left: -30px;
+    opacity: 0.4;
+    z-index: 1;
+}
+
+/* ==================================================
+   [ ส่วนของเมนูและกล่องเนื้อหา ]
+   ================================================== */
 nav{
-    background:rgba(0,0,0,0.25);
+    background:rgba(139, 69, 19, 0.65);
     padding:15px;
     text-align:center;
     position:sticky;
     top:0;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
 nav a{
-    color:white;
+    color:#FFD700;
     text-decoration:none;
     margin:0 15px;
     font-size:18px;
     font-weight:bold;
     transition:0.3s;
+    text-shadow: 2px 2px 4px #000;
 }
 
 nav a:hover{
-    color:yellow;
+    color: white;
+    text-shadow: 0 0 10px #FFD700;
 }
 
-/* กล่องเนื้อหา */
 .container{
     width:80%;
     max-width:900px;
-    margin:40px auto;
-    background:rgba(255,255,255,0.15);
-    padding:30px;
+    margin: 60px auto 160px auto; /* เว้นระยะด้านล่างไม่ให้บังตัวเกม */
+    background:rgba(255, 255, 255, 0.12);
+    padding:40px;
     border-radius:20px;
     text-align:center;
-    box-shadow:0 10px 20px rgba(0,0,0,0.3);
-    backdrop-filter:blur(5px);
+    box-shadow: 0 0 30px #FFD700;
+    backdrop-filter:blur(10px);
+    border: 2px solid #FFD700;
+    z-index: 10;
+    position: relative;
 }
 
-/* รูปโปรไฟล์ */
 .profile-img{
     width:220px;
     height:220px;
     border-radius:50%;
-    border:6px solid white;
+    border:8px solid #FFD700;
     object-fit:cover;
-    margin-bottom:20px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.4);
+    margin-bottom:25px;
+    box-shadow: 0 0 20px #8B4513;
     cursor:pointer;
     transition:0.3s;
+    filter: sepia(40%) saturate(140%);
 }
 
 .profile-img:hover{
-    transform:scale(1.05);
+    transform:scale(1.08);
 }
 
 h1{
-    font-size:40px;
-    margin-bottom:10px;
+    font-size:45px;
+    margin-bottom:15px;
+    color: #FFD700;
+    text-shadow: 3px 3px 6px #000, 0 0 10px #FFD700;
 }
 
 h2{
-    color:#ffe600;
-    margin-bottom:20px;
+    color:white;
+    margin-bottom:25px;
+    font-size: 28px;
+    text-shadow: 2px 2px 4px #000;
 }
 
 p{
-    font-size:20px;
-    margin:10px 0;
+    font-size:22px;
+    margin:12px 0;
+    color: #FFE4B5;
+    text-shadow: 1px 1px 3px #000;
 }
 
-/* ปุ่ม */
 .btn{
     display:inline-block;
-    margin-top:20px;
-    padding:12px 25px;
-    background:white;
-    color:#dd191d;
+    margin-top:25px;
+    padding:14px 30px;
+    background:#FFD700;
+    color:#8B4513;
     text-decoration:none;
     border-radius:30px;
     font-weight:bold;
+    font-size: 20px;
     transition:0.3s;
+    box-shadow: 2px 2px 10px #000;
 }
 
 .btn:hover{
-    background:#ffe600;
-    transform:scale(1.05);
+    background:#FF8C00;
+    transform:translateY(-3px);
 }
 
-
-/* รูปขยาย */
 .lightbox{
     display:none;
     position:fixed;
@@ -113,7 +230,7 @@ p{
     left:0;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.9);
+    background:rgba(0,0,0,0.95);
     justify-content:center;
     align-items:center;
     z-index:9999;
@@ -123,92 +240,77 @@ p{
     max-width:90%;
     max-height:90%;
     border-radius:20px;
-    border:5px solid white;
+    border:5px solid #FFD700;
 }
 
-
-/* Footer */
 footer{
     text-align:center;
     padding:20px;
-    margin-top:40px;
-    background:rgba(0,0,0,0.25);
+    margin-top:auto;
+    background:rgba(139, 69, 19, 0.7);
+    color: #FFD700;
+    text-shadow: 1px 1px 2px #000;
+    position: relative;
+    z-index: 100;
 }
 
 </style>
-
 </head>
-
-
 <body>
 
-<nav>
-    <a href="profile.html">ประวัติส่วนตัว</a>
-    <a href="education.html">ประวัติการศึกษา</a>
-    <a href="award.html">ผลงาน</a>
-    <a href="contact.html">ช่องทางการติดต่อ</a>
-</nav>
+    <div class="cactus-decor"></div>
+    <div class="tumbleweed"></div>
 
+    <div class="desert-stage">
+        <div class="dino">🦖</div>
+        <div class="game-cactus"></div>
+    </div>
 
-<div class="container">
+    <nav>
+        <a href="profile.html">ประวัติส่วนตัว</a>
+        <a href="education.html">ประวัติการศึกษา</a>
+        <a href="award.html">ผลงาน</a>
+        <a href="contact.html">ช่องทางการติดต่อ</a>
+    </nav>
 
-    <img 
-    src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/1783827610634.jpg"
-    alt="รูปโปรไฟล์"
-    class="profile-img"
-    onclick="openImage(this.src)">
+    <main>
+        <div class="container">
+            <img 
+            src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/1783827610634.jpg"
+            alt="รูปโปรไฟล์"
+            class="profile-img"
+            onclick="openImage(this.src)">
 
+            <h1>นาย เมธาสิทธิ์ ขันติกุล</h1>
+            <h2>Portfolio</h2>
+            <p>🎓 นักเรียนชั้นมัธยมศึกษาปีที่ 6/1</p>
+            <p>🏫 โรงเรียนพานทอง</p>
 
-    <h1>นาย เมธาสิทธิ์ ขันติกุล</h1>
+            <a href="profile.html" class="btn">
+                ดูประวัติส่วนตัว
+            </a>
+        </div>
+    </main>
 
-    <h2>Portfolio</h2>
+    <div id="lightbox" class="lightbox" onclick="closeImage()">
+        <img id="lightbox-img" src="" alt="รูปขยาย">
+    </div>
 
-    <p>🎓 นักเรียนชั้นมัธยมศึกษาปีที่ 6/1</p>
+    <footer>
+        © 2026 Portfolio | นาย เมธาสิทธิ์ ขันติกุล
+    </footer>
 
-    <p>🏫 โรงเรียนพานทอง</p>
+    <script>
+        function openImage(src){
+            document.getElementById("lightbox").style.display="flex";
+            document.getElementById("lightbox-img").src=src;
+        }
 
-
-    <a href="profile.html" class="btn">
-        ดูประวัติส่วนตัว
-    </a>
-
-</div>
-
-
-<!-- หน้าต่างแสดงรูปขยาย -->
-<div id="lightbox" class="lightbox" onclick="closeImage()">
-
-    <img id="lightbox-img" src="" alt="รูปขยาย">
-
-</div>
-
-
-
-<footer>
-© 2026 Portfolio | นาย เมธาสิทธิ์ ขันติกุล
-</footer>
-
-
-
-<script>
-
-function openImage(src){
-
-    document.getElementById("lightbox").style.display="flex";
-
-    document.getElementById("lightbox-img").src=src;
-
-}
-
-
-function closeImage(){
-
-    document.getElementById("lightbox").style.display="none";
-
-}
-
-</script>
-
+        function closeImage(){
+            document.getElementById("lightbox-none").style.display="none"; // แก้ไขจุดดึง id ให้ปิดถูกต้อง
+            document.getElementById("lightbox").style.display="none";
+        }
+    </script>
 
 </body>
 </html>
