@@ -1,369 +1,350 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ประวัติการศึกษา</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:"Sarabun",sans-serif;
-}
-
-body{
-    background:linear-gradient(135deg,#696969,#FFD700);
-    color:white;
-}
-
-
-/* เมนู */
-nav{
-    background:rgba(0,0,0,.25);
-    padding:15px;
-    text-align:center;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    margin:0 15px;
-    font-size:18px;
-    font-weight:bold;
-}
-
-nav a:hover{
-    color:yellow;
-}
-
-
-
-/* เนื้อหา */
-.container{
-
-    width:90%;
-    max-width:900px;
-    margin:40px auto;
-
-}
-
-
-h1{
-
-    text-align:center;
-    margin-bottom:30px;
-    color:#ffe600;
-
-}
-
-
-
-/* กรอบโรงเรียน */
-
-.school-link{
-
-    display:block;
-    text-decoration:none;
-    color:white;
-
-}
-
-
-.school{
-
-    display:flex;
-    align-items:center;
-    gap:20px;
-
-    background:rgba(255,255,255,.15);
-
-    padding:20px;
-
-    border-radius:20px;
-
-    margin-bottom:20px;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.3);
-
-    transition:.3s;
-
-}
-
-
-
-.school-link:hover .school{
-
-    transform:scale(1.03);
-
-    background:rgba(255,255,255,.3);
-
-}
-
-
-
-
-/* รูปโรงเรียน */
-
-.school img{
-
-    width:100px;
-    height:100px;
-
-    border-radius:50%;
-
-    background:white;
-
-    padding:8px;
-
-    object-fit:contain;
-
-}
-
-
-
-
-.school h2{
-
-    color:#ffe600;
-
-    margin-bottom:10px;
-
-}
-
-
-.school p{
-
-    font-size:18px;
-
-    line-height:1.8;
-
-}
-
-
-
-/* ปุ่ม */
-
-.btn{
-
-    display:inline-block;
-
-    margin-top:20px;
-
-    padding:12px 25px;
-
-    background:white;
-
-    color:#dd191d;
-
-    text-decoration:none;
-
-    border-radius:30px;
-
-    font-weight:bold;
-
-}
-
-
-
-/* Footer */
-
-footer{
-
-    text-align:center;
-
-    padding:20px;
-
-    margin-top:40px;
-
-    background:rgba(0,0,0,.25);
-
-}
-
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ประวัติการศึกษา | Magic Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --magic-purple: #1e0b36;
+            --magic-dark: #0b0214;
+            --magic-glow: #9b51e0;
+            --magic-gold: #ffd700;
+            --magic-cyan: #00f2fe;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Sarabun", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--magic-dark) 0%, #130cb7 50%, var(--magic-purple) 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ==================================================
+           [ ฉากหลังโลกเวทมนตร์: ปราสาท 3D, มังกรอ้วน, ละอองดาว ]
+           ================================================== */
+        .magic-universe {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* เอฟเฟกต์แสงออโรร่าเวทมนตร์ด้านหลัง */
+        .aurora {
+            position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(155, 81, 224, 0.4) 0%, rgba(0, 242, 254, 0.2) 50%, transparent 70%);
+            top: -10%; left: 20%; filter: blur(60px);
+            animation: auroraFloat 10s infinite alternate ease-in-out;
+        }
+        @keyframes auroraFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-50px, 30px) scale(1.2); }
+        }
+
+        /* สิ่งก่อสร้างปราสาทเวทมนตร์จำลอง (3D Layered Castle) */
+        .castle-container {
+            position: absolute;
+            bottom: 50px;
+            left: 5%;
+            width: 320px;
+            height: 400px;
+            opacity: 0.85;
+            transform: perspective(800px) rotateY(15deg); /* สร้างมิติ 3D ตื้นลึก */
+            filter: drop-shadow(0 0 30px rgba(155, 81, 224, 0.5));
+        }
+
+        .castle-main {
+            position: absolute; bottom: 0; left: 60px;
+            width: 140px; height: 180px; background: #2c1a4d;
+            border-radius: 10px 10px 0 0;
+            border: 2px solid rgba(255, 213, 0, 0.3);
+        }
+        
+        /* หอคอยใหญ่กลางปราสาท */
+        .castle-tower-center {
+            position: absolute; bottom: 178px; left: 95px;
+            width: 70px; height: 140px; background: #1f103a;
+            border-left: 2px solid var(--magic-cyan);
+        }
+        .castle-roof {
+            position: absolute; bottom: 318px; left: 80px;
+            width: 0; height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 90px solid #9b51e0;
+        }
+
+        /* หน้าต่างปราสาทเรืองแสง */
+        .castle-window {
+            position: absolute; width: 12px; height: 22px;
+            background: var(--magic-gold); border-radius: 10px 10px 0 0;
+            box-shadow: 0 0 15px var(--magic-gold);
+            top: 40px; left: 28px;
+            animation: windowGlow 2s infinite alternate;
+        }
+        @keyframes windowGlow { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+
+        /* เจ้าน้องมังกรอ้วนบินดุ๊กดิ๊กขยับปีกข้ามหน้าจอ (Cute Fat Dragon) */
+        .fat-dragon-container {
+            position: absolute;
+            top: 15%;
+            animation: dragonFly 22s infinite linear;
+            z-index: 2;
+        }
+
+        .fat-dragon {
+            position: relative;
+            width: 110px; height: 90px;
+            background: #ff5e62;
+            border-radius: 80px 70px 70px 70px; /* ทรงตัวอ้วนกลม */
+            box-shadow: inset -10px -10px 15px rgba(0,0,0,0.3), 0 0 25px rgba(255,94,98,0.6);
+            transform: scaleX(-1); /* หันหน้าไปทางขวา */
+        }
+
+        /* หัวมังกรอ้วน */
+        .fat-dragon::before {
+            content: ''; position: absolute;
+            width: 45px; height: 45px; background: #ff5e62;
+            border-radius: 50%; top: -15px; left: -15px;
+        }
+
+        /* ปีกมังกรที่กำลังขยับขึ้นลง */
+        .dragon-wing {
+            position: absolute;
+            width: 45px; height: 30px; background: #ff9966;
+            border-radius: 50% 50% 0 0; top: 10px; left: 40px;
+            transform-origin: bottom center;
+            animation: dragonFlap 0.4s infinite alternate ease-in-out;
+        }
+
+        /* หางมังกรอ้วน */
+        .dragon-tail {
+            position: absolute; width: 30px; height: 20px;
+            background: #ff5e62; border-radius: 50%;
+            right: -10px; bottom: 20px;
+        }
+
+        @keyframes dragonFlap {
+            0% { transform: rotate(-30deg); }
+            100% { transform: rotate(40deg); }
+        }
+        @keyframes dragonFly {
+            0% { left: -150px; transform: translateY(0px); }
+            50% { transform: translateY(-40px); }
+            100% { left: 120vw; transform: translateY(10px); }
+        }
+
+        /* ละอองเวทมนตร์ตกจากฟ้า */
+        .magic-dust {
+            position: absolute; width: 4px; height: 4px; background: white;
+            border-radius: 50%; top: 10%; left: 45%;
+            box-shadow: 0 0 10px var(--magic-cyan), 200px 150px 12px var(--magic-gold), -300px 80px 8px var(--magic-glow);
+            animation: spark 4s infinite linear;
+        }
+        @keyframes spark { 0% { opacity: 0.3; transform: translateY(0); } 50% { opacity: 1; } 100% { opacity: 0.1; transform: translateY(100px); } }
+
+        /* ==================================================
+           [ ส่วนประกอบเมนูและเนื้อหาการ์ดเวทมนตร์ ]
+           ================================================== */
+        nav {
+            position: relative; z-index: 100;
+            background: rgba(11, 2, 20, 0.6);
+            padding: 18px; text-align: center;
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-bottom: 2px solid rgba(155, 81, 224, 0.3);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+        }
+
+        nav a {
+            color: white; text-decoration: none;
+            margin: 0 15px; font-size: 17px; font-weight: bold;
+            transition: 0.3s; letter-spacing: 0.5px;
+        }
+
+        nav a:hover {
+            color: var(--magic-cyan);
+            text-shadow: 0 0 15px var(--magic-cyan), 0 0 30px var(--magic-glow);
+        }
+
+        .container {
+            position: relative; z-index: 10;
+            width: 90%; max-width: 850px;
+            margin: 50px auto 100px auto;
+        }
+
+        h1 {
+            text-align: center; font-size: 44px; margin-bottom: 40px;
+            color: var(--magic-gold);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5), 0 0 30px var(--magic-glow);
+            letter-spacing: 1px;
+        }
+
+        /* ดีไซน์กรอบคัมภีร์เวทมนตร์โบราณ */
+        .school-link {
+            display: block; text-decoration: none; color: white; margin-bottom: 25px;
+        }
+
+        .school {
+            display: flex; align-items: center; gap: 25px;
+            background: rgba(30, 11, 54, 0.55);
+            padding: 25px; border-radius: 24px;
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(155, 81, 224, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4), inset 0 0 20px rgba(155, 81, 224, 0.1);
+            transition: .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* เอฟเฟกต์การ์ดเวทมนตร์ตื่นรู้เมื่อชี้เมาส์ */
+        .school-link:hover .school {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(45, 18, 82, 0.75);
+            border-color: var(--magic-cyan);
+            box-shadow: 0 15px 35px rgba(0, 242, 254, 0.3);
+        }
+
+        /* รูปตราสถาบันเรืองแสงวงกลม */
+        .school img {
+            width: 105px; height: 105px;
+            border-radius: 50%; background: #ffffff;
+            padding: 6px; object-fit: contain;
+            border: 3px solid var(--magic-gold);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            transition: 0.4s;
+        }
+
+        .school-link:hover img {
+            border-color: var(--magic-cyan);
+            box-shadow: 0 0 20px var(--magic-cyan);
+            transform: rotate(5deg);
+        }
+
+        .school h2 {
+            color: var(--magic-gold); font-size: 22px; margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            transition: 0.3s;
+        }
+        .school-link:hover h2 { color: var(--magic-cyan); }
+
+        .school p {
+            font-size: 17px; color: #e0d4f7; line-height: 1.7;
+        }
+
+        /* ปุ่มกลับหน้าหลักสไตล์ปุ่มกดเวทมนตร์ */
+        .btn {
+            display: inline-block; margin-top: 25px; padding: 14px 40px;
+            background: linear-gradient(45deg, #9b51e0, #00f2fe);
+            color: white; text-decoration: none; border-radius: 40px;
+            font-weight: bold; font-size: 16px; transition: .3s;
+            box-shadow: 0 5px 20px rgba(155, 81, 224, 0.4);
+        }
+
+        .btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 30px var(--magic-cyan);
+            background: linear-gradient(45deg, #00f2fe, var(--magic-gold));
+            color: #0b0214;
+        }
+
+        footer {
+            text-align: center; padding: 25px; margin-top: auto;
+            background: rgba(11, 2, 20, 0.8);
+            border-top: 1px solid rgba(155, 81, 224, 0.2);
+            color: #9b8bb4; font-weight: bold;
+            position: relative; z-index: 10;
+        }
+    </style>
 </head>
-
-
 <body>
 
-
-<nav>
-
-<a href="index.html">หน้าแรก</a>
-
-<a href="profile.html">ประวัติส่วนตัว</a>
-
-<a href="education.html">ประวัติการศึกษา</a>
-
-<a href="award.html">ผลงาน</a>
-
-<a href="contact.html">ติดต่อ</a>
-
-</nav>
-
-
-
-<div class="container">
-
-
-<h1>ประวัติการศึกษา</h1>
-
-
-
-
-
-<!-- ประถมศึกษา -->
-
-<a href="https://www.facebook.com/search/top?q=โรงเรียนวัฒนดรุณวิทย์"
-target="_blank"
-class="school-link">
-
-
-<div class="school">
-
-
-<img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-100017.jpg"
-alt="โรงเรียนวัฒนดรุณวิทย์">
-
-
-<div>
-
-<h2>🎓 ระดับประถมศึกษา</h2>
-
-<p><strong>โรงเรียนวัฒนดรุณวิทย์</strong></p>
-
-<p>สำเร็จการศึกษาระดับประถมศึกษา</p>
-
-</div>
-
-
-</div>
-
-
-</a>
-
-
-
-
-
-
-
-<!-- มัธยมศึกษาตอนต้น -->
-
-
-<a href="https://www.facebook.com/search/top?q=โรงเรียนวัฒนดรุณวิทย์"
-target="_blank"
-class="school-link">
-
-
-<div class="school">
-
-
-<img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-100017.jpg"
-alt="โรงเรียนวัฒนดรุณวิทย์">
-
-
-<div>
-
-
-<h2>🎓 ระดับมัธยมศึกษาตอนต้น</h2>
-
-
-<p><strong>โรงเรียนวัฒนดรุณวิทย์</strong></p>
-
-
-<p>สำเร็จการศึกษาระดับมัธยมศึกษาตอนต้น</p>
-
-
-</div>
-
-
-</div>
-
-
-</a>
-
-
-
-
-
-
-
-
-<!-- มัธยมศึกษาตอนปลาย -->
-
-
-<a href="https://www.facebook.com/PhanTSchool/"
-target="_blank"
-class="school-link">
-
-
-<div class="school">
-
-
-<img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-100141.jpg"
-alt="โรงเรียนพานทอง">
-
-
-<div>
-
-
-<h2>🎓 ระดับมัธยมศึกษาตอนปลาย</h2>
-
-
-<p><strong>โรงเรียนพานทอง (ต้นสน)</strong></p>
-
-
-<p>กำลังศึกษาชั้นมัธยมศึกษาปีที่ 6/1</p>
-
-
-</div>
-
-
-</div>
-
-
-</a>
-
-
-
-
-
-
-
-<div style="text-align:center;">
-
-<a href="index.html" class="btn">
-
-🏠 กลับหน้าหลัก
-
-</a>
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-<footer>
-
-© 2026 Portfolio | นาย เมธาสิทธิ์ ขันติกุล
-
-</footer>
-
-
+    <div class="magic-universe">
+        <div class="aurora"></div>
+        <div class="magic-dust"></div>
+
+        <div class="fat-dragon-container">
+            <div class="fat-dragon">
+                <div class="dragon-wing"></div>
+                <div class="dragon-tail"></div>
+            </div>
+        </div>
+
+        <div class="castle-container">
+            <div class="castle-main">
+                <div class="castle-window"></div>
+                <div class="castle-window" style="left: 95px;"></div>
+            </div>
+            <div class="castle-tower-center">
+                <div class="castle-window" style="top: 30px; left: 28px; background: #00f2fe; box-shadow: 0 0 15px #00f2fe;"></div>
+            </div>
+            <div class="castle-roof"></div>
+        </div>
+    </div>
+
+    <nav>
+        <a href="index.html">หน้าแรก</a>
+        <a href="profile.html">ประวัติส่วนตัว</a>
+        <a href="education.html">ประวัติการศึกษา</a>
+        <a href="award.html">ผลงาน</a>
+        <a href="contact.html">ติดต่อ</a>
+    </nav>
+
+    <main class="container">
+        <h1>🔮 มหากาพย์ประวัติการศึกษา 📜</h1>
+
+        <a href="https://www.facebook.com/search/top?q=โรงเรียนวัฒนดรุณวิทย์" target="_blank" class="school-link">
+            <div class="school">
+                <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-100017.jpg" alt="โรงเรียนวัฒนดรุณวิทย์">
+                <div>
+                    <h2>🏰 ระดับประถมศึกษา</h2>
+                    <p><strong>โรงเรียนวัฒนดรุณวิทย์</strong></p>
+                    <p>สำเร็จหลักสูตรเวทมนตร์ศาสตร์ขั้นต้น (ประถมศึกษา)</p>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://www.facebook.com/search/top?q=โรงเรียนวัฒนดรุณวิทย์" target="_blank" class="school-link">
+            <div class="school">
+                <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-100017.jpg" alt="โรงเรียนวัฒนดรุณวิทย์">
+                <div>
+                    <h2>⚔️ ระดับมัธยมศึกษาตอนต้น</h2>
+                    <p><strong>โรงเรียนวัฒนดรุณวิทย์</strong></p>
+                    <p>สำเร็จหลักสูตรคาถาศาสตร์และวิทยาการคำนวณขั้นกลาง</p>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://www.facebook.com/PhanTSchool/" target="_blank" class="school-link">
+            <div class="school">
+                <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-100141.jpg" alt="โรงเรียนพานทอง">
+                <div>
+                    <h2>👑 ระดับมัธยมศึกษาตอนปลาย</h2>
+                    <p><strong>โรงเรียนพานทอง (สถาบันต้นสน)</strong></p>
+                    <p>กำลังศึกษาชั้นมัธยมศึกษาปีที่ 6/1 (ภาควิชาเวทมนตร์ศาสตร์ระดับสูง)</p>
+                </div>
+            </div>
+        </a>
+
+        <div style="text-align:center;">
+            <a href="index.html" class="btn">🏠 กลับสู่ห้องโถงหลัก</a>
+        </div>
+    </main>
+
+    <footer>
+        © 2026 Magic Portfolio | นาย เมธาสิทธิ์ ขันติกุล
+    </footer>
 
 </body>
-
 </html>
