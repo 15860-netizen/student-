@@ -1,86 +1,417 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ช่องทางการติดต่อ</title>
+
+<title>Contact | ช่องทางการติดต่อ</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Sarabun,sans-serif;}
-body{background:linear-gradient(135deg,#696969,#FFD700);color:white;}
-nav{background:rgba(0,0,0,.25);padding:15px;text-align:center;}
-nav a{color:white;text-decoration:none;margin:0 15px;font-weight:bold;}
-.container{
-width:80%;
-max-width:900px;
-margin:40px auto;
-padding:30px;
-background:rgba(255,255,255,.15);
-border-radius:20px;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Sarabun",sans-serif;
+}
+
+
+body{
+
+    min-height:100vh;
+
+    color:white;
+
+    overflow-x:hidden;
+
+    background:
+    linear-gradient(
+    135deg,
+    #020024,
+    #090979,
+    #3b0066,
+    #ff0080
+    );
+
+    background-size:400% 400%;
+
+    animation:galaxy 15s infinite alternate;
+
+}
+
+
+/* พื้นหลังจักรวาล */
+
+@keyframes galaxy{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    100%{
+        background-position:100% 50%;
+    }
+
+}
+
+
+
+/* ดาว */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+width:100%;
+
+height:100%;
+
+
+background-image:
+
+radial-gradient(white 1px,transparent 1px),
+
+radial-gradient(#00ffff 1px,transparent 1px),
+
+radial-gradient(#ff66ff 1px,transparent 1px);
+
+
+background-size:
+
+80px 80px,
+
+150px 150px,
+
+220px 220px;
+
+
+opacity:.45;
+
+
+animation:starsMove 40s linear infinite;
+
+
+z-index:-2;
+
+}
+
+
+
+@keyframes starsMove{
+
+from{
+
+transform:translateY(0);
+
+}
+
+to{
+
+transform:translateY(-300px);
+
+}
+
+}
+
+
+
+/* ดาวตก */
+
+.shooting-star{
+
+position:absolute;
+
+width:120px;
+
+height:3px;
+
+background:linear-gradient(
+90deg,
+white,
+transparent
+);
+
+transform:rotate(-45deg);
+
+animation:shoot 5s infinite;
+
+opacity:0;
+
+}
+
+
+.star1{
+
+top:20%;
+
+left:10%;
+
+animation-delay:1s;
+
+}
+
+
+.star2{
+
+top:50%;
+
+left:70%;
+
+animation-delay:3s;
+
+}
+
+
+@keyframes shoot{
+
+0%{
+
+opacity:0;
+
+transform:
+translate(0,0)
+rotate(-45deg);
+
+}
+
+
+10%{
+
+opacity:1;
+
+}
+
+
+100%{
+
+opacity:0;
+
+transform:
+translate(500px,500px)
+rotate(-45deg);
+
+}
+
+}
+
+
+
+/* ดาวเคราะห์ */
+
+.planet{
+
+position:absolute;
+
+border-radius:50%;
+
+filter:blur(.2px);
+
+}
+
+
+.planet1{
+
+width:180px;
+
+height:180px;
+
+right:-60px;
+
+top:120px;
+
+
+background:
+
+radial-gradient(
+circle at 30% 30%,
+#fff,
+#7b2cff,
+#12002b
+);
+
+
+box-shadow:
+
+0 0 40px #8a2be2;
+
+
+animation:rotatePlanet 20s infinite linear;
+
+}
+
+
+
+.planet2{
+
+width:100px;
+
+height:100px;
+
+left:-30px;
+
+bottom:100px;
+
+
+background:
+
+radial-gradient(
+circle at 30% 30%,
+#ffd700,
+#ff4500,
+#500000
+);
+
+
+box-shadow:
+
+0 0 30px orange;
+
+
+}
+
+
+@keyframes rotatePlanet{
+
+from{
+
+transform:rotate(0deg);
+
+}
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+
+
+/* เมนู */
+
+nav{
+
+padding:18px;
+
 text-align:center;
-}
-h1{margin-bottom:20px;}
-p{
-font-size:20px;
-margin:15px 0;
-}
-.btn{
-display:inline-block;
-margin-top:20px;
-padding:12px 25px;
-background:white;
-color:#dd191d;
-text-decoration:none;
-border-radius:30px;
-font-weight:bold;
-}
-footer{
-text-align:center;
-padding:20px;
-margin-top:40px;
+
 background:rgba(0,0,0,.25);
+
+backdrop-filter:blur(10px);
+
 }
-</style>
-</head>
 
-<body>
 
-<nav>
-<a href="index.html">หน้าแรก</a>
-<a href="profile.html">ประวัติส่วนตัว</a>
-<a href="education.html">ประวัติการศึกษา</a>
-<a href="award.html">ผลงาน</a>
-<a href="contact.html">ติดต่อ</a>
-</nav>
 
-<div class="container">
+nav a{
 
-<h1><span style="color:#FFD700;">ช่องทางการติดต่อ</h1>
+color:white;
 
-<p>📞 โทร :084-032-8747</p>
-<p>📧 Email : methasitsantikul@gmail.com</p>
-<p>
-  📘 Facebook :
-  <a href="https://www.facebook.com/profile.php?id=61585925421139"
-     target="_blank"
-     style="color:white; font-weight:bold; text-decoration:underline;">
-    Methasit Khantikul
-  </a>
-</p>
-</p>
-📷 Instagram :
-  <a href="https://www.instagram.com/mxxtlf1/" target="_blank" style="color:white; font-weight:bold; text-decoration:underline;">
-    @mxxtlf1
-  </a>
-</p>
+text-decoration:none;
 
-<a href="index.html" class="btn">กลับหน้าหลัก</a>
+margin:0 15px;
 
-</div>
+font-weight:bold;
 
-<footer>
-© 2026 Portfolio | นาย เมธาสิทธิ์ ขันติกุล
-</footer>
+transition:.3s;
 
-</body>
-</html>
+}
+
+
+
+nav a:hover{
+
+color:#00ffff;
+
+text-shadow:0 0 15px cyan;
+
+}
+
+
+
+/* กล่องหลัก */
+
+
+.container{
+
+width:85%;
+
+max-width:900px;
+
+margin:50px auto;
+
+padding:40px;
+
+
+background:
+
+rgba(255,255,255,.12);
+
+
+border-radius:30px;
+
+
+border:
+
+1px solid rgba(255,255,255,.3);
+
+
+backdrop-filter:blur(15px);
+
+
+box-shadow:
+
+0 0 40px rgba(0,255,255,.4);
+
+
+text-align:center;
+
+animation:show .8s ease;
+
+}
+
+
+@keyframes show{
+
+from{
+
+opacity:0;
+
+transform:translateY(50px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+
+
+h1{
+
+font-size:42px;
+
+margin-bottom:35px;
+
+
+color:white;
+
+
+text-shadow:
+
+0 0 10px cyan,
+
+0 0 20px #ff00ff;
+
+}
