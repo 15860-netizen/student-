@@ -1,4 +1,4 @@
-            <!DOCTYPE html>
+          <!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -8,12 +8,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        /* ==================================================
+           [การตั้งค่าสีธีมคอสมิกและพื้นฐาน]
+           ================================================== */
         :root {
-            --space-bg: #0b0d1b;
+            --space-dark: #060713;
+            --space-light: #121535;
             --neon-gold: #FFD700;
-            --neon-purple: #bf55ec;
-            --neon-blue: #00d2ff;
-            --text-color: #f5f6fa;
+            --neon-cyan: #00f2fe;
+            --neon-pink: #4facfe;
+            --neon-magenta: #f857a6;
+            --text-main: #ffffff;
+            --text-sub: #b2bec3;
         }
 
         * {
@@ -24,8 +30,8 @@
         }
 
         body {
-            background-color: var(--space-bg);
-            color: var(--text-color);
+            background: linear-gradient(135deg, var(--space-dark), var(--space-light), #1b113a);
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -34,269 +40,313 @@
         }
 
         /* ==================================================
-           [ระบบก้อนเมฆเนบิวลาลอยได้]
+           [ระบบฝนดาวตก (Shooting Stars Animation)]
            ================================================== */
-        .nebula-container {
+        .space-background {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            overflow: hidden;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -3;
             pointer-events: none;
         }
 
-        .cloud {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(70px); /* ให้เมฆฟุ้งนุ่มนวลแบบอวกาศ */
-            opacity: 0.35;      /* ความโปร่งแสงของเมฆ */
-            animation: floatClouds 8s infinite alternate ease-in-out;
-        }
-
-        /* เมฆสีม่วง (มุมบนซ้าย) */
-        .cloud-purple {
-            width: 450px;
-            height: 450px;
-            background: var(--neon-purple);
-            top: -5%;
-            left: -5%;
-        }
-
-        /* เมฆสีฟ้า (มุมล่างขวา) */
-        .cloud-blue {
-            width: 550px;
-            height: 550px;
-            background: var(--neon-blue);
-            bottom: -10%;
-            right: -5%;
-            animation-duration: 12s; /* ขยับช้ากว่าก้อนแรกนิดนึงเพื่อความสมจริง */
-        }
-
-        /* เมฆสีทอง (ตรงกลางเยื้องขวา) */
-        .cloud-gold {
-            width: 350px;
-            height: 350px;
-            background: var(--neon-gold);
-            top: 25%;
-            right: 15%;
-            animation-duration: 10s;
-        }
-
-        /* แอนิเมชันสั่งให้เมฆลอยเฉียงและขยายตัว */
-        @keyframes floatClouds {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-            100% {
-                transform: translate(120px, 60px) scale(1.25);
-            }
-        }
-
-        /* ==================================================
-           [ระบบดาวระยิบระยับและดาวตก]
-           ================================================== */
-        body::before {
+        /* ท้องฟ้าดาวระยิบระยับ */
+        .space-background::before {
             content: "";
-            position: fixed;
+            position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
                 radial-gradient(white 1px, transparent 1px),
-                radial-gradient(rgba(255,255,255,0.7) 1.5px, transparent 1.5px);
-            background-size: 100px 100px, 180px 180px;
-            background-position: 0 0, 40px 50px;
-            opacity: 0.4;
-            z-index: -1;
+                radial-gradient(rgba(255,255,255,0.8) 1.5px, transparent 1.5px);
+            background-size: 150px 150px, 250px 250px;
+            background-position: 0 0, 80px 90px;
+            opacity: 0.6;
         }
 
-        /* ดาวตก */
+        /* โครงสร้างดาวตก */
         .shooting-star {
             position: absolute;
-            width: 2px;
             height: 2px;
-            background: linear-gradient(90deg, #fff, transparent);
-            animation: shoot 5s infinite linear;
+            background: linear-gradient(-45deg, rgba(255,255,255,1), rgba(0,242,254,0));
+            filter: drop-shadow(0 0 6px rgba(0, 242, 254, 0.8));
+            transform: rotate(-45deg);
+            animation: tail 4s ease-in-out infinite, shooting 4s ease-in-out infinite;
             opacity: 0;
-            z-index: -1;
         }
-        .ss1 { top: 10%; left: 30%; animation-delay: 0s; }
-        .ss2 { top: 40%; left: 70%; animation-delay: 2.5s; }
 
-        @keyframes shoot {
-            0% { transform: translateX(0) translateY(0) rotate(-45deg) scaleX(0); opacity: 0; }
-            10% { transform: translateX(100px) translateY(100px) rotate(-45deg) scaleX(20); opacity: 1; }
-            20% { transform: translateX(200px) translateY(200px) rotate(-45deg) scaleX(0); opacity: 0; }
-            100% { transform: translateX(200px) translateY(200px) rotate(-45deg) scaleX(0); opacity: 0; }
+        .ss-1 { top: 10%; left: 40%; animation-delay: 0s; }
+        .ss-2 { top: 25%; left: 80%; animation-delay: 1.5s; animation-duration: 5s; }
+        .ss-3 { top: 50%; left: 20%; animation-delay: 3s; animation-duration: 6s; }
+        .ss-4 { top: 5%; left: 70%; animation-delay: 4.5s; }
+
+        @keyframes tail {
+            0% { width: 0; }
+            30% { width: 100px; }
+            100% { width: 0; }
+        }
+
+        @keyframes shooting {
+            0% { transform: translateX(0) translateY(0) rotate(-45deg); opacity: 0; }
+            10% { opacity: 1; }
+            30% { transform: translateX(-300px) translateY(300px) rotate(-45deg); opacity: 0; }
+            100% { transform: translateX(-300px) translateY(300px) rotate(-45deg); opacity: 0; }
         }
 
         /* ==================================================
-           [การจัดหน้าและเมนู]
+           [ระบบก้อนเมฆอวกาศลอยละล่อง 3D ลอยสลับเลเยอร์]
+           ================================================== */
+        .cloud-environment {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; /* เมฆลอยหลังกล่องข้อความแต่หน้าดวงดาว */
+            pointer-events: none;
+        }
+
+        .cosmic-cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            width: 200px; height: 65px;
+            border-radius: 50px;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
+            animation: driftClouds 20s infinite linear;
+        }
+
+        /* รูปทรงก้อนเมฆแบบสมจริง */
+        .cosmic-cloud::before, .cosmic-cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+        }
+        .cosmic-cloud::before { width: 90px; height: 90px; top: -45px; left: 30px; }
+        .cosmic-cloud::after { width: 70px; height: 70px; top: -30px; right: 30px; }
+
+        /* เอฟเฟกต์แสงออร่ารอบก้อนเมฆตามสีนีออนอวกาศ */
+        .cloud-pink { 
+            box-shadow: 0 0 30px rgba(248, 87, 166, 0.4); 
+            background: rgba(248, 87, 166, 0.25);
+            top: 15%; animation-duration: 22s; transform: scale(0.7); 
+        }
+        .cloud-cyan { 
+            box-shadow: 0 0 35px rgba(0, 242, 254, 0.5); 
+            background: rgba(0, 242, 254, 0.25);
+            top: 45%; animation-duration: 16s; transform: scale(1.1); 
+        }
+        .cloud-gold { 
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); 
+            background: rgba(255, 215, 0, 0.2);
+            top: 75%; animation-duration: 28s; transform: scale(0.8); 
+        }
+
+        @keyframes driftClouds {
+            0% { left: -300px; }
+            100% { left: 100%; }
+        }
+
+        /* ==================================================
+           [การดีไซน์เมนู (Glow Navigation Bar)]
            ================================================== */
         nav {
-            background: rgba(11, 13, 27, 0.6);
+            background: rgba(6, 7, 19, 0.6);
             padding: 20px;
             text-align: center;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
         nav a {
-            color: var(--text-color);
+            color: var(--text-main);
             text-decoration: none;
-            margin: 0 18px;
-            font-weight: bold;
+            margin: 0 20px;
+            font-weight: 700;
             font-size: 16px;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
-            padding-bottom: 5px;
+            padding: 5px 0;
+            display: inline-block;
         }
 
         nav a::after {
             content: '';
             position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--neon-gold);
+            width: 0; height: 2px; bottom: 0; left: 0;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
             transition: width 0.3s ease;
         }
 
         nav a:hover {
-            color: var(--neon-gold);
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
         }
 
         nav a:hover::after {
             width: 100%;
         }
 
+        /* ==================================================
+           [กล่องโปรไฟล์แก้วคริสตัล (Glassmorphism & Neon Glow)]
+           ================================================== */
         main {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px 20px;
+            padding: 50px 20px;
         }
 
-        /* กล่องข้อมูลสไตล์กระจกใส (Glassmorphism) */
         .container {
             width: 100%;
-            max-width: 750px;
-            padding: 40px 30px;
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 24px;
+            max-width: 800px;
+            padding: 45px 35px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 30px;
             text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 
+                        inset 0 0 20px rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
         }
 
+        /* พอร์ทัลวงแหวนรูปโปรไฟล์ */
         .profile-wrapper {
             position: relative;
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 25px;
+            width: 190px;
+            height: 190px;
+            margin: 0 auto 30px;
+        }
+
+        .profile-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -6px; left: -6px; right: -6px; bottom: -6px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta), var(--neon-gold));
+            z-index: -1;
+            animation: spinRing 6s linear infinite;
+        }
+
+        @keyframes spinRing {
+            100% { transform: rotate(360deg); }
         }
 
         .profile-img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: cover;
             border-radius: 50%;
-            border: 4px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 0 25px rgba(0, 210, 255, 0.5);
+            border: 4px solid var(--space-dark);
         }
 
         h1 {
-            color: var(--neon-gold);
-            font-size: 36px;
+            background: linear-gradient(90deg, var(--neon-gold), #fff, var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 42px;
             font-weight: 700;
-            margin-bottom: 35px;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
-            letter-spacing: 1px;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            filter: drop-shadow(0 2px 8px rgba(255, 215, 0, 0.3));
         }
 
-        /* การจัดตารางข้อมูล */
+        /* โครงสร้างกริดข้อมูล */
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 22px;
             text-align: left;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
 
         .info-item {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 15px 20px;
-            border-radius: 12px;
-            border-left: 4px solid var(--neon-purple);
-            transition: transform 0.2s ease, background 0.2s ease;
+            background: rgba(6, 7, 19, 0.4);
+            padding: 18px 24px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* แถบสีข้างกล่องข้อมูล */
+        .info-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: linear-gradient(to bottom, var(--neon-cyan), var(--neon-pink));
         }
 
         .info-item:hover {
-            transform: translateY(-3px);
-            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px) scale(1.02);
+            background: rgba(6, 7, 19, 0.6);
+            border-color: rgba(0, 242, 254, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 242, 254, 0.15);
         }
 
         .info-item p {
             font-size: 18px;
-            color: #d1d8e0;
+            color: #e2e8f0;
+            display: flex;
+            align-items: center;
         }
 
         .info-item strong {
-            color: var(--neon-blue);
+            color: var(--neon-gold);
             font-weight: 700;
-            display: inline-block;
-            margin-right: 5px;
+            margin-right: 8px;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
         }
 
-        /* ปุ่มกด */
+        /* ปุ่มกดดีไซน์ล้ำคอสมิก */
         .btn {
             display: inline-block;
-            padding: 12px 35px;
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            padding: 14px 40px;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-magenta));
             color: white;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 700;
             font-size: 16px;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(191, 85, 236, 0.4);
+            box-shadow: 0 5px 20px rgba(248, 87, 166, 0.4);
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.6);
-            background: linear-gradient(135deg, var(--neon-gold), #ff9f43);
-            color: #0b0d1b;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 242, 254, 0.6);
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
+            color: var(--space-dark);
         }
 
         footer {
             text-align: center;
-            padding: 25px;
-            background: rgba(11, 13, 27, 0.8);
+            padding: 30px;
+            background: rgba(6, 7, 19, 0.9);
             font-size: 14px;
-            color: #718093;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #57606f;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
         }
     </style>
 </head>
 <body>
 
-    <!-- [ก้อนเมฆเนบิวลาลอยได้] -->
-    <div class="nebula-container">
-        <div class="cloud cloud-purple"></div>
-        <div class="cloud cloud-blue"></div>
-        <div class="cloud cloud-gold"></div>
-        <div class="shooting-star ss1"></div>
-        <div class="shooting-star ss2"></div>
+    <!-- [1. ระบบแบล็กกราวนด์อวกาศและฝนดาวตก] -->
+    <div class="space-background">
+        <div class="shooting-star ss-1"></div>
+        <div class="shooting-star ss-2"></div>
+        <div class="shooting-star ss-3"></div>
+        <div class="shooting-star ss-4"></div>
+    </div>
+
+    <!-- [2. ระบบก้อนเมฆอวกาศเรืองแสงลอยผ่านหน้าจอ] -->
+    <div class="cloud-environment">
+        <div class="cosmic-cloud cloud-pink"></div>
+        <div class="cosmic-cloud cloud-cyan"></div>
+        <div class="cosmic-cloud cloud-gold"></div>
     </div>
 
     <!-- เมนูบาร์ -->
@@ -311,12 +361,14 @@
     <!-- เนื้อหาหลัก -->
     <main>
         <div class="container">
+            <!-- รูปโปรไฟล์พร้อมกรอบวงแหวนคอสมิกหมุนได้ -->
             <div class="profile-wrapper">
                 <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/1783827617596.jpg" alt="รูปโปรไฟล์" class="profile-img">
             </div>
 
             <h1>🌌 ประวัติส่วนตัว 🚀</h1>
 
+            <!-- ตารางข้อมูลสไตล์นีออนบ็อกซ์ -->
             <div class="info-grid">
                 <div class="info-item">
                     <p><strong>👤 ชื่อ-นามสกุล:</strong> นายเมธาสิทธิ์ ขันติกุล</p>
@@ -344,6 +396,7 @@
                 </div>
             </div>
 
+            <!-- ปุ่มกลับหน้าหลักไล่เฉดสี -->
             <a href="index.html" class="btn">🏠 กลับหน้าหลัก</a>
         </div>
     </main>
