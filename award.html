@@ -9,14 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --sky-top: #4a90e2;
-            --sky-bottom: #bce6ff;
-            --ocean-top: #00a8ff;
-            --ocean-bottom: #001f3f;
-            --sand: #f5d7a1;
-            --text-dark: #2c3e50;
+            /* สีท้องฟ้ายามพระอาทิตย์ตกดินของจริง Magic Hour */
+            --sunset-top: #1a0826;
+            --sunset-mid: #e65c00;
+            --sunset-low: #f9d423;
+            --ocean-dark: #0f2027;
+            --ocean-light: #203a43;
+            --sand: #e6b87d;
             --text-light: #ffffff;
-            --accent-green: #27ae60;
+            --text-dark: #2c3e50;
         }
 
         * {
@@ -27,8 +28,9 @@
         }
 
         body {
-            background: linear-gradient(to bottom, var(--sky-top), var(--sky-bottom) 50%, var(--sand) 90%);
-            color: var(--text-dark);
+            /* ไล่เฉดสีท้องฟ้าเย็นระยิบระยับ */
+            background: linear-gradient(to bottom, var(--sunset-top) 0%, var(--sunset-mid) 40%, var(--sunset-low) 70%, var(--sand) 100%);
+            color: var(--text-light);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -37,298 +39,266 @@
         }
 
         /* ==================================================
-           [ ระบบธรรมชาติ: หาดทราย ต้นมะพร้าว เมฆ และฝูงนกบิน ]
+           [ ระบบธรรมชาติ Dynamic: พระอาทิตย์ ทะเล หาดทราย นก เมฆ ]
            ================================================== */
-        .nature-background {
+        .nature-layer {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 1;
             pointer-events: none;
         }
 
-        /* หาดทรายด้านล่าง */
-        .beach-sand {
+        /* พระอาทิตย์อัสดงดวงโต มีรัศมีเปล่งประกาย */
+        .sunset-sun {
             position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 22vh;
-            background: linear-gradient(to top, #edd095, var(--sand));
-            border-top: 10px solid rgba(255, 255, 255, 0.5); /* ฟองคลื่นซัดเข้าหาด */
-            border-radius: 50% 50% 0 0 / 25px 25px 0 0;
-            z-index: 2;
+            width: 160px; height: 160px;
+            background: radial-gradient(circle, #fff 20%, #ffea75 50%, #ff7b00 100%);
+            border-radius: 50%;
+            top: 30vh;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 60px #ff7b00, 0 0 120px #e65c00;
+            animation: sunPulse 4s infinite alternate ease-in-out;
         }
 
-        /* ต้นมะพร้าวพลิ้วไหวริมหาด */
+        @keyframes sunPulse {
+            0% { transform: translateX(-50%) scale(0.98); opacity: 0.9; }
+            100% { transform: translateX(-50%) scale(1.02); box-shadow: 0 0 80px #ff4500, 0 0 150px #ff7b00; opacity: 1; }
+        }
+
+        /* ผืนน้ำทะเลเคลื่อนไหวและซัดคลื่น */
+        .ocean-floor {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 32vh;
+            background: linear-gradient(to bottom, rgba(32, 58, 67, 0.8), var(--ocean-dark));
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        /* เอฟเฟกต์สะท้อนแสงสีทองบนผิวน้ำ */
+        .ocean-reflection {
+            position: absolute;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 300px; height: 100%;
+            background: linear-gradient(to bottom, rgba(249, 212, 35, 0.4), transparent);
+            filter: blur(10px);
+        }
+
+        /* เกลียวคลื่นขยับเคลื่อนที่สมจริง */
+        .wave-layer {
+            position: absolute;
+            top: -25px; left: 0; width: 200%; height: 60px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,60 C150,90 350,30 500,60 C650,90 850,30 1000,60 C1150,90 1350,30 1500,60 L1500,120 L0,120 Z" fill="rgba(255,255,255,0.3)"/></svg>') repeat-x;
+            animation: waveMove 8s linear infinite;
+        }
+
+        .wave-front {
+            top: -10px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,50 C150,20 350,70 500,50 C650,30 850,80 1000,50 C1150,20 1350,80 1500,50 L1500,120 L0,120 Z" fill="rgba(255,234,117,0.4)"/></svg>') repeat-x;
+            animation: waveMove 5s linear infinite reverse;
+        }
+
+        @keyframes waveMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* หาดทรายทองด้านล่างสุด */
+        .beach-sand {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 16vh;
+            background: linear-gradient(to top, #cda26b, var(--sand));
+            border-top: 8px solid rgba(255, 255, 255, 0.7); /* ฟองคลื่นซัดเข้าฝั่ง */
+            border-radius: 50% 50% 0 0 / 20px 20px 0 0;
+            z-index: 4;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* ต้นมะพร้าวคู่ริมหาด */
         .coconut-tree {
             position: absolute;
-            bottom: 12vh;
-            left: 3%;
-            width: 150px;
-            height: 280px;
+            bottom: 8vh; right: 4%;
+            width: 140px; height: 260px;
             transform-origin: bottom center;
-            animation: swayTree 6s infinite alternate ease-in-out;
-            z-index: 3;
+            animation: swayTree 5s infinite alternate ease-in-out;
+            z-index: 5;
         }
 
         .trunk {
-            width: 18px; height: 230px;
-            background: #8e7355;
-            border-radius: 10px;
+            width: 16px; height: 210px;
+            background: #5c4632;
+            border-radius: 8px;
             position: absolute; bottom: 0; left: 60px;
-            transform: rotate(12deg);
-            box-shadow: inset 5px 0 5px rgba(0,0,0,0.2);
+            transform: rotate(-8deg);
+            box-shadow: inset -4px 0 5px rgba(0,0,0,0.4);
         }
 
-        .leaves {
-            position: absolute; top: 15px; left: 75px;
-        }
-
+        .leaves { position: absolute; top: 25px; left: 35px; }
         .leaf {
-            position: absolute;
-            width: 120px; height: 45px;
-            background: var(--accent-green);
+            position: absolute; width: 110px; height: 40px;
+            background: #1e5631;
             border-radius: 100% 0% 100% 0% / 70% 0% 100% 0%;
             transform-origin: bottom left;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
-        .l1 { transform: rotate(20deg); }
-        .l2 { transform: rotate(80deg); }
-        .l3 { transform: rotate(140deg); }
-        .l4 { transform: rotate(200deg); }
-        .l5 { transform: rotate(260deg); }
-        .l6 { transform: rotate(320deg); }
+        .l1 { transform: rotate(0deg); }
+        .l2 { transform: rotate(60deg); }
+        .l3 { transform: rotate(120deg); }
+        .l4 { transform: rotate(180deg); }
+        .l5 { transform: rotate(240deg); }
+        .l6 { transform: rotate(300deg); }
 
         @keyframes swayTree {
             0% { transform: rotate(0deg); }
-            100% { transform: rotate(-5deg); }
+            100% { transform: rotate(3deg); }
         }
 
-        /* ก้อนเมฆหน้าร้อนเคลื่อนที่ */
-        .beach-cloud {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.85);
-            width: 160px; height: 50px;
-            border-radius: 50px;
-            animation: driftClouds 30s infinite linear;
-            top: 8%; left: -200px;
-        }
-        .beach-cloud::before, .beach-cloud::after {
-            content: ''; position: absolute; background: rgba(255, 255, 255, 0.95); border-radius: 50%;
-        }
-        .beach-cloud::before { width: 70px; height: 70px; top: -35px; left: 25px; }
-        .beach-cloud::after { width: 55px; height: 55px; top: -20px; right: 25px; }
-        
-        .c2 { top: 18%; animation-duration: 42s; animation-delay: -15s; transform: scale(0.75); opacity: 0.7; }
-        .c3 { top: 28%; animation-duration: 35s; animation-delay: -5s; transform: scale(0.6); opacity: 0.6; }
-
-        @keyframes driftClouds {
-            0% { left: -200px; }
-            100% { left: 140vw; }
-        }
-
-        /* ฝูงนกนางนวลบินและขยับปีก */
+        /* นกบินผ่าท้องฟ้ายามเย็น */
         .gull-container {
-            position: absolute;
-            top: 12%;
-            animation: flyAcross 18s infinite linear;
+            position: absolute; top: 15%;
+            animation: flyAcross 20s infinite linear;
+            z-index: 3;
         }
-        .g2 { top: 22%; animation-duration: 24s; animation-delay: -7s; transform: scale(0.8); }
-        .g3 { top: 6%; animation-duration: 30s; animation-delay: -12s; transform: scale(0.6); }
+        .g2 { top: 25%; animation-duration: 26s; animation-delay: -6s; transform: scale(0.75); }
+        .g3 { top: 8%; animation-duration: 32s; animation-delay: -12s; transform: scale(0.6); opacity: 0.8; }
 
-        .bird {
-            position: relative;
-            width: 40px; height: 30px;
-        }
-
+        .bird { position: relative; width: 40px; height: 30px; }
         .wing {
-            position: absolute;
-            width: 20px; height: 8px;
-            border-top: 3px solid #fff;
-            border-left: 3px solid #fff;
+            position: absolute; width: 20px; height: 8px;
+            border-top: 3px solid #ffea75;
+            border-left: 3px solid #ffea75;
             border-radius: 10px 0 0 0;
             transform-origin: top right;
-            animation: flap 0.5s infinite alternate ease-in-out;
+            animation: flap 0.6s infinite alternate ease-in-out;
         }
         .wing-left { left: 0; transform: rotate(-20deg); }
-        .wing-right { right: 0; left: 20px; border-left: 0; border-right: 3px solid #fff; transform-origin: top left; transform: rotate(20deg); }
+        .wing-right { right: 0; left: 20px; border-left: 0; border-right: 3px solid #ffea75; transform-origin: top left; transform: rotate(20deg); }
 
-        @keyframes flap {
-            0% { transform: rotate(-35deg); }
-            100% { transform: rotate(35deg); }
-        }
+        @keyframes flap { 0% { transform: rotate(-30deg); } 100% { transform: rotate(35deg); } }
+        @keyframes flyAcross { 0% { left: -100px; } 100% { left: 120vw; } }
 
-        @keyframes flyAcross {
-            0% { left: -100px; }
-            100% { left: 140vw; }
+        /* เมฆยามเย็นซับแสงสีส้ม */
+        .sunset-cloud {
+            position: absolute; background: rgba(230, 92, 0, 0.4);
+            width: 180px; height: 45px; border-radius: 50px;
+            animation: drift 40s infinite linear; top: 12%; left: -200px;
+            filter: blur(2px);
         }
+        .sunset-cloud::before, .sunset-cloud::after { content: ''; position: absolute; background: rgba(249, 212, 35, 0.3); border-radius: 50%; }
+        .sunset-cloud::before { width: 70px; height: 70px; top: -35px; left: 30px; }
+        .sunset-cloud::after { width: 60px; height: 60px; top: -20px; right: 30px; }
+        .c2 { top: 28%; animation-duration: 55s; animation-delay: -15s; transform: scale(0.8); }
+
+        @keyframes drift { 0% { left: -200px; } 100% { left: 120vw; } }
 
         /* ==================================================
-           [ เมนูบาร์และส่วนโครงสร้างหลัก ]
+           [ ส่วนของเมนูและกล่องเนื้อหา (สไตล์โปร่งแสงหรูหรา) ]
            ================================================== */
         nav {
-            position: relative;
-            z-index: 100;
-            background: rgba(74, 144, 226, 0.45);
-            padding: 18px;
-            text-align: center;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative; z-index: 100;
+            background: rgba(26, 8, 38, 0.6);
+            padding: 18px; text-align: center;
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-            font-size: 16px;
-            transition: 0.3s;
+            color: var(--text-light); text-decoration: none;
+            margin: 0 15px; font-weight: bold; font-size: 16px; transition: 0.3s;
         }
 
-        nav a:hover {
-            color: #fffb00;
-            text-shadow: 0 0 10px rgba(255, 251, 0, 0.6);
-        }
+        nav a:hover { color: #f9d423; text-shadow: 0 0 10px #f9d423; }
 
         .container {
-            position: relative;
-            z-index: 10;
-            width: 85%;
-            max-width: 950px;
-            margin: 50px auto 180px auto; /* ดันด้านล่างหลบหาดทราย */
+            position: relative; z-index: 10;
+            width: 85%; max-width: 950px;
+            margin: 40px auto 36vh auto; /* ดันเว้นระยะเหนือผืนน้ำทะเลด้านล่าง */
             padding: 40px;
-            background: rgba(255, 255, 255, 0.45);
+            background: rgba(26, 8, 38, 0.55);
             border-radius: 30px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
             text-align: center;
         }
 
         h1 {
-            font-size: 42px;
-            color: #1e3799;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+            font-size: 42px; color: #ffffff;
+            text-shadow: 0 0 15px #e65c00, 0 0 30px #f9d423;
             margin-bottom: 35px;
         }
 
-        /* แกลเลอรีรูปภาพผลงาน */
-        .gallery {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-        }
-
+        .gallery { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; }
         .gallery img {
-            width: 260px;
-            height: 190px;
-            object-fit: cover;
-            border-radius: 20px;
-            border: 4px solid white;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            transition: .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
+            width: 260px; height: 190px; object-fit: cover;
+            border-radius: 20px; border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transition: .4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer;
         }
 
         .gallery img:hover {
             transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-            border-color: #fffb00;
+            box-shadow: 0 15px 35px #e65c00; border-color: #f9d423;
         }
 
-        /* รายการความสำเร็จ */
-        ul {
-            list-style: none;
-            margin-top: 35px;
-            text-align: left;
-        }
-
+        ul { list-style: none; margin-top: 35px; text-align: left; }
         li {
-            font-size: 18px;
-            margin: 15px 0;
-            background: rgba(255, 255, 255, 0.6);
-            padding: 18px 22px;
-            border-radius: 16px;
-            border-left: 5px solid var(--sky-top);
-            color: var(--text-dark);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            transition: 0.2s ease;
+            font-size: 18px; margin: 15px 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 18px 22px; border-radius: 16px;
+            border-left: 5px solid var(--sunset-mid);
+            color: #ffffff; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: 0.3s ease;
         }
+        li:hover { transform: translateX(5px); background: rgba(255, 255, 255, 0.2); }
 
-        li:hover {
-            transform: translateX(5px);
-            background: rgba(255, 255, 255, 0.85);
-        }
-
-        /* ปุ่มกด */
         .btn {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 14px 40px;
-            border-radius: 40px;
-            background: linear-gradient(135deg, #05c46b, var(--accent-green));
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            transition: .3s ease;
-            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+            display: inline-block; margin-top: 30px; padding: 14px 40px; border-radius: 40px;
+            background: linear-gradient(45deg, #e65c00, #f9d423);
+            color: #1a0826; text-decoration: none; font-weight: bold; font-size: 16px;
+            transition: .3s ease; box-shadow: 0 4px 15px rgba(230, 92, 0, 0.4);
         }
 
         .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(5, 196, 107, 0.5);
-            background: linear-gradient(135deg, #00d8d6, #05c46b);
+            transform: scale(1.05); box-shadow: 0 6px 25px #f9d423;
+            background: linear-gradient(45deg, #f9d423, #fff);
         }
 
-        /*ระบบขยายรูปภาพ (Lightbox) */
+        /* ระบบขยายรูปภาพ Lightbox */
         .lightbox {
-            display: none;
-            position: fixed;
+            display: none; position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center; align-items: center; z-index: 9999;
         }
-
         .lightbox img {
-            max-width: 85%;
-            max-height: 85%;
-            border-radius: 15px;
-            border: 4px solid #fff;
-            box-shadow: 0 0 30px rgba(255,255,255,0.3);
+            max-width: 85%; max-height: 85%; border-radius: 15px;
+            border: 4px solid #fff; box-shadow: 0 0 40px #e65c00;
             animation: zoomIn 0.3s ease;
         }
-
-        @keyframes zoomIn {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
+        @keyframes zoomIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
         footer {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            padding: 25px;
-            background: #edd095;
-            color: #7f8c8d;
-            font-weight: bold;
-            margin-top: auto;
-            border-top: 1px solid rgba(0,0,0,0.05);
+            position: relative; z-index: 10;
+            text-align: center; padding: 25px;
+            background: #cda26b; color: #4a3b2c; font-weight: bold;
+            margin-top: auto; border-top: 1px solid rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
 
-    <!-- [ระบบธรรมชาติแอนิเมชันหลังบ้าน] -->
-    <div class="nature-background">
-        <!-- ก้อนเมฆ -->
-        <div class="beach-cloud"></div>
-        <div class="beach-cloud c2"></div>
-        <div class="beach-cloud c3"></div>
+    <!-- [ ระบบธรรมชาติชั้นฉากหลังแอนิเมชัน ] -->
+    <div class="nature-layer">
+        <!-- พระอาทิตย์ตกดิน -->
+        <div class="sunset-sun"></div>
 
-        <!-- ฝูงนกนางนวลเคลื่อนที่ -->
+        <!-- ก้อนเมฆสะท้อนแสงเย็น -->
+        <div class="sunset-cloud"></div>
+        <div class="sunset-cloud c2"></div>
+
+        <!-- ฝูงนกนางนวลขยับปีกบิน -->
         <div class="gull-container">
             <div class="bird"><div class="wing wing-left"></div><div class="wing wing-right"></div></div>
         </div>
@@ -339,10 +309,17 @@
             <div class="bird"><div class="wing wing-left"></div><div class="wing wing-right"></div></div>
         </div>
 
-        <!-- หาดทราย -->
+        <!-- ทะเลเคลื่อนไหวระลอกคลื่น -->
+        <div class="ocean-floor">
+            <div class="ocean-reflection"></div>
+            <div class="wave-layer"></div>
+            <div class="wave-layer wave-front"></div>
+        </div>
+
+        <!-- หาดทรายทองหน้าทะเล -->
         <div class="beach-sand"></div>
 
-        <!-- ต้นมะพร้าว -->
+        <!-- ต้นมะพร้าวพลิ้วไหวริมฝั่ง -->
         <div class="coconut-tree">
             <div class="trunk"></div>
             <div class="leaves">
@@ -356,7 +333,7 @@
         </div>
     </div>
 
-    <!-- เมนูบาร์ -->
+    <!-- แถบนำทาง -->
     <nav>
         <a href="index.html">หน้าแรก</a>
         <a href="profile.html">ประวัติส่วนตัว</a>
@@ -365,10 +342,10 @@
         <a href="contact.html">ติดต่อ</a>
     </nav>
 
-    <!-- เนื้อหาหลัก -->
+    <!-- เนื้อหาการแสดงผลงาน -->
     <main>
         <div class="container">
-            <h1>🌴 ผลงานและความสำเร็จ 🌊</h1>
+            <h1>🌅 ผลงานและความสำเร็จ 🌊</h1>
 
             <div class="gallery">
                 <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/file_00000000ff9872099429ff9673d90a34.png" alt="ผลงาน 1" onclick="openImage(this.src)">
@@ -386,9 +363,9 @@
         </div>
     </main>
 
-    <!-- หน้าต่างขยายรูปแบบ Lightbox -->
+    <!-- กล่องโชว์ขยายรูปภาพ (Lightbox) -->
     <div id="lightbox" class="lightbox" onclick="closeImage()">
-        <img id="lightbox-img" alt="ขยายรูปผลงาน">
+        <img id="lightbox-img" alt="รูปผลงานขยายใหญ่">
     </div>
 
     <footer>
