@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ประวัติการศึกษา | Realm of The Dragon & Knight</title>
+    <title>ประวัติการศึกษา | Realm of Twin Moons</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
@@ -19,6 +19,8 @@
             --dragon-light: #ff4747;
             --grass-ground: #0b3a1e;
             --grass-blade: #2ecc71;
+            --moon-large: #fffdf0;
+            --moon-small: #ffb3d1;
         }
 
         * {
@@ -48,7 +50,33 @@
             pointer-events: none;
         }
 
-        /* ก้อนเมฆหมอก 3D ฟุ้งละมุนโอบล้อมปราสาท */
+        /* 🌙 ดวงจันทร์คู่เวทมนตร์ (Twin Moons: ดวงใหญ่เหลืองขาว & ดวงเล็กชมพู) */
+        .twin-moons-container {
+            position: absolute;
+            top: 4%; right: 10%;
+            width: 200px; height: 150px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        /* ดวงใหญ่ สีเหลืองอมขาว */
+        .moon-large {
+            width: 85px; height: 85px;
+            background: radial-gradient(circle at 30% 30%, #ffffff, var(--moon-large));
+            border-radius: 50%;
+            box-shadow: 0 0 35px rgba(255, 253, 240, 0.8), 0 0 70px rgba(255, 253, 240, 0.4);
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
+        }
+        /* ดวงเล็ก สีชมพู */
+        .moon-small {
+            width: 40px; height: 40px;
+            background: radial-gradient(circle at 30% 30%, #fff0f5, var(--moon-small));
+            border-radius: 50%;
+            margin-top: 35px;
+            box-shadow: 0 0 25px rgba(255, 179, 209, 0.8), 0 0 50px rgba(255, 179, 209, 0.4);
+        }
+
+        /* ก้อนเมฆหมอก 3D */
         .cloud-3d-1 {
             position: absolute; bottom: 180px; left: -50px;
             width: 350px; height: 100px;
@@ -65,7 +93,7 @@
         }
         @keyframes cloudFloat { 0% { transform: translateX(0); } 100% { transform: translateX(40px); } }
 
-        /* --- มหาปราสาทเวทมนตร์ 4 มิติคมชัดสมจริง --- */
+        /* --- มหาปราสาทเวทมนตร์ 4 มิติ --- */
         .castle-4d-realm {
             position: absolute; bottom: 110px; left: 5%;
             width: 400px; height: 400px;
@@ -105,7 +133,7 @@
             box-shadow: 0 0 20px #ff7700, 0 5px 15px rgba(255,202,0,0.8);
         }
 
-        /* --- 🐉 ปั้นโมเดลพญามังกรระดับมหากาพย์ (The Master Epic Dragon Model) 🐉 --- */
+        /* --- 🐉 โมเดลพญามังกรระดับมหากาพย์ (หางยาว ครีบหาง ปีก 4D) 🐉 --- */
         .dragon-epic-universe {
             position: absolute; top: 8%;
             animation: dragonMasterFlight 22s infinite linear;
@@ -116,7 +144,6 @@
             transform: perspective(1000px) rotateY(-25deg) rotateZ(3deg);
             transform-style: preserve-3d;
         }
-        /* ส่วนลำตัวหนาสง่างามสมส่วน */
         .dm-body {
             position: absolute; left: 100px; top: 45px;
             width: 140px; height: 55px;
@@ -125,7 +152,6 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.6);
             animation: dmBodyMove 1s infinite alternate ease-in-out;
         }
-        /* หัวมังกรดุดันแบบภาพยนตร์ฮอลลีวูด */
         .dm-head {
             position: absolute; left: 225px; top: 20px;
             width: 80px; height: 48px;
@@ -133,7 +159,6 @@
             border-radius: 20px 50px 35px 20px;
             z-index: 65;
         }
-        /* เขาคู่คู่ขนานงดงาม */
         .dm-head::before {
             content: ''; position: absolute; top: -18px; left: 15px;
             width: 7px; height: 28px; background: #eaeaea;
@@ -153,7 +178,6 @@
             transform-origin: top left;
             animation: dmJawOpen 2.5s infinite ease-in-out;
         }
-        /* 🔥 ลูกไฟพ่นทะลุจอออกจากปากมังกร */
         .dm-fire-blast {
             position: absolute; left: 295px; top: 38px;
             width: 110px; height: 45px;
@@ -163,7 +187,6 @@
             box-shadow: 0 0 35px #ff2a00;
             z-index: 66;
         }
-        /* ปีกยักษ์ 4D สยายทรงพลัง */
         .dm-wing-front {
             position: absolute; top: -60px; left: 130px;
             width: 130px; height: 130px;
@@ -173,7 +196,6 @@
             animation: dmWing 0.45s infinite alternate ease-in-out;
             z-index: 67;
         }
-        /* 尾 หางมังกรแบบยาวเรียวสง่างาม มีครีบหางแฉกครบถ้วน ไม่เอ๋อ! */
         .dm-tail-long {
             position: absolute; left: -75px; top: 55px;
             width: 185px; height: 14px;
@@ -189,7 +211,6 @@
             clip-path: polygon(100% 50%, 0 0, 30% 50%, 0 100%);
         }
 
-        /* แอนิเมชันสำหรับโครงสร้างโมเดลมังกร */
         @keyframes dmWing { 0% { transform: rotateX(-35deg) rotateY(-5deg); } 100% { transform: rotateX(45deg) rotateY(15deg); } }
         @keyframes dmBodyMove { 0% { transform: translateY(-4px) rotateZ(-1deg); } 100% { transform: translateY(4px) rotateZ(1deg); } }
         @keyframes dmTailWhip { 0% { transform: rotate(-10deg); } 100% { transform: rotate(10deg); } }
@@ -201,27 +222,24 @@
             100% { left: 120vw; transform: translateY(30px) scale(0.65); }
         }
 
-        /* --- 🛡️ อัศวินพิทักษ์อาณาจักร (The Magic Knight Model) 🛡️ --- */
+        /* --- 🛡️ อัศวินพิทักษ์อาณาจักรบนพื้นดิน --- */
         .magic-knight {
             position: absolute; bottom: 105px; left: 45%;
             width: 50px; height: 85px; z-index: 15;
             filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
         }
-        /* ชุดเกราะเหล็กเงาวับ */
         .knight-armor {
             position: absolute; bottom: 0; left: 10px;
             width: 30px; height: 55px;
             background: linear-gradient(90deg, #7f8c8d, #bdc3c7, #34495e);
             border-radius: 8px 8px 0 0;
         }
-        /* หมวกเหล็กอัศวิน */
         .knight-helmet {
             position: absolute; top: 12px; left: 13px;
             width: 24px; height: 24px;
             background: #7f8c8d; border-radius: 50%;
             border-bottom: 4px solid #2c3e50;
         }
-        /* ดาบศักดิ์สิทธิ์เรืองแสงเวทมนตร์พุ่งขึ้นฟ้า */
         .knight-sword {
             position: absolute; top: -15px; right: -8px;
             width: 6px; height: 45px;
@@ -255,7 +273,7 @@
         @keyframes bladeSway { 0% { transform: rotate(-4deg); } 100% { transform: rotate(8deg); } }
 
         /* ==================================================
-           [ UI CONTROLS & MODERN MODERN CARDS ]
+           [ UI CONTROLS & MODERN CARDS ]
            ================================================== */
         nav {
             position: relative; z-index: 100;
@@ -323,16 +341,21 @@
 </head>
 <body>
 
-    <!-- [ ระบบสิ่งแวดล้อมแฟนตาซี 4D: ปราสาท, มังกรโมเดลใหม่, ก้อนเมฆ, อัศวิน ] -->
+    <!-- [ ระบบสิ่งแวดล้อมแฟนตาซี 4D ] -->
     <div class="magic-universe">
+        <!-- 🌙 ดวงจันทร์คู่เวทมนตร์ (ดวงใหญ่เหลืองขาว & ดวงเล็กชมพู) -->
+        <div class="twin-moons-container">
+            <div class="moon-large"></div>
+            <div class="moon-small"></div>
+        </div>
+
         <!-- เมฆหมอก 3D ลอยสลับชั้น -->
         <div class="cloud-3d-1"></div>
         <div class="cloud-3d-2"></div>
 
-        <!-- 🐉 พญามังกรระดับภาพยนตร์โมเดลใหม่ 4 มิติ มีหางยาว ครีบหาง และปีกอลังการ ไม่เอ๋อ! 🐉 -->
+        <!-- 🐉 พญามังกรระดับภาพยนตร์โมเดลใหม่ 4 มิติ -->
         <div class="dragon-epic-universe">
             <div class="dragon-master-model">
-                <!-- หางมังกรยาวเรียวพร้อมครีบหางครบถ้วน -->
                 <div class="dm-tail-long">
                     <div class="dm-tail-fin"></div>
                 </div>
@@ -342,12 +365,11 @@
                     <div class="dm-jaw"></div>
                 </div>
                 <div class="dm-wing-front"></div>
-                <!-- เอฟเฟกต์ไฟพ่นเวทมนตร์ -->
                 <div class="dm-fire-blast"></div>
             </div>
         </div>
 
-        <!-- มหาปราสาทเวทมนตร์ 4 มิติคมชัดสมจริง -->
+        <!-- มหาปราสาทเวทมนตร์ 4 มิติ -->
         <div class="castle-4d-realm">
             <div class="castle-base-wall">
                 <div class="castle-gate"></div>
@@ -369,7 +391,7 @@
             <div class="knight-sword"></div>
         </div>
 
-        <!-- พื้นดินเรียบหรูพร้อมต้นหญ้าตั้งชันแยกต้นและพริ้วไหวรับลมเบาๆ -->
+        <!-- พื้นดินเรียบพร้อมต้นหญ้าตั้งชันแยกต้น -->
         <div class="ground-flat-luxury">
             <div class="grass-blades-container">
                 <div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div>
@@ -393,8 +415,8 @@
     <main class="container">
         <h1>🔮 มหากาพย์ประวัติการศึกษา 📜</h1>
 
-        <!-- ประถมศึกษา (แก้ไขลิงก์ตรงเข้าหน้า Facebook Page โรงเรียนวัฒนดรุณวิทย์) -->
-        <a href="https://www.facebook.com/wattanadarunwit/" target="_blank" class="school-link">
+        <!-- ระดับประถมศึกษา (อัปเดตลิงก์ตรงหน้าเพจ Facebook โรงเรียนวัฒนดรุณวิทย์) -->
+        <a href="https://www.facebook.com/WattanadaroonwitSchool" target="_blank" class="school-link">
             <div class="school">
                 <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-100017.jpg" alt="โรงเรียนวัฒนดรุณวิทย์">
                 <div>
@@ -405,8 +427,8 @@
             </div>
         </a>
 
-        <!-- มัธยมศึกษาตอนต้น (แก้ไขลิงก์ตรงเข้าหน้า Facebook Page โรงเรียนวัฒนดรุณวิทย์) -->
-        <a href="https://www.facebook.com/wattanadarunwit/" target="_blank" class="school-link">
+        <!-- ระดับมัธยมศึกษาตอนต้น (อัปเดตลิงก์ตรงหน้าเพจ Facebook โรงเรียนวัฒนดรุณวิทย์) -->
+        <a href="https://www.facebook.com/WattanadaroonwitSchool" target="_blank" class="school-link">
             <div class="school">
                 <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-100017.jpg" alt="โรงเรียนวัฒนดรุณวิทย์">
                 <div>
