@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+            <!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -33,7 +33,9 @@
             overflow-x: hidden;
         }
 
-        /* --- เอฟเฟกต์ก้อนเมฆเนบิวลาเคลื่อนที่ด้านหลัง --- */
+        /* ==================================================
+           [ระบบก้อนเมฆเนบิวลาลอยได้]
+           ================================================== */
         .nebula-container {
             position: fixed;
             top: 0;
@@ -42,48 +44,59 @@
             height: 100%;
             z-index: -2;
             overflow: hidden;
+            pointer-events: none;
         }
 
         .cloud {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.25;
-            animation: floatClouds 25s infinite alternate ease-in-out;
+            filter: blur(70px); /* ให้เมฆฟุ้งนุ่มนวลแบบอวกาศ */
+            opacity: 0.35;      /* ความโปร่งแสงของเมฆ */
+            animation: floatClouds 8s infinite alternate ease-in-out;
         }
 
+        /* เมฆสีม่วง (มุมบนซ้าย) */
         .cloud-purple {
-            width: 500px;
-            height: 500px;
+            width: 450px;
+            height: 450px;
             background: var(--neon-purple);
-            top: -10%;
-            left: -10%;
+            top: -5%;
+            left: -5%;
         }
 
+        /* เมฆสีฟ้า (มุมล่างขวา) */
         .cloud-blue {
-            width: 600px;
-            height: 600px;
+            width: 550px;
+            height: 550px;
             background: var(--neon-blue);
-            bottom: -20%;
-            right: -10%;
-            animation-duration: 35s;
+            bottom: -10%;
+            right: -5%;
+            animation-duration: 12s; /* ขยับช้ากว่าก้อนแรกนิดนึงเพื่อความสมจริง */
         }
 
+        /* เมฆสีทอง (ตรงกลางเยื้องขวา) */
         .cloud-gold {
-            width: 400px;
-            height: 400px;
+            width: 350px;
+            height: 350px;
             background: var(--neon-gold);
-            top: 40%;
-            left: 50%;
-            animation-duration: 40s;
+            top: 25%;
+            right: 15%;
+            animation-duration: 10s;
         }
 
+        /* แอนิเมชันสั่งให้เมฆลอยเฉียงและขยายตัว */
         @keyframes floatClouds {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(80px, 50px) scale(1.15); }
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(120px, 60px) scale(1.25);
+            }
         }
 
-        /* ดาวระยิบระยับ Background */
+        /* ==================================================
+           [ระบบดาวระยิบระยับและดาวตก]
+           ================================================== */
         body::before {
             content: "";
             position: fixed;
@@ -97,7 +110,29 @@
             z-index: -1;
         }
 
-        /* เมนูบาร์ */
+        /* ดาวตก */
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: linear-gradient(90deg, #fff, transparent);
+            animation: shoot 5s infinite linear;
+            opacity: 0;
+            z-index: -1;
+        }
+        .ss1 { top: 10%; left: 30%; animation-delay: 0s; }
+        .ss2 { top: 40%; left: 70%; animation-delay: 2.5s; }
+
+        @keyframes shoot {
+            0% { transform: translateX(0) translateY(0) rotate(-45deg) scaleX(0); opacity: 0; }
+            10% { transform: translateX(100px) translateY(100px) rotate(-45deg) scaleX(20); opacity: 1; }
+            20% { transform: translateX(200px) translateY(200px) rotate(-45deg) scaleX(0); opacity: 0; }
+            100% { transform: translateX(200px) translateY(200px) rotate(-45deg) scaleX(0); opacity: 0; }
+        }
+
+        /* ==================================================
+           [การจัดหน้าและเมนู]
+           ================================================== */
         nav {
             background: rgba(11, 13, 27, 0.6);
             padding: 20px;
@@ -114,7 +149,7 @@
             color: var(--text-color);
             text-decoration: none;
             margin: 0 18px;
-            font-weight: 400;
+            font-weight: bold;
             font-size: 16px;
             transition: all 0.3s ease;
             position: relative;
@@ -140,7 +175,6 @@
             width: 100%;
         }
 
-        /* เนื้อหาหลัก */
         main {
             flex: 1;
             display: flex;
@@ -149,7 +183,7 @@
             padding: 40px 20px;
         }
 
-        /* กล่องข้อมูลสไตล์ Glassmorphism */
+        /* กล่องข้อมูลสไตล์กระจกใส (Glassmorphism) */
         .container {
             width: 100%;
             max-width: 750px;
@@ -157,14 +191,13 @@
             background: rgba(255, 255, 255, 0.04);
             border-radius: 24px;
             text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
         }
 
-        /* รูปโปรไฟล์อวกาศ */
         .profile-wrapper {
             position: relative;
             width: 180px;
@@ -181,7 +214,6 @@
             box-shadow: 0 0 25px rgba(0, 210, 255, 0.5);
         }
 
-        /* หัวข้อ */
         h1 {
             color: var(--neon-gold);
             font-size: 36px;
@@ -191,7 +223,7 @@
             letter-spacing: 1px;
         }
 
-        /* การจัดเรียงข้อมูล */
+        /* การจัดตารางข้อมูล */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -205,12 +237,12 @@
             padding: 15px 20px;
             border-radius: 12px;
             border-left: 4px solid var(--neon-purple);
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, background 0.2s ease;
         }
 
         .info-item:hover {
             transform: translateY(-3px);
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .info-item p {
@@ -225,7 +257,7 @@
             margin-right: 5px;
         }
 
-        /* ปุ่มกลับหน้าหลัก */
+        /* ปุ่มกด */
         .btn {
             display: inline-block;
             padding: 12px 35px;
@@ -246,7 +278,6 @@
             color: #0b0d1b;
         }
 
-        /* ท้ายหน้าเว็บ */
         footer {
             text-align: center;
             padding: 25px;
@@ -259,12 +290,16 @@
 </head>
 <body>
 
+    <!-- [ก้อนเมฆเนบิวลาลอยได้] -->
     <div class="nebula-container">
         <div class="cloud cloud-purple"></div>
         <div class="cloud cloud-blue"></div>
         <div class="cloud cloud-gold"></div>
+        <div class="shooting-star ss1"></div>
+        <div class="shooting-star ss2"></div>
     </div>
 
+    <!-- เมนูบาร์ -->
     <nav>
         <a href="index.html">หน้าแรก</a>
         <a href="profile.html">ประวัติส่วนตัว</a>
@@ -273,13 +308,14 @@
         <a href="contact.html">ติดต่อ</a>
     </nav>
 
+    <!-- เนื้อหาหลัก -->
     <main>
         <div class="container">
             <div class="profile-wrapper">
                 <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/1783827617596.jpg" alt="รูปโปรไฟล์" class="profile-img">
             </div>
 
-            <h1>🌌 PROFILE 🚀</h1>
+            <h1>🌌 ประวัติส่วนตัว 🚀</h1>
 
             <div class="info-grid">
                 <div class="info-item">
@@ -312,6 +348,7 @@
         </div>
     </main>
 
+    <!-- ส่วนท้าย -->
     <footer>
         © 2026 Portfolio | นาย เมธาสิทธิ์ ขันติกุล
     </footer>
