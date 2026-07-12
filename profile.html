@@ -1,4 +1,4 @@
-          <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -97,7 +97,7 @@
         .cloud-environment {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; /* เมฆลอยหลังกล่องข้อความแต่หน้าดวงดาว */
+            z-index: -1;
             pointer-events: none;
         }
 
@@ -110,7 +110,6 @@
             animation: driftClouds 20s infinite linear;
         }
 
-        /* รูปทรงก้อนเมฆแบบสมจริง */
         .cosmic-cloud::before, .cosmic-cloud::after {
             content: '';
             position: absolute;
@@ -120,7 +119,6 @@
         .cosmic-cloud::before { width: 90px; height: 90px; top: -45px; left: 30px; }
         .cosmic-cloud::after { width: 70px; height: 70px; top: -30px; right: 30px; }
 
-        /* เอฟเฟกต์แสงออร่ารอบก้อนเมฆตามสีนีออนอวกาศ */
         .cloud-pink { 
             box-shadow: 0 0 30px rgba(248, 87, 166, 0.4); 
             background: rgba(248, 87, 166, 0.25);
@@ -212,7 +210,6 @@
             position: relative;
         }
 
-        /* พอร์ทัลวงแหวนรูปโปรไฟล์ */
         .profile-wrapper {
             position: relative;
             width: 190px;
@@ -252,7 +249,6 @@
             filter: drop-shadow(0 2px 8px rgba(255, 215, 0, 0.3));
         }
 
-        /* โครงสร้างกริดข้อมูล */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -271,7 +267,6 @@
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        /* แถบสีข้างกล่องข้อมูล */
         .info-item::before {
             content: '';
             position: absolute;
@@ -300,7 +295,6 @@
             text-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
         }
 
-        /* ปุ่มกดดีไซน์ล้ำคอสมิก */
         .btn {
             display: inline-block;
             padding: 14px 40px;
@@ -396,8 +390,8 @@
                 </div>
             </div>
 
-            <!-- ปุ่มกลับหน้าหลักไล่เฉดสี -->
-            <a href="index.html" class="btn">🏠 กลับหน้าหลัก</a>
+            <!-- ปุ่มเปลี่ยนจากกลับหน้าหลักเป็นไปหน้าถัดไป (ประวัติการศึกษา) -->
+            <a href="education.html" class="btn">📖 ไปหน้าประวัติการศึกษา</a>
         </div>
     </main>
 
