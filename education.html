@@ -167,7 +167,7 @@
             box-shadow: 0 0 20px #ff7700, 0 5px 15px rgba(255,202,0,0.8);
         }
 
-        /* ปืนใหญ่เวทมนตร์ติดกับตัวหอปราสาท */
+        /* ปืนใหญ่เวทมนตร์ติดกับตัวหอปราสาทแนบชิดขึ้น */
         .castle-cannon {
             position: absolute;
             bottom: 145px; left: 35px;
@@ -225,66 +225,65 @@
             100% { opacity: 0; }
         }
 
-        /* --- 🐉 🔥 ปรับแต่งใหม่: มังกรยักษ์มหึมา (Giant Epic Dragon) --- */
+        /* --- 🐉 ปรับขนาดกลับมา: มังกรขนาดดั้งเดิม (scale: 0.65) และซ่อนอยู่ด้านหลังการ์ด --- */
         .dragon-epic-universe {
-            position: absolute; 
-            top: 5%;
-            animation: dragonMasterFlight 22s infinite linear;
-            animation-delay: 2s;
-            z-index: 5; /* อยู่เลเยอร์ลึกกว่ากล่องข้อความ เพื่อให้บินรอดใต้กล่องได้สนิท */
+            position: absolute; top: 12%;
+            animation: dragonMasterFlight 20s infinite linear;
+            animation-delay: 3s;
+            z-index: 5; /* เลเยอร์อยู่ใต้กล่องเนื้อหาหลัก (z-index: 80) เพื่อให้ลอดผ่านด้านหลัง */
         }
         .dragon-master-model {
             position: relative; 
-            width: 380px; height: 180px; /* ขยาย Base Area ของตัวมังกรให้กว้างใหญ่ขึ้น */
-            transform: perspective(1000px) rotateY(-25deg) rotateZ(3deg) scale(1.5); /* ใช้ scale(1.5) เพื่อทวีคูณความใหญ่ยักษ์ระดับบอส */
+            width: 200px; height: 90px;
+            transform: perspective(1000px) rotateY(-25deg) rotateZ(3deg) scale(0.65); /* ล็อกขนาดไว้ที่ 65 ตามต้องการ */
             transform-style: preserve-3d;
         }
         .dm-body {
-            position: absolute; left: 90px; top: 50px;
-            width: 160px; height: 60px; /* เพิ่มความหนาของลำตัวมังกร */
+            position: absolute; left: 55px; top: 25px;
+            width: 80px; height: 32px;
             background: linear-gradient(135deg, var(--dragon-dark) 0%, var(--dragon-mid) 60%, #1a0202 100%);
             border-radius: 45% 55% 45% 40%;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
             animation: dmBodyMove 1s infinite alternate ease-in-out;
         }
         .dm-head {
-            position: absolute; left: 230px; top: 20px;
-            width: 85px; height: 50px; /* ขยายหัวมังกร */
+            position: absolute; left: 125px; top: 10px;
+            width: 45px; height: 28px;
             background: var(--dragon-dark);
             border-radius: 12px 30px 20px 12px;
             z-index: 7;
         }
         .dm-head::before {
-            content: ''; position: absolute; top: -18px; left: 15px;
-            width: 8px; height: 28px; background: #eaeaea; /* เขาใหญ่ขึ้น */
+            content: ''; position: absolute; top: -10px; left: 8px;
+            width: 4px; height: 16px; background: #eaeaea;
             border-radius: 50% 50% 0 0; transform: rotate(-20deg);
-            box-shadow: 0 0 8px rgba(255,255,255,0.6);
+            box-shadow: 0 0 5px rgba(255,255,255,0.6);
         }
         .dm-eye {
-            position: absolute; top: 15px; left: 45px;
-            width: 12px; height: 6px; background: var(--magic-cyan);
-            box-shadow: 0 0 15px var(--magic-cyan);
+            position: absolute; top: 8px; left: 25px;
+            width: 6px; height: 3px; background: var(--magic-cyan);
+            box-shadow: 0 0 10px var(--magic-cyan);
             clip-path: polygon(0 20%, 100% 0, 70% 100%);
         }
         .dm-jaw {
-            position: absolute; bottom: -10px; left: 35px;
-            width: 45px; height: 18px; background: #1f0404;
+            position: absolute; bottom: -5px; left: 20px;
+            width: 25px; height: 10px; background: #1f0404;
             border-radius: 0 0 8px 8px;
             transform-origin: top left;
             animation: dmJawOpen 2.5s infinite ease-in-out;
         }
         .dm-fire-blast {
-            position: absolute; left: 300px; top: 25px;
-            width: 180px; height: 70px; /* เอฟเฟกต์พ่นไฟที่ใหญ่และยาวสะใจขึ้น */
+            position: absolute; left: 165px; top: 18px;
+            width: 90px; height: 35px;
             background: radial-gradient(circle, #fff 10%, #ff8c00 50%, transparent 70%);
-            filter: blur(2px); opacity: 0; transform: scale(0.3);
+            filter: blur(1px); opacity: 0; transform: scale(0.3);
             animation: dmFire 2.5s infinite ease-in-out;
-            box-shadow: 0 0 35px #ff2a00;
+            box-shadow: 0 0 20px #ff2a00;
             z-index: 8;
         }
         .dm-wing-front {
-            position: absolute; top: -80px; left: 110px;
-            width: 160px; height: 160px; /* สยายปีกยักษ์ */
+            position: absolute; top: -35px; left: 70px;
+            width: 75px; height: 75px;
             background: linear-gradient(210deg, var(--dragon-light), #210303);
             clip-path: polygon(0 85%, 35% 0, 100% 25%, 55% 100%);
             transform-origin: bottom left;
@@ -292,29 +291,31 @@
             z-index: 9;
         }
         .dm-tail-long {
-            position: absolute; left: -90px; top: 60px;
-            width: 200px; height: 15px; /* หางยาวขึ้นทรงพลัง */
+            position: absolute; left: -45px; top: 30px;
+            width: 105px; height: 8px;
             background: linear-gradient(to right, transparent, var(--dragon-dark));
             border-radius: 50%;
             transform-origin: right center;
             animation: dmTailWhip 0.7s infinite alternate ease-in-out;
         }
         .dm-tail-fin {
-            position: absolute; left: 0; top: -15px;
-            width: 30px; height: 45px;
+            position: absolute; left: 0; top: -7px;
+            width: 15px; height: 22px;
             background: var(--dragon-mid);
             clip-path: polygon(100% 50%, 0 0, 30% 50%, 0 100%);
         }
 
         @keyframes dmWing { 0% { transform: rotateX(-35deg) rotateY(-5deg); } 100% { transform: rotateX(45deg) rotateY(15deg); } }
-        @keyframes dmBodyMove { 0% { transform: translateY(-4px) rotateZ(-1deg); } 100% { transform: translateY(4px) rotateZ(1deg); } }
-        @keyframes dmTailWhip { 0% { transform: rotate(-12deg); } 100% { transform: rotate(12deg); } }
-        @keyframes dmJawOpen { 0%, 100% { transform: rotate(0deg); } 35%, 65% { transform: rotate(25deg); } }
-        @keyframes dmFire { 0%, 100% { opacity: 0; transform: scale(0.3); } 40%, 60% { opacity: 1; transform: scale(1.5) translateX(25px) rotate(10deg); } }
+        @keyframes dmBodyMove { 0% { transform: translateY(-2px) rotateZ(-1deg); } 100% { transform: translateY(2px) rotateZ(1deg); } }
+        @keyframes dmTailWhip { 0% { transform: rotate(-10deg); } 100% { transform: rotate(10deg); } }
+        @keyframes dmJawOpen { 0%, 100% { transform: rotate(0deg); } 35%, 65% { transform: rotate(22deg); } }
+        @keyframes dmFire { 0%, 100% { opacity: 0; transform: scale(0.3); } 40%, 60% { opacity: 1; transform: scale(1.4) translateX(15px) rotate(15deg); } }
         
         @keyframes dragonMasterFlight {
-            0% { left: -500px; top: 30%; }
-            100% { left: 120vw; top: 10%; }
+            0% { left: -300px; top: 35%; transform: scale(0.4); }
+            30% { left: 25vw; top: 30%; transform: scale(0.6); }
+            60% { left: 75vw; top: 18%; transform: scale(0.5); }
+            100% { left: 130vw; top: 12%; transform: scale(0.3); }
         }
 
         /* --- 🛡️ กองทัพอัศวิน --- */
@@ -391,7 +392,7 @@
         @keyframes bladeSway { 0% { transform: rotate(-4deg); } 100% { transform: rotate(8deg); } }
 
         /* ==================================================
-           [ UI CONTROLS & CARDS ]
+           [ UI CONTROLS & MODERN CARDS ]
            ================================================== */
         nav {
             position: relative; z-index: 100;
@@ -406,10 +407,10 @@
         }
         nav a:hover { color: #fff; text-shadow: 0 0 15px var(--sky-pink-light), 0 0 25px var(--magic-cyan); }
 
-        /* 🛡️ กลับมาใช้ขนาดมาตรฐานดั้งเดิมของคุณ แต่ตั้ง z-index ให้บังมังกรอยู่หมัด */
+        /* 👑 รักษาความแข็งแกร่งของเลเยอร์ (z-index: 80) เพื่อบังมังกรตอนบินผ่านได้สมบูรณ์แบบ */
         .container {
             position: relative; 
-            z-index: 80; /* เลเยอร์สูง ป้องกันไม่ให้มังกรบินทับตัวหนังสือ */
+            z-index: 80; 
             width: 90%; max-width: 850px;
             margin: 40px auto 180px auto;
         }
@@ -421,7 +422,7 @@
         
         .school {
             display: flex; align-items: center; gap: 25px;
-            background: rgba(49, 23, 76, 0.85); /* ความทึบระดับสูงเพื่อให้บังมังกรตัวใหญ่ยักษ์ได้สนิทมิดชิด */
+            background: rgba(49, 23, 76, 0.85); /* ความทึบระดับสูงป้องกันไม่ให้เห็นเงาตัวมังกรทะลุเลเยอร์ */
             padding: 25px; border-radius: 24px;
             backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(247, 163, 196, 0.25);
