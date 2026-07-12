@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ประวัติการศึกษา | Magic Academy</title>
+    <title>ประวัติการศึกษา | Epic Magic Academy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2=family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --magic-purple: #1a082e;
-            --magic-dark: #090115;
-            --magic-glow: #8a2be2;
-            --magic-gold: #ffd700;
-            --magic-cyan: #00e5ff;
-            --dragon-color: #ff3838;
-            --grass-light: #2ed573;
-            --grass-dark: #1e824c;
+            --sky-top: #05010d;
+            --sky-mid: #1c053a;
+            --sky-low: #3a075c;
+            --magic-glow: #bd00ff;
+            --magic-cyan: #00f3ff;
+            --magic-gold: #ffca00;
+            --dragon-skin: #2a0808;
+            --dragon-underbelly: #ff4d4d;
+            --grass-front: #1bc463;
+            --grass-back: #11753b;
         }
 
         * {
@@ -27,7 +29,8 @@
         }
 
         body {
-            background: linear-gradient(to bottom, var(--magic-dark) 0%, #11072c 40%, #1e0b36 70%, #0d3b23 100%);
+            /* การเล่นเฉดสีท้องฟ้าเวทมนตร์ระดับมหากาพย์ */
+            background: linear-gradient(to bottom, var(--sky-top) 0%, var(--sky-mid) 35%, var(--sky-low) 70%, #0a2416 100%);
             color: white;
             min-height: 100vh;
             display: flex;
@@ -37,7 +40,7 @@
         }
 
         /* ==================================================
-           [ ระบบฉากหลัง: ปราสาท 3D, มังกรจริงขยับได้, ทุ่งหญ้าพลิ้วไหว ]
+           [ CINEMATIC BACKGROUND: CASTLE KINGDOM & CINEMATIC DRAGON ]
            ================================================== */
         .magic-universe {
             position: fixed;
@@ -46,182 +49,212 @@
             pointer-events: none;
         }
 
-        /* 1. อนิเมชันละอองเวทมนตร์ฟุ้งกระจาย */
-        .magic-dust {
-            position: absolute; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 30%, rgba(138, 43, 226, 0.3), transparent 60%);
+        /* แสงออโรร่าและกลุ่มก้อนพลังงานบนท้องฟ้า */
+        .sky-aurora {
+            position: absolute; width: 150%; height: 60%;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 243, 255, 0.25), transparent 50%),
+                        radial-gradient(circle at 70% 40%, rgba(189, 0, 255, 0.2), transparent 60%);
+            filter: blur(50px);
+            animation: skyPulse 8s infinite alternate ease-in-out;
         }
+        @keyframes skyPulse { 0% { opacity: 0.7; } 100% { opacity: 1; } }
 
-        /* 2. ปราสาทเวทมนตร์ 3D แบบสมจริง */
-        .castle-container {
+        /* --- ปั้นกลุ่มปราสาทเวทมนตร์หลายมิติ (Multi-Castle Kingdom) --- */
+        .castle-kingdom {
             position: absolute;
-            bottom: 120px; /* ขยับขึ้นเหนือพื้นหญ้า */
-            left: 4%;
-            width: 320px;
-            height: 400px;
-            opacity: 0.8;
-            transform: perspective(900px) rotateY(20deg);
-            filter: drop-shadow(0 0 25px rgba(138, 43, 226, 0.4));
-        }
-        .castle-main {
-            position: absolute; bottom: 0; left: 60px;
-            width: 140px; height: 160px; background: #22123b;
-            border: 1px solid rgba(255, 213, 0, 0.2);
-            border-radius: 8px 8px 0 0;
-        }
-        .castle-tower {
-            position: absolute; bottom: 158px; left: 95px;
-            width: 70px; height: 130px; background: #190c2e;
-            border-left: 2px solid var(--magic-cyan);
-        }
-        .castle-roof {
-            position: absolute; bottom: 286px; left: 80px;
-            width: 0; height: 0;
-            border-left: 50px solid transparent; border-right: 50px solid transparent;
-            border-bottom: 85px solid var(--magic-glow);
-        }
-        .castle-window {
-            position: absolute; width: 10px; height: 20px;
-            background: var(--magic-gold); border-radius: 8px 8px 0 0;
-            box-shadow: 0 0 12px var(--magic-gold);
-            top: 40px; left: 30px;
-        }
-
-        /* 3. มังกรแฟนตาซีของจริง (Real-shaped CSS Dragon) */
-        .dragon-squad {
-            position: absolute;
-            top: 18%;
-            animation: dragonFlightPath 25s infinite linear;
-            z-index: 5;
-        }
-
-        .real-dragon {
-            position: relative;
-            width: 180px; height: 70px;
-            display: flex; align-items: center;
-        }
-
-        /* หัวมังกร */
-        .dragon-head {
-            position: absolute; right: 0; top: 0;
-            width: 45px; height: 35px;
-            background: var(--dragon-color);
-            border-radius: 40% 60% 50% 40%;
-            box-shadow: inset -5px 5px 10px rgba(255,255,255,0.2);
-        }
-        /* เขาของมังกร */
-        .dragon-head::before {
-            content: ''; position: absolute; top: -12px; left: 10px;
-            width: 8px; height: 18px; background: var(--magic-gold);
-            border-radius: 50% 50% 0 0; transform: rotate(15deg);
-            box-shadow: 0 0 8px var(--magic-gold);
-        }
-        /* ดวงตาเรืองแสง */
-        .dragon-eye {
-            position: absolute; top: 8px; right: 10px;
-            width: 6px; height: 6px; background: var(--magic-cyan);
-            border-radius: 50%; box-shadow: 0 0 10px var(--magic-cyan);
-        }
-
-        /* ลำตัวมังกรแบบเป็นระลอกคลื่น */
-        .dragon-body {
-            position: absolute; right: 35px; top: 10px;
-            width: 110px; height: 25px;
-            background: var(--dragon-color);
-            border-radius: 20px;
-            animation: dragonWave 0.8s infinite alternate ease-in-out;
-            transform-origin: right center;
-        }
-
-        /* หางมังกร */
-        .dragon-tail {
-            position: absolute; left: -20px; top: 2px;
-            width: 30px; height: 15px; background: var(--dragon-color);
-            clip-path: polygon(100% 0, 100% 100%, 0 50%);
-        }
-
-        /* ปีกมังกรขยับขึ้นลงทรงพลัง */
-        .dragon-wings {
-            position: absolute; top: -35px; right: 65px;
-            width: 55px; height: 50px;
-            background: #b31010;
-            clip-path: polygon(0 100%, 50% 0, 100% 100%);
-            transform-origin: bottom center;
-            animation: wingFlap 0.5s infinite alternate ease-in-out;
-            box-shadow: 0 -5px 10px rgba(0,0,0,0.3);
-        }
-
-        @keyframes wingFlap {
-            0% { transform: scaleY(0.3) rotate(-10deg); }
-            100% { transform: scaleY(1.1) rotate(15deg); }
-        }
-        @keyframes dragonWave {
-            0% { transform: skewY(-6deg) translateY(-4px); }
-            100% { transform: skewY(6deg) translateY(4px); }
-        }
-        @keyframes dragonFlightPath {
-            0% { left: -220px; transform: scale(0.8) translateY(0); }
-            50% { transform: scale(1) translateY(-30px); }
-            100% { left: 120vw; transform: scale(0.8) translateY(10px); }
-        }
-
-        /* 4. ระบบทุ่งหญ้าเคลื่อนไหวเมื่อเจอลมเวทมนตร์ (Dynamic SVG Grass) */
-        .grass-floor {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 110px;
-            z-index: 4;
-            overflow: hidden;
-        }
-
-        .grass-layer {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
-        }
-
-        /* ต้นหญ้าพริ้วไหวแบบกลุ่มสลับกันด้วย SVG Layer */
-        .grass-svg {
-            position: absolute; bottom: 0; width: 200%; height: 90px;
-            fill: var(--grass-light);
-            animation: waveGrass 4s infinite ease-in-out alternate;
-            transform-origin: bottom center;
+            bottom: 95px; left: 3%;
+            width: 450px; height: 450px;
+            transform: perspective(1000px) rotateY(18deg) rotateX(2deg);
+            filter: drop-shadow(0 0 30px rgba(189, 0, 255, 0.35));
             opacity: 0.9;
         }
 
-        .grass-back {
-            height: 110px; fill: var(--grass-dark);
-            animation: waveGrass 5s infinite ease-in-out alternate-reverse;
-            animation-delay: -1s;
-            opacity: 0.7;
+        /* หอคอยหลักตรงกลาง */
+        .tower-center {
+            position: absolute; bottom: 0; left: 160px;
+            width: 90px; height: 260px; background: #1b122b;
+            border-left: 3px solid rgba(0, 243, 255, 0.4);
+            border-right: 2px solid #0d0816;
+        }
+        .roof-center {
+            position: absolute; bottom: 260px; left: 145px;
+            width: 0; height: 0;
+            border-left: 60px solid transparent; border-right: 60px solid transparent;
+            border-bottom: 110px solid #57117e;
+            filter: drop-shadow(0 -5px 10px rgba(0, 243, 255, 0.5));
         }
 
-        @keyframes waveGrass {
-            0% { transform: translateX(0) skewX(-7deg); }
-            100% { transform: translateX(-2%) skewX(8deg); }
+        /* หอคอยฝั่งซ้าย (ฉากหลัง) */
+        .tower-left {
+            position: absolute; bottom: 0; left: 60px;
+            width: 60px; height: 190px; background: #130b21;
+            border-left: 2px solid rgba(189, 0, 255, 0.3);
+        }
+        .roof-left {
+            position: absolute; bottom: 190px; left: 50px;
+            width: 0; height: 0;
+            border-left: 40px solid transparent; border-right: 40px solid transparent;
+            border-bottom: 80px solid #3c0b59;
+        }
+
+        /* หоคอยฝั่งขวาพร้อมระเบียงป้อมปราการ */
+        .tower-right {
+            position: absolute; bottom: 0; left: 280px;
+            width: 70px; height: 150px; background: #160e24;
+            border-right: 3px solid rgba(189, 0, 255, 0.2);
+        }
+        .roof-right {
+            position: absolute; bottom: 150px; left: 270px;
+            width: 0; height: 0;
+            border-left: 45px solid transparent; border-right: 45px solid transparent;
+            border-bottom: 70px solid #4a0d6d;
+        }
+
+        /* หน้าต่างปราสาทส่องแสงวิบวับ */
+        .castle-window {
+            position: absolute; width: 12px; height: 24px;
+            background: linear-gradient(to bottom, #fff, var(--magic-gold));
+            border-radius: 6px 6px 0 0;
+            box-shadow: 0 0 15px var(--magic-gold), 0 0 30px #ff6c00;
+        }
+
+        /* --- ปั้นมังกรระดับภาพยนตร์ (Cinematic Moveable Dragon) --- */
+        .cinema-dragon-container {
+            position: absolute; top: 12%;
+            animation: movieDragonFlight 28s infinite linear;
+            z-index: 10;
+        }
+
+        .cinema-dragon {
+            position: relative; width: 260px; height: 120px;
+            transform: scaleX(-1); /* หันหน้าบินไปทางขวา */
+        }
+
+        /* ลำตัวมังกรทรงพลังและหนามหลัง */
+        .dragon-core-body {
+            position: absolute; left: 60px; top: 35px;
+            width: 140px; height: 45px;
+            background: linear-gradient(135deg, var(--dragon-skin), #401010);
+            border-radius: 40% 50% 40% 30%;
+            box-shadow: inset 0 10px 10px rgba(255,255,255,0.1), 0 10px 20px rgba(0,0,0,0.5);
+            animation: bodyGyrations 1.2s infinite alternate ease-in-out;
+        }
+
+        /* หัวมังกรดุร้ายสไตล์หนัง */
+        .dragon-movie-head {
+            position: absolute; left: 180px; top: 15px;
+            width: 65px; height: 45px;
+            background: var(--dragon-skin);
+            border-radius: 30px 50px 40px 30px;
+        }
+        /* เขาคู่ยาวเรียว */
+        .dragon-movie-head::before {
+            content: ''; position: absolute; top: -15px; left: 10px;
+            width: 6px; height: 25px; background: #e0e0e0;
+            border-radius: 50% 50% 0 0; transform: rotate(-25deg);
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+        /* ขากรรไกรปากมังกรกำลังอ้าพ่นไฟ */
+        .dragon-jaw {
+            position: absolute; bottom: -5px; left: 25px;
+            width: 40px; height: 15px; background: #1f0505;
+            border-radius: 0 0 10px 20px;
+            transform-origin: top left;
+            animation: jawOpen 3s infinite ease-in-out;
+        }
+        /* ตาพญามังกรสีฟ้าน้ำทะเลเรืองแสง */
+        .dragon-movie-eye {
+            position: absolute; top: 12px; left: 35px;
+            width: 8px; height: 6px; background: var(--magic-cyan);
+            clip-path: polygon(0 50%, 100% 0, 80% 100%);
+            box-shadow: 0 0 15px var(--magic-cyan);
+        }
+
+        /* เอฟเฟกต์ไฟเวทมนตร์พ่นออกจากปาก */
+        .dragon-fire-breath {
+            position: absolute; left: 235px; top: 32px;
+            width: 80px; height: 30px;
+            background: radial-gradient(circle, #fff, #ff7b00, transparent 70%);
+            border-radius: 50%; filter: blur(2px);
+            opacity: 0; transform: scale(0.5);
+            transform-origin: left center;
+            animation: fireBreath 3s infinite ease-in-out;
+            box-shadow: 0 0 20px #ff3c00;
+        }
+
+        /* ปีกมังกรขนาดใหญ่สยายกว้าง */
+        .dragon-giant-wing {
+            position: absolute; top: -45px; left: 90px;
+            width: 90px; height: 100px;
+            background: linear-gradient(to bottom, #150303, #521212);
+            clip-path: polygon(100% 100%, 30% 0, 0 60%, 40% 100%);
+            transform-origin: bottom left;
+            animation: giantWingFlap 0.6s infinite alternate ease-in-out;
+            z-index: 11;
+        }
+
+        /* หางยาวสะบัด */
+        .dragon-long-tail {
+            position: absolute; left: -40px; top: 45px;
+            width: 110px; height: 15px; background: var(--dragon-skin);
+            border-radius: 10px; transform-origin: right center;
+            animation: tailWhip 0.8s infinite alternate ease-in-out;
+        }
+
+        /* --- อนิเมชันควบคุมมังกรและไฟ --- */
+        @keyframes giantWingFlap { 0% { transform: scale(0.9) rotate(-25deg); } 100% { transform: scale(1.1) rotate(20deg); } }
+        @keyframes bodyGyrations { 0% { transform: translateY(-4px); } 100% { transform: translateY(4px); } }
+        @keyframes tailWhip { 0% { transform: rotate(-8deg); } 100% { transform: rotate(8deg); } }
+        @keyframes jawOpen { 0%, 100% { transform: rotate(0deg); } 40%, 70% { transform: rotate(20deg); } }
+        @keyframes fireBreath { 0%, 100% { opacity: 0; transform: scale(0.4); } 45%, 65% { opacity: 1; transform: scale(1.4) translateX(10px); } }
+        
+        @keyframes movieDragonFlight {
+            0% { left: -350px; transform: translateY(0) scaleX(-1); }
+            50% { transform: translateY(-40px) scaleX(-1); }
+            100% { left: 120vw; transform: translateY(20px) scaleX(-1); }
+        }
+
+        /* --- 5. ผืนทุ่งหญ้าพลิ้วไหวตามแรงลมเอฟเฟกต์ SVG --- */
+        .grass-floor {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 110px;
+            z-index: 5; overflow: hidden;
+        }
+        .grass-svg {
+            position: absolute; bottom: 0; width: 200%; height: 90px;
+            fill: var(--grass-front);
+            animation: windGrass 3.5s infinite ease-in-out alternate;
+            transform-origin: bottom center;
+        }
+        .grass-back-layer {
+            height: 115px; fill: var(--grass-back);
+            animation: windGrass 4.5s infinite ease-in-out alternate-reverse;
+            animation-delay: -0.5s; opacity: 0.75;
+        }
+        @keyframes windGrass {
+            0% { transform: translateX(0) skewX(-8deg); }
+            100% { transform: translateX(-3%) skewX(10deg); }
         }
 
         /* ==================================================
-           [ UI คอนเทนเนอร์การ์ดเวทมนตร์ ]
+           [ UI CONTAINER & MAGIC INTERFACE ]
            ================================================== */
         nav {
             position: relative; z-index: 100;
-            background: rgba(9, 1, 21, 0.7);
+            background: rgba(5, 1, 13, 0.75);
             padding: 18px; text-align: center;
             backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border-bottom: 2px solid rgba(138, 43, 226, 0.4);
+            border-bottom: 2px solid rgba(189, 0, 255, 0.4);
         }
-
         nav a {
             color: white; text-decoration: none; margin: 0 15px;
             font-size: 17px; font-weight: bold; transition: 0.3s;
         }
-
-        nav a:hover {
-            color: var(--magic-cyan); text-shadow: 0 0 12px var(--magic-cyan);
-        }
+        nav a:hover { color: var(--magic-cyan); text-shadow: 0 0 12px var(--magic-cyan); }
 
         .container {
-            position: relative; z-index: 10;
+            position: relative; z-index: 20;
             width: 90%; max-width: 850px;
-            margin: 40px auto 160px auto; /* เว้นด้านล่างให้เห็นหญ้าพริ้วไหวชัดเจน */
+            margin: 40px auto 170px auto;
         }
 
         h1 {
@@ -231,22 +264,19 @@
         }
 
         .school-link { display: block; text-decoration: none; color: white; margin-bottom: 25px; }
-
         .school {
             display: flex; align-items: center; gap: 25px;
-            background: rgba(26, 8, 46, 0.65);
+            background: rgba(28, 5, 58, 0.6);
             padding: 25px; border-radius: 24px;
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(138, 43, 226, 0.35);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+            border: 1px solid rgba(189, 0, 255, 0.35);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
             transition: .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
         .school-link:hover .school {
-            transform: translateY(-8px);
-            border-color: var(--magic-cyan);
-            background: rgba(38, 14, 66, 0.85);
-            box-shadow: 0 15px 35px rgba(0, 229, 255, 0.25);
+            transform: translateY(-8px); border-color: var(--magic-cyan);
+            background: rgba(58, 7, 92, 0.75);
+            box-shadow: 0 15px 45px rgba(0, 243, 255, 0.3);
         }
 
         .school img {
@@ -255,69 +285,76 @@
             border: 3px solid var(--magic-gold);
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
         }
-
         .school h2 { color: var(--magic-gold); font-size: 22px; margin-bottom: 8px; }
         .school-link:hover h2 { color: var(--magic-cyan); }
-        .school p { font-size: 17px; color: #dfd5f5; line-height: 1.7; }
+        .school p { font-size: 17px; color: #e2d6f7; line-height: 1.7; }
 
         .btn {
             display: inline-block; margin-top: 20px; padding: 14px 45px;
             background: linear-gradient(45deg, var(--magic-glow), var(--magic-cyan));
             color: white; text-decoration: none; border-radius: 40px;
             font-weight: bold; font-size: 16px; transition: .3s;
-            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+            box-shadow: 0 5px 20px rgba(189, 0, 255, 0.4);
         }
-
         .btn:hover {
             transform: scale(1.06); box-shadow: 0 8px 25px var(--magic-cyan);
-            background: linear-gradient(45deg, var(--magic-cyan), var(--magic-gold));
-            color: #090115;
+            background: linear-gradient(45deg, var(--magic-cyan), var(--magic-gold)); color: #05010d;
         }
 
         footer {
             text-align: center; padding: 25px; margin-top: auto;
-            background: rgba(9, 1, 21, 0.9);
-            border-top: 1px solid rgba(138, 43, 226, 0.3);
-            color: #a496c0; font-weight: bold; position: relative; z-index: 10;
+            background: rgba(5, 1, 13, 0.95); border-top: 1px solid rgba(189, 0, 255, 0.3);
+            color: #a797c4; font-weight: bold; position: relative; z-index: 100;
         }
     </style>
 </head>
 <body>
 
     <div class="magic-universe">
-        <div class="magic-dust"></div>
+        <div class="sky-aurora"></div>
 
-        <div class="dragon-squad">
-            <div class="real-dragon">
-                <div class="dragon-wings"></div>
-                <div class="dragon-body">
-                    <div class="dragon-tail"></div>
+        <div class="cinema-dragon-container">
+            <div class="cinema-dragon">
+                <div class="dragon-giant-wing"></div>
+                <div class="dragon-long-tail"></div>
+                <div class="dragon-core-body"></div>
+                <div class="dragon-movie-head">
+                    <div class="dragon-movie-eye"></div>
+                    <div class="dragon-jaw"></div>
                 </div>
-                <div class="dragon-head">
-                    <div class="dragon-eye"></div>
-                </div>
+                <div class="dragon-fire-breath"></div>
             </div>
         </div>
 
-        <div class="castle-container">
-            <div class="castle-main"><div class="castle-window"></div></div>
-            <div class="castle-tower">
-                <div class="castle-window" style="top:30px; background:var(--magic-cyan); box-shadow:0 0 12px var(--magic-cyan);"></div>
+        <div class="castle-kingdom">
+            <div class="tower-left">
+                <div class="castle-window" style="top:40px; left:12px;"></div>
+                <div class="castle-window" style="top:90px; left:35px;"></div>
             </div>
-            <div class="castle-roof"></div>
+            <div class="roof-left"></div>
+
+            <div class="tower-right">
+                <div class="castle-window" style="top:35px; left:28px;"></div>
+            </div>
+            <div class="roof-right"></div>
+
+            <div class="tower-center">
+                <div class="castle-window" style="top:45px; left:20px;"></div>
+                <div class="castle-window" style="top:45px; left:55px;"></div>
+                <div class="castle-window" style="top:110px; left:38px; background:var(--magic-cyan); box-shadow:0 0 15px var(--magic-cyan);"></div>
+                <div class="castle-window" style="top:170px; left:20px;"></div>
+                <div class="castle-window" style="top:170px; left:55px;"></div>
+            </div>
+            <div class="roof-center"></div>
         </div>
 
         <div class="grass-floor">
-            <div class="grass-layer">
-                <svg class="grass-svg grass-back" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M0,60 Q30,10 60,60 T120,60 T180,60 T240,60 T300,60 T360,60 T420,60 T480,60 T540,60 T600,60 T660,60 T720,60 T780,60 T840,60 T900,60 T960,60 T1020,60 T1080,60 T1140,60 T1200,60 L1200,120 L0,120 Z"/>
-                </svg>
-            </div>
-            <div class="grass-layer">
-                <svg class="grass-svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M0,70 Q25,20 50,70 T100,70 T150,70 T200,70 T250,70 T300,70 T350,70 T400,70 T450,70 T500,70 T550,70 T600,70 T650,70 T700,70 T750,70 T800,70 T850,70 T900,70 T950,70 T1000,70 T1050,70 T1100,70 T1150,70 T1200,70 L1200,120 L0,120 Z"/>
-                </svg>
-            </div>
+            <svg class="grass-svg grass-back-layer" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,60 Q30,10 60,60 T120,60 T180,60 T240,60 T300,60 T360,60 T420,60 T480,60 T540,60 T600,60 T660,60 T720,60 T780,60 T840,60 T900,60 T960,60 T1020,60 T1080,60 T1140,60 T1200,60 L1200,120 L0,120 Z"/>
+            </svg>
+            <svg class="grass-svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,70 Q25,20 50,70 T100,70 T150,70 T200,70 T250,70 T300,70 T350,70 T400,70 T450,70 T500,70 T550,70 T600,70 T650,70 T700,70 T750,70 T800,70 T850,70 T900,70 T950,70 T1000,70 T1050,70 T1100,70 T1150,70 T1200,70 L1200,120 L0,120 Z"/>
+            </svg>
         </div>
     </div>
 
