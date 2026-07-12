@@ -346,4 +346,220 @@
         }
         .grass-blades-container {
             position: absolute; top: -22px; left: 0; width: 100%; height: 30px;
-            display: flex; justify-content: space-around; align-
+            display: flex; justify-content: space-around; align-items: flex-end;
+        }
+        .blade {
+            width: 4px; height: 22px;
+            background: linear-gradient(to top, var(--grass-ground), var(--grass-blade));
+            border-radius: 50% 50% 0 0;
+            transform-origin: bottom center;
+            animation: bladeSway 2.8s infinite ease-in-out alternate;
+        }
+        .blade:nth-child(2n) { height: 16px; animation-delay: -0.5s; }
+        .blade:nth-child(3n) { height: 26px; animation-delay: -1.2s; }
+        @keyframes bladeSway { 0% { transform: rotate(-4deg); } 100% { transform: rotate(8deg); } }
+
+        /* ==================================================
+           [ UI CONTROLS & MODERN CARDS ]
+           ================================================== */
+        nav {
+            position: relative; z-index: 100;
+            background: rgba(30, 13, 46, 0.5);
+            padding: 18px; text-align: center;
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(247, 163, 196, 0.3);
+        }
+        nav a {
+            color: white; text-decoration: none; margin: 0 15px;
+            font-size: 17px; font-weight: bold; transition: 0.3s;
+        }
+        nav a:hover { color: #fff; text-shadow: 0 0 15px var(--sky-pink-light), 0 0 25px var(--magic-cyan); }
+
+        .container {
+            position: relative; z-index: 20;
+            width: 90%; max-width: 850px;
+            margin: 40px auto 180px auto;
+        }
+        h1 {
+            text-align: center; font-size: 42px; margin-bottom: 35px;
+            color: white; text-shadow: 0 0 20px var(--sky-pink-light), 0 0 40px var(--sky-purple);
+        }
+        .school-link { display: block; text-decoration: none; color: white; margin-bottom: 25px; }
+        .school {
+            display: flex; align-items: center; gap: 25px;
+            background: rgba(49, 23, 76, 0.55);
+            padding: 25px; border-radius: 24px;
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(247, 163, 196, 0.25);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+            transition: .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .school-link:hover .school {
+            transform: translateY(-8px); border-color: var(--magic-cyan);
+            background: rgba(76, 37, 115, 0.7);
+            box-shadow: 0 20px 50px rgba(0, 243, 255, 0.25);
+        }
+        .school img {
+            width: 100px; height: 100px; border-radius: 50%;
+            background: #fff; padding: 6px; object-fit: contain;
+            border: 3px solid var(--sky-pink-light);
+        }
+        .school h2 { color: var(--sky-pink-light); font-size: 22px; margin-bottom: 8px; }
+        .school-link:hover h2 { color: var(--magic-cyan); }
+        .school p { font-size: 17px; color: #fdf0f5; line-height: 1.7; }
+
+        .btn {
+            display: inline-block; margin-top: 20px; padding: 14px 45px;
+            background: linear-gradient(45deg, var(--sky-pink-deep), var(--sky-purple));
+            color: white; text-decoration: none; border-radius: 40px;
+            font-weight: bold; font-size: 16px; transition: .3s;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .btn:hover {
+            transform: scale(1.06); box-shadow: 0 8px 25px var(--magic-cyan);
+            background: linear-gradient(45deg, var(--magic-cyan), #fff); color: var(--sky-purple);
+        }
+        footer {
+            text-align: center; padding: 25px; margin-top: auto;
+            background: #051d0f; border-top: 1px solid rgba(46, 204, 113, 0.2);
+            color: #c5b5d3; font-weight: bold; position: relative; z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="magic-universe">
+        <div class="twin-moons-container">
+            <div class="moon-large"></div>
+            <div class="moon-small"></div>
+        </div>
+
+        <div class="cloud-3d-1"></div>
+        <div class="cloud-3d-2"></div>
+
+        <div class="mountain-range"></div>
+        <div class="forest-layer">
+            <div class="magic-tree"></div>
+            <div class="magic-tree" style="transform: scale(0.8);"></div>
+            <div class="magic-tree" style="transform: scale(1.1);"></div>
+        </div>
+
+        <div class="fire-explosion"></div>
+
+        <div class="dragon-epic-universe">
+            <div class="dragon-master-model">
+                <div class="dm-tail-long">
+                    <div class="dm-tail-fin"></div>
+                </div>
+                <div class="dm-body"></div>
+                <div class="dm-head">
+                    <div class="dm-eye"></div>
+                    <div class="dm-jaw"></div>
+                </div>
+                <div class="dm-wing-front"></div>
+                <div class="dm-fire-blast"></div>
+            </div>
+        </div>
+
+        <div class="castle-4d-realm">
+            <div class="castle-base-wall">
+                <div class="castle-gate"></div>
+                <div class="window-glow-4d" style="top:30px; left:30px;"></div>
+                <div class="window-glow-4d" style="top:30px; left:210px;"></div>
+            </div>
+            <div class="tower-cylindrical">
+                <div class="window-glow-4d" style="top:40px; left:20px;"></div>
+                <div class="window-glow-4d" style="top:40px; left:65px;"></div>
+                <div class="window-glow-4d" style="top:100px; left:43px; background:var(--magic-cyan); box-shadow:0 0 15px var(--magic-cyan);"></div>
+            </div>
+            <div class="roof-cone-4d"></div>
+        </div>
+
+        <div class="knights-runway">
+            <div class="magic-knight k1">
+                <div class="knight-cape"></div>
+                <div class="knight-armor"></div>
+                <div class="knight-helmet"></div>
+            </div>
+            <div class="magic-knight k2">
+                <div class="knight-cape"></div>
+                <div class="knight-armor"></div>
+                <div class="knight-helmet"></div>
+            </div>
+            <div class="magic-knight k3">
+                <div class="knight-cape"></div>
+                <div class="knight-armor"></div>
+                <div class="knight-helmet"></div>
+            </div>
+            <div class="magic-knight k4">
+                <div class="knight-cape"></div>
+                <div class="knight-armor"></div>
+                <div class="knight-helmet"></div>
+            </div>
+        </div>
+
+        <div class="ground-flat-luxury">
+            <div class="grass-blades-container">
+                <div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div>
+                <div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div>
+                <div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div>
+                <div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <a href="index.html">หน้าแรก</a>
+        <a href="profile.html">ประวัติส่วนตัว</a>
+        <a href="education.html">ประวัติการศึกษา</a>
+        <a href="award.html">ผลงาน</a>
+        <a href="contact.html">ติดต่อ</a>
+    </nav>
+
+    <main class="container">
+        <h1>🔮 มหากาพย์ประวัติการศึกษา 📜</h1>
+
+        <a href="https://www.facebook.com/WattanadaroonwitSchool" target="_blank" class="school-link">
+            <div class="school">
+                <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-100017.jpg" alt="โรงเรียนวัฒนดรุณวิทย์">
+                <div>
+                    <h2>🏰 ระดับประถมศึกษา</h2>
+                    <p><strong>โรงเรียนวัฒนดรุณวิทย์</strong></p>
+                    <p>สำเร็จหลักสูตรเวทมนตร์ศาสตร์ขั้นต้น (ประถมศึกษา)</p>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://www.facebook.com/WattanadaroonwitSchool" target="_blank" class="school-link">
+            <div class="school">
+                <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-100017.jpg" alt="โรงเรียนวัฒนดรุณวิทย์">
+                <div>
+                    <h2>⚔️ ระดับมัธยมศึกษาตอนต้น</h2>
+                    <p><strong>โรงเรียนวัฒนดรุณวิทย์</strong></p>
+                    <p>สำเร็จหลักสูตรคาถาศาสตร์และวิทยาการคำนวณขั้นกลาง</p>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://www.facebook.com/PhanTSchool/" target="_blank" class="school-link">
+            <div class="school">
+                <img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-100141.jpg" alt="โรงเรียนพานทอง">
+                <div>
+                    <h2>👑 ระดับมัธยมศึกษาตอนปลาย</h2>
+                    <p><strong>โรงเรียนพานทอง (สถาบันต้นสน)</strong></p>
+                    <p>กำลังศึกษาชั้นมัธยมศึกษาปีที่ 6/1 (ภาควิชาเวทมนตร์ศาสตร์ระดับสูง)</p>
+                </div>
+            </div>
+        </a>
+
+        <div style="text-align:center;">
+            <a href="award.html" class="btn"> ถัดไป</a>
+        </div>
+    </main>
+
+    <footer>
+        © 2026 Magic Portfolio | นาย เมธาสิทธิ์ ขันติกุล
+    </footer>
+
+</body>
+</html>
