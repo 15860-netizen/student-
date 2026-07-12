@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ประวัติการศึกษา</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -18,6 +21,8 @@ body{
     color:white;
 }
 
+
+/* เมนู */
 nav{
     background:rgba(0,0,0,.25);
     padding:15px;
@@ -36,11 +41,14 @@ nav a:hover{
     color:yellow;
 }
 
+
+/* กล่อง */
 .container{
     width:90%;
     max-width:900px;
     margin:40px auto;
 }
+
 
 h1{
     text-align:center;
@@ -48,107 +56,412 @@ h1{
     color:#ffe600;
 }
 
+
+/* โรงเรียน */
 .school{
+
     display:flex;
     align-items:center;
     gap:20px;
+
     background:rgba(255,255,255,.15);
+
     padding:20px;
+
     border-radius:20px;
+
     margin-bottom:20px;
+
     box-shadow:0 5px 15px rgba(0,0,0,.3);
+
 }
 
+
+/* รูปโรงเรียน */
 .school img{
+
     width:100px;
     height:100px;
+
     border-radius:50%;
+
     background:white;
+
     padding:8px;
+
     object-fit:contain;
+
+    cursor:pointer;
+
+    transition:.3s;
+
 }
+
+
+.school img:hover{
+
+    transform:scale(1.1);
+
+}
+
+
 
 .school h2{
+
     color:#ffe600;
+
     margin-bottom:10px;
+
 }
+
 
 .school p{
+
     font-size:18px;
+
     line-height:1.8;
+
 }
+
+
+
+/* ชื่อโรงเรียน */
+
+.school a{
+
+    color:white;
+
+    text-decoration:none;
+
+}
+
+
+.school a:hover{
+
+    color:#ffe600;
+
+    text-decoration:underline;
+
+}
+
+
+
+/* ปุ่ม */
 
 .btn{
+
     display:inline-block;
+
     margin-top:20px;
+
     padding:12px 25px;
+
     background:white;
+
     color:#dd191d;
+
     text-decoration:none;
+
     border-radius:30px;
+
     font-weight:bold;
+
 }
 
-footer{
-    text-align:center;
-    padding:20px;
-    margin-top:40px;
-    background:rgba(0,0,0,.25);
+
+
+/* รูปขยาย */
+
+.lightbox{
+
+    display:none;
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+
+    background:rgba(0,0,0,.9);
+
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    z-index:9999;
+
 }
+
+
+
+.lightbox img{
+
+    max-width:90%;
+
+    max-height:90%;
+
+    border-radius:20px;
+
+    border:5px solid white;
+
+}
+
+
+
+/* footer */
+
+footer{
+
+    text-align:center;
+
+    padding:20px;
+
+    margin-top:40px;
+
+    background:rgba(0,0,0,.25);
+
+}
+
+
 </style>
 
 </head>
 
+
 <body>
 
+
 <nav>
+
 <a href="index.html">หน้าแรก</a>
+
 <a href="profile.html">ประวัติส่วนตัว</a>
+
 <a href="education.html">ประวัติการศึกษา</a>
+
 <a href="award.html">ผลงาน</a>
+
 <a href="contact.html">ติดต่อ</a>
+
 </nav>
+
+
 
 <div class="container">
 
+
 <h1>ประวัติการศึกษา</h1>
 
+
+
+<!-- ประถม -->
+
 <div class="school">
-<img src="images/anuban.png" alt="โลโก้โรงเรียนอนุบาลพนัสศึกษาลัย">
+
+<img src="images/anuban.png"
+alt="โรงเรียนวัฒนดรุณวิทย์"
+onclick="openImage(this.src)">
+
+
 <div>
+
 <h2>🎓 ระดับประถมศึกษา</h2>
-<p><strong>โรงเรียนวัฒนดรุณวิทย์</strong></p>
+
+
+<p>
+
+<strong>
+
+<a href="https://www.google.com/search?q=โรงเรียนวัฒนดรุณวิทย์"
+target="_blank">
+
+โรงเรียนวัฒนดรุณวิทย์
+
+</a>
+
+</strong>
+
+</p>
+
+
 <p>สำเร็จการศึกษาระดับประถมศึกษา</p>
-</div>
+
+
 </div>
 
+</div>
+
+
+
+
+<!-- มัธยมต้น -->
+
 <div class="school">
-<img src="images/wattana.png" alt="โลโก้โรงเรียนวัฒนานุศาสน์">
+
+
+<img src="images/wattana.png"
+alt="โรงเรียนวัฒนดรุณวิทย์"
+onclick="openImage(this.src)">
+
+
+
 <div>
+
+
 <h2>🎓 ระดับมัธยมศึกษาตอนต้น</h2>
-<p><strong>โรงเรียนวัฒนดรุณวิทย์</strong></p>
+
+
+<p>
+
+<strong>
+
+<a href="https://www.google.com/search?q=โรงเรียนวัฒนดรุณวิทย์"
+target="_blank">
+
+โรงเรียนวัฒนดรุณวิทย์
+
+</a>
+
+</strong>
+
+</p>
+
+
 <p>สำเร็จการศึกษาระดับมัธยมศึกษาตอนต้น</p>
-</div>
+
+
 </div>
 
+
+</div>
+
+
+
+
+
+<!-- มัธยมปลาย -->
+
 <div class="school">
-<img src="images/phanthong.png" alt="โลโก้โรงเรียนพานทอง">
+
+
+<img src="https://raw.githubusercontent.com/15860-netizen/student-/main/images/Screenshot_20260712-100017.jpg"
+
+alt="โรงเรียนพานทอง"
+
+onclick="openImage(this.src)">
+
+
+
 <div>
+
+
 <h2>🎓 ระดับมัธยมศึกษาตอนปลาย</h2>
-<p><strong>โรงเรียนพานทอง (ต้นสน)</strong></p>
+
+
+
+<p>
+
+<strong>
+
+<a href="https://www.facebook.com/phanthongschool"
+
+target="_blank">
+
+โรงเรียนพานทอง (ต้นสน)
+
+</a>
+
+</strong>
+
+
+</p>
+
+
+
 <p>กำลังศึกษาชั้นมัธยมศึกษาปีที่ 6/1</p>
+
+
 </div>
+
+
 </div>
+
+
+
+
 
 <div style="text-align:center;">
-<a href="index.html" class="btn">🏠 กลับหน้าหลัก</a>
-</div>
+
+
+<a href="index.html" class="btn">
+
+🏠 กลับหน้าหลัก
+
+</a>
+
 
 </div>
+
+
+</div>
+
+
+
+
+
+<!-- Lightbox -->
+
+<div id="lightbox" class="lightbox" onclick="closeImage()">
+
+
+<img id="lightbox-img" src="" alt="รูปขยาย">
+
+
+</div>
+
+
+
 
 <footer>
+
 © 2026 Portfolio | นาย เมธาสิทธิ์ ขันติกุล
+
 </footer>
 
+
+
+
+<script>
+
+
+function openImage(src){
+
+document.getElementById("lightbox").style.display="flex";
+
+document.getElementById("lightbox-img").src=src;
+
+}
+
+
+
+function closeImage(){
+
+document.getElementById("lightbox").style.display="none";
+
+}
+
+
+</script>
+
+
+
 </body>
+
 </html>
